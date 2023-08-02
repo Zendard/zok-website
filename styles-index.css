@@ -12,7 +12,7 @@
 .hero-title {
 	font-size: 40px;
 	color: white;
-	margin-bottom: 50px;
+	margin: 50px 0px;
 
 }
 
@@ -21,8 +21,6 @@
 	color: #46B1E1;
 	text-decoration: none;
 	padding: 10px 15px;
-	transition-property: padding;
-	transition-duration: .5s;
 }
 
 .hero-button:hover {
@@ -59,6 +57,7 @@
 }
 
 .info-button:hover {
+	padding: 20px 40px;
 	background-color: white;
 	color: #46B1E1;
 }
