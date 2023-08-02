@@ -37,6 +37,47 @@ li {
 	margin: 10px 40px;
 }
 
+form {
+	margin: 20px 40px;
+	height: 900px;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+}
+
+input {
+	height: 25px;
+	width: 500px;
+	border-radius: 0px;
+	border: solid 1px;
+}
+
+#message {
+	height: 500px;
+	width: 1000px;
+	font-size: 15px;
+}
+
+label {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+#submit {
+	margin-top: 20px;
+	background-color: #46B1E1;
+	border: none;
+	font-size: 25px;
+	height: 70px;
+	width: 150px;
+	color: white;
+	transition-duration: .5s;
+}
+
+#submit:hover {
+	width: 175px;
+}
+
 /*menu*/
 .menu {
 	background-color: rgb(68, 68, 68);
@@ -85,6 +126,7 @@ li {
 }
 
 .sponsors-photos>img {
+	margin-left: 0px;
 	height: 100px;
 }
 
