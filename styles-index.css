@@ -89,6 +89,7 @@
 }
 
 .kalender-item {
+	border-radius: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -99,7 +100,8 @@
 }
 
 .kalender-item>img {
-	padding: 0;
+	border-radius: 30px;
+	margin: 0;
 	width: 200px;
 	height: 200px;
 }
