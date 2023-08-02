@@ -149,3 +149,32 @@ body {
 }
 
 /*footer*/
+.footer {
+	background-color: rgb(33, 33, 33);
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	padding: 30px
+}
+
+.footer-title {
+	font-size: 30px;
+	text-decoration: underline #46B1E1 solid 3px;
+}
+
+.sponsors-photos>img {
+	height: 100px;
+}
+
+.adress {
+	display: flex;
+	justify-content: space-between;
+}
+
+.contact-text {
+	font-size: 20px;
+}
+
+.disclaimer-link {
+	color: white;
+}
