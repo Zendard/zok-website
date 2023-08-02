@@ -15,7 +15,7 @@ body {
 	font-size: 60px;
 }
 
-.logo span {
+.logo>span {
 	color: #46B1E1;
 	font-size: 70px;
 }
@@ -96,7 +96,56 @@ body {
 }
 
 /*kalender*/
-.kalender-title {
-	color: rgb(84, 84, 84);
+.kalender {
+	display: flex;
+	flex-direction: column;
 	align-items: center;
+
 }
+
+.kalender-title {
+	color: rgb(126, 126, 126);
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+.kalender-descr {
+	margin: 10px;
+	color: rgb(126, 126, 126);
+}
+
+.kalender-items {
+	align-self: stretch;
+	margin: 60px 15px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.kalender-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: start;
+	width: 400px;
+	padding: 20px;
+	background-color: rgb(163, 163, 163);
+}
+
+.kalender-item>img {
+	padding: 0;
+	width: 200px;
+	height: 200px;
+}
+
+.kalender-item-title {
+	color: white;
+	font-size: 25px;
+}
+
+.kalender-item-link {
+	color: white;
+	background-color: #46B1E1;
+	padding: 20px;
+}
+
+/*footer*/
