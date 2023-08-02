@@ -94,7 +94,9 @@ li {
 }
 
 .contact-text {
+	margin: 10px 0px;
 	font-size: 20px;
+	color: white;
 }
 
 .disclaimer-link {
