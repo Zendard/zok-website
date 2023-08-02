@@ -1,35 +1,48 @@
+:root {
+	--text: #e4f5f6;
+	--background: #0a191e;
+	--primary: #00b8ff;
+	--secondary: #2d2d2d;
+	--accent: #00ceff;
+}
+
 body {
-	font-family: 'Roboto', sans-serif;
-	margin: 0px;
+	color: var(--text);
+	background-color: var(--background);
+	margin: 0;
+	font-family: 'Inter', sans-serif;
+	font-weight: 700;
 }
 
 h1 {
 	font-size: 45px;
-	color: rgb(68, 68, 68);
-	font-weight: 500;
+	color: var(--text);
+	font-weight: 800;
 	margin: 40px;
-	text-decoration: underline solid #46B1E1 5px;
+	text-decoration: underline solid var(--accent) 5px;
 }
 
 h2 {
 	font-size: 30px;
-	color: rgb(68, 68, 68);
-	font-weight: 500;
+	color: var(--text);
+	font-weight: 700;
 	margin: 40px;
 }
 
 p {
 	font-size: 15px;
-	color: rgb(68, 68, 68);
+	color: var(--text);
 	margin-left: 40px;
 }
 
 a {
-	color: #46B1E1;
+	color: var(--accent);
 	transition-duration: .5s;
+	border-radius: 30px;
 }
 
 img {
+	border-radius: 30px;
 	margin: 10px 40px
 }
 
@@ -46,16 +59,18 @@ form {
 }
 
 input {
+	border-radius: 30px;
 	height: 25px;
 	width: 500px;
-	border-radius: 0px;
 	border: solid 1px;
 }
 
 #message {
+	border-radius: 30px;
 	height: 500px;
 	width: 1000px;
 	font-size: 15px;
+	border: solid 1px;
 }
 
 label {
@@ -65,12 +80,12 @@ label {
 
 #submit {
 	margin-top: 20px;
-	background-color: #46B1E1;
+	background-color: var(--primary);
 	border: none;
 	font-size: 25px;
 	height: 70px;
 	width: 150px;
-	color: white;
+	color: var(--text);
 	transition-duration: .5s;
 }
 
@@ -80,7 +95,7 @@ label {
 
 /*menu*/
 .menu {
-	background-color: rgb(68, 68, 68);
+	background-color: var(--secondary);
 	display: flex;
 	align-items: center;
 }
@@ -93,7 +108,7 @@ label {
 }
 
 .logo>span {
-	color: #46B1E1;
+	color: var(--primary);
 	font-size: 70px;
 }
 
@@ -101,20 +116,20 @@ label {
 	font-size: 18px;
 	padding: 15px 20px;
 	margin: 5px;
-	color: white;
+	color: var(--text);
 	text-decoration: none;
 }
 
 .menu-button:hover {
 	padding: 15px 30px;
-	background-color: #46B1E1;
-	color: white;
+	background-color: var(--primary);
+	color: var(--text);
 }
 
 /*footer*/
 .footer {
-	background-color: rgb(33, 33, 33);
-	color: white;
+	background-color: var(--secondary);
+	color: var(--text);
 	display: flex;
 	justify-content: space-between;
 	padding: 30px
@@ -122,10 +137,11 @@ label {
 
 .footer-title {
 	font-size: 30px;
-	text-decoration: underline #46B1E1 solid 3px;
+	text-decoration: underline var(--accent) solid 3px;
 }
 
 .sponsors-photos>img {
+	border-radius: 0px;
 	margin-left: 0px;
 	height: 100px;
 }
@@ -138,9 +154,9 @@ label {
 .contact-text {
 	margin: 10px 0px;
 	font-size: 20px;
-	color: white;
+	color: var(--text);
 }
 
 .disclaimer-link {
-	color: white;
+	color: var(--text);
 }

@@ -2,37 +2,42 @@
 .hero {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: start;
 	align-items: start;
-	background-color: darkcyan;
+	background-image: url("./images/hero.jpeg");
+	background-position-y: bottom;
+	background-size: fill;
+	background-position-x: 70%;
+	background-position-y: 40%;
+	background-color: var(--background);
 	height: 500px;
 	padding: 40px;
 }
 
 .hero-title {
 	font-size: 40px;
-	color: white;
+	color: var(--text);
 	margin: 50px 0px;
 
 }
 
 .hero-button {
-	background-color: white;
-	color: #46B1E1;
+	background-color: var(--primary);
+	color: var(--text);
 	text-decoration: none;
 	padding: 10px 15px;
 }
 
 .hero-button:hover {
 	padding: 10px 25px;
-	background-color: rgb(56, 56, 56);
-	color: white;
+	background-color: var(--secondary);
+	color: var(--text);
 }
 
 /*info*/
 .info {
-	background-color: #46B1E1;
-	color: white;
+	background-color: var(--primary);
+	color: var(--text);
 	padding: 20px;
 	display: flex;
 	justify-content: space-between;
@@ -47,9 +52,9 @@
 }
 
 .info-button {
-	outline: white 5px solid;
+	outline: var(--text) 6px solid;
 	padding: 20px 30px;
-	color: white;
+	color: var(--text);
 	text-decoration: none;
 	font-weight: 700;
 	font-size: 20px;
@@ -58,8 +63,8 @@
 
 .info-button:hover {
 	padding: 20px 40px;
-	background-color: white;
-	color: #46B1E1;
+	background-color: var(--text);
+	color: var(--primary);
 }
 
 /*kalender*/
@@ -71,14 +76,14 @@
 }
 
 .kalender-title {
-	color: rgb(126, 126, 126);
+	color: var(--text);
 	font-size: 40px;
 	margin-bottom: 10px;
 }
 
 .kalender-descr {
 	margin: 10px;
-	color: rgb(126, 126, 126);
+	color: var(--text);
 }
 
 .kalender-items {
@@ -89,28 +94,29 @@
 }
 
 .kalender-item {
+	border-radius: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: start;
 	width: 400px;
 	padding: 20px;
-	background-color: rgb(163, 163, 163);
+	background-color: var(--secondary);
 }
 
 .kalender-item>img {
-	padding: 0;
+	margin: 0;
 	width: 200px;
 	height: 200px;
 }
 
 .kalender-item-title {
-	color: white;
+	color: var(--text);
 	font-size: 25px;
 }
 
 .kalender-item-link {
-	color: white;
-	background-color: #46B1E1;
+	color: var(--text);
+	background-color: var(--primary);
 	padding: 20px;
 }
