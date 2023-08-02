@@ -1,12 +1,12 @@
 body {
-	font-family: 'Inter', sans-serif;
-	font-weight: 700;
+	font-family: 'Roboto', sans-serif;
+	margin: 0px;
 }
 
 h1 {
 	font-size: 45px;
 	color: rgb(68, 68, 68);
-	font-weight: 800;
+	font-weight: 500;
 	margin: 40px;
 	text-decoration: underline solid #46B1E1 5px;
 }
@@ -14,7 +14,7 @@ h1 {
 h2 {
 	font-size: 30px;
 	color: rgb(68, 68, 68);
-	font-weight: 700;
+	font-weight: 500;
 	margin: 40px;
 }
 
@@ -27,7 +27,6 @@ p {
 a {
 	color: #46B1E1;
 	transition-duration: .5s;
-	border-radius: 30px;
 }
 
 img {
@@ -127,7 +126,6 @@ label {
 }
 
 .sponsors-photos>img {
-	border-radius: 30px;
 	margin-left: 0px;
 	height: 100px;
 }
