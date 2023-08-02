@@ -4,7 +4,7 @@
 	flex-direction: column;
 	justify-content: start;
 	align-items: start;
-	background-image: url("./images/hero.jpeg");
+	/*background-image: url("./images/hero.jpeg");*/
 	background-position-y: bottom;
 	background-size: fill;
 	background-position-x: 70%;
@@ -29,8 +29,8 @@
 }
 
 .hero-button:hover {
-	padding: 10px 25px;
-	background-color: var(--secondary);
+	scale: 1.1;
+	background-color: var(--accent);
 	color: var(--text);
 }
 
@@ -62,7 +62,7 @@
 }
 
 .info-button:hover {
-	padding: 20px 40px;
+	scale: 1.1;
 	background-color: var(--text);
 	color: var(--primary);
 }
@@ -102,6 +102,12 @@
 	width: 400px;
 	padding: 20px;
 	background-color: var(--secondary);
+	transition-duration: .5s;
+}
+
+.kalender-item:hover {
+	scale: 1.1;
+	;
 }
 
 .kalender-item>img {

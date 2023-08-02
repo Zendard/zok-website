@@ -1,8 +1,8 @@
 :root {
-	--text: #e4f5f6;
-	--background: #0a191e;
-	--primary: #00b8ff;
-	--secondary: #2d2d2d;
+	--text: #edfeff;
+	--background: #111a1d;
+	--primary: #0099cc;
+	--secondary: #003142;
 	--accent: #00ceff;
 }
 
@@ -23,9 +23,19 @@ h1 {
 }
 
 h2 {
+	border-radius: 30px;
+	padding: 10px 30px;
 	font-size: 30px;
 	color: var(--text);
 	font-weight: 700;
+	margin: 40px;
+	background-color: var(--primary);
+}
+
+h3 {
+	font-size: 20px;
+	color: var(--text);
+	font-weight: 600;
 	margin: 40px;
 }
 
@@ -36,18 +46,23 @@ p {
 }
 
 a {
-	color: var(--accent);
+	color: var(--primary);
 	transition-duration: .5s;
 	border-radius: 30px;
 }
 
+a:hover {
+	color: var(--accent);
+}
+
 img {
 	border-radius: 30px;
-	margin: 10px 40px
+	margin: 50px 40px
 }
 
 li {
-	margin: 10px 40px;
+	font-size: 25px;
+	margin: 30px 50px;
 }
 
 form {
@@ -59,10 +74,13 @@ form {
 }
 
 input {
+	padding: 3px 10px;
+	font-size: 20px;
 	border-radius: 30px;
 	height: 25px;
-	width: 500px;
+	min-width: 150px;
 	border: solid 1px;
+	background-color: var(--text);
 }
 
 #message {
@@ -74,6 +92,7 @@ input {
 }
 
 label {
+	margin-left: 20px;
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
@@ -90,11 +109,15 @@ label {
 }
 
 #submit:hover {
+	background-color: var(--accent);
 	width: 175px;
 }
 
 /*menu*/
 .menu {
+	z-index: 100;
+	position: sticky;
+	top: 0px;
 	background-color: var(--secondary);
 	display: flex;
 	align-items: center;

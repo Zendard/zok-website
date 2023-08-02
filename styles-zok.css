@@ -1,0 +1,9 @@
+#bestuur {
+	display: flex;
+	align-items: center;
+}
+
+#bestuur-text>p {
+	font-size: 30px;
+	width: 400px;
+}
