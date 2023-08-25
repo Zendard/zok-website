@@ -15,10 +15,10 @@ body {
 }
 
 h1 {
-	font-size: 45px;
+	font-size: 3rem;
 	color: var(--text);
 	font-weight: 800;
-	margin: 40px;
+	margin: 40px 2vw;
 	text-decoration: underline solid var(--accent) 5px;
 }
 
@@ -28,7 +28,7 @@ h2 {
 	font-size: 30px;
 	color: var(--text);
 	font-weight: 700;
-	margin: 40px;
+	margin: 40px 2vw;
 	background-color: var(--primary);
 }
 
@@ -36,7 +36,7 @@ h3 {
 	font-size: 20px;
 	color: var(--text);
 	font-weight: 600;
-	margin: 40px;
+	margin: 40px 2vw;
 }
 
 p {
@@ -114,7 +114,7 @@ label {
 }
 
 /*menu*/
-.menu {
+header {
 	z-index: 100;
 	position: sticky;
 	top: 0px;
@@ -136,17 +136,67 @@ label {
 }
 
 .menu-button {
-	font-size: 18px;
-	padding: 15px 20px;
+	transition: right 1s;
+	font-size: 1.1rem;
+	padding: 1rem 1vw;
 	margin: 5px;
 	color: var(--text);
 	text-decoration: none;
 }
 
 .menu-button:hover {
+	padding: 1rem 1.5vw;
+	background-color: var(--primary);
+	color: var(--text);
+}
+
+.menu-button:active {
+	background-color: var(--background);
+	border: solid 0.3rem var(--text)
+}
+
+#burger-menu-button {
+	z-index: 2;
 	padding: 15px 30px;
 	background-color: var(--primary);
 	color: var(--text);
+	display: none;
+	width: 0px;
+}
+
+nav {
+	flex-direction: column;
+	align-items: start;
+	transition: right 1s;
+	padding: 1rem;
+}
+
+.menu-open {
+	display: flex;
+	right: 0%;
+}
+
+@media(max-width:700px) {
+	nav {
+		width: 50vw;
+		height: 100vh;
+		right: -100%;
+		top: 0px;
+		background-color: color-mix(in srgb, var(--background) 50%, black 50%);
+		position: absolute;
+		display: none;
+	}
+
+	#burger-menu-button {
+		width: 2rem;
+		display: block;
+	}
+
+	.footer,
+	.adress,
+	.info {
+		flex-direction: column;
+	}
 }
 
 /*footer*/

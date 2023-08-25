@@ -38,17 +38,18 @@
 .info {
 	background-color: var(--primary);
 	color: var(--text);
-	padding: 20px;
+	padding: 10vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 50px;
+	padding: 2vw 3vw;
 }
 
 .info-text {
 	font-weight: 500;
 	font-size: 30px;
-	width: 1100px
+	width: 90vw;
+	max-width: 1100px
 }
 
 .info-button {
@@ -58,10 +59,9 @@
 	text-decoration: none;
 	font-weight: 700;
 	font-size: 20px;
-	margin-right: 100px
 }
 
-.info-button:hover {
+.info-button:focus {
 	scale: 1.1;
 	background-color: var(--text);
 	color: var(--primary);
@@ -87,6 +87,7 @@
 }
 
 .kalender-items {
+	overflow: scroll;
 	align-self: stretch;
 	margin: 60px 15px;
 	display: flex;
@@ -94,12 +95,15 @@
 }
 
 .kalender-item {
+	margin: 10px;
 	border-radius: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: start;
-	width: 400px;
+	min-width: 18rem;
+	max-width: 400px;
+	width: 30vw;
 	padding: 20px;
 	background-color: var(--secondary);
 	transition-duration: .5s;
@@ -112,8 +116,10 @@
 
 .kalender-item>img {
 	margin: 0;
-	width: 200px;
-	height: 200px;
+	min-width: 7rem;
+	min-height: 7rem;
+	width: 10vw;
+	height: 10vw;
 }
 
 .kalender-item-title {
