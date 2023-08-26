@@ -42,7 +42,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 2vw 3vw;
+	padding: 2rem 2vw;
 }
 
 .info-text {
@@ -68,30 +68,28 @@
 }
 
 /*kalender*/
-.kalender {
+#kalender {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 }
 
-.kalender-title {
+#kalender-title {
 	color: var(--text);
 	font-size: 40px;
 	margin-bottom: 10px;
 }
 
-.kalender-descr {
-	margin: 10px;
-	color: var(--text);
-}
-
-.kalender-items {
-	overflow: scroll;
+#kalender-items {
+	height: 30rem;
+	overflow-y: visible;
+	overflow-x: scroll;
 	align-self: stretch;
-	margin: 60px 15px;
+	margin: 60px 0px;
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 .kalender-item {
@@ -101,10 +99,9 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: start;
-	min-width: 18rem;
-	max-width: 400px;
-	width: 30vw;
-	padding: 20px;
+	width: clamp(18rem, 30vw, 400px);
+	height: clamp(20rem, 30vw, 400px);
+	padding: max(2rem, 2vw);
 	background-color: var(--secondary);
 	transition-duration: .5s;
 }
@@ -116,10 +113,8 @@
 
 .kalender-item>img {
 	margin: 0;
-	min-width: 7rem;
-	min-height: 7rem;
-	width: 10vw;
-	height: 10vw;
+	width: clamp(7rem, 50vw, 200px);
+	height: clamp(7rem, 50vw, 200px);
 }
 
 .kalender-item-title {

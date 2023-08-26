@@ -136,7 +136,7 @@ header {
 }
 
 .menu-button {
-	transition: right 1s;
+	transition: all .6s;
 	font-size: 1.1rem;
 	padding: 1rem 1vw;
 	margin: 5px;
@@ -194,7 +194,8 @@ nav {
 
 	.footer,
 	.adress,
-	.info {
+	.info,
+	#bestuur {
 		flex-direction: column;
 	}
 }
