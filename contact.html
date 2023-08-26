@@ -31,16 +31,14 @@
 	<h2>Of vul onderstaand formulier in</h2>
 	<form>
 		<label for="name">Je naam*</label>
-		<input type="text" id="name" name="name" oninput="this.style.width = ((this.value.length + 1) * 12) + 'px';">
+		<input type="text" id="name" name="name">
 		<label for="email">Je e-mailadres*</label>
-		<input type="email" id="email" name="email" oninput="this.style.width = ((this.value.length + 1) * 12) + 'px';">
+		<input type="email" id="email" name="email">
 		<label for="subject">Onderwerp*</label>
-		<input type="text" id="subject" name="subject"
-			oninput="this.style.width = ((this.value.length + 1) * 12) + 'px';">
+		<input type="text" id="subject" name="subject">
 		<label for="message">Je bericht*</label>
-		<textarea id="message" name="message"
-			oninput="this.style.width = ((this.value.length + 1) * 12) + 'px';"></textarea>
-		<input type="submit" id="submit" name="submit" value="Verstuur">
+		<textarea id="message" name="message"></textarea>
+		<button type="submit">Verstuur</button>
 	</form>
 	<p>Velden met een * zijn verplicht</p>
 

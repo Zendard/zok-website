@@ -15,6 +15,7 @@ body {
 }
 
 h1 {
+	overflow: scroll;
 	font-size: 3rem;
 	color: var(--text);
 	font-weight: 800;
@@ -23,8 +24,9 @@ h1 {
 }
 
 h2 {
+	overflow: scroll;
 	border-radius: 30px;
-	padding: 10px 30px;
+	padding: 10px 3vw;
 	font-size: 30px;
 	color: var(--text);
 	font-weight: 700;
@@ -36,13 +38,13 @@ h3 {
 	font-size: 20px;
 	color: var(--text);
 	font-weight: 600;
-	margin: 40px 2vw;
+	margin: 40px 5vw;
 }
 
 p {
 	font-size: 15px;
 	color: var(--text);
-	margin-left: 40px;
+	margin-left: 2vw;
 }
 
 a {
@@ -57,16 +59,16 @@ a:hover {
 
 img {
 	border-radius: 30px;
-	margin: 50px 40px
+	margin: 50px 2vw
 }
 
 li {
 	font-size: 25px;
-	margin: 30px 50px;
+	margin: 30px 25vw;
 }
 
 form {
-	margin: 20px 40px;
+	margin: 20px 8vw;
 	height: 900px;
 	display: flex;
 	flex-direction: column;
@@ -78,15 +80,17 @@ input {
 	font-size: 20px;
 	border-radius: 30px;
 	height: 25px;
-	min-width: 150px;
+	width: clamp(15rem, 50vw, 30rem);
 	border: solid 1px;
 	background-color: var(--text);
 }
 
 #message {
+	background-color: var(--text);
+	padding: 1rem;
 	border-radius: 30px;
-	height: 500px;
-	width: 1000px;
+	height: clamp(15rem, 50vh, 500px);
+	width: clamp(15rem, 70vw, 1000px);
 	font-size: 15px;
 	border: solid 1px;
 }
@@ -97,7 +101,9 @@ label {
 	margin-bottom: 10px;
 }
 
-#submit {
+button {
+	font-weight: 700;
+	border-radius: 30px;
 	margin-top: 20px;
 	background-color: var(--primary);
 	border: none;
@@ -108,7 +114,7 @@ label {
 	transition-duration: .5s;
 }
 
-#submit:hover {
+button:hover {
 	background-color: var(--accent);
 	width: 175px;
 }
@@ -191,17 +197,11 @@ nav {
 		width: 2rem;
 		display: block;
 	}
-
-	.footer,
-	.adress,
-	.info,
-	#bestuur {
-		flex-direction: column;
-	}
 }
 
 /*footer*/
 .footer {
+	flex-wrap: wrap;
 	background-color: var(--secondary);
 	color: var(--text);
 	display: flex;
@@ -221,6 +221,7 @@ nav {
 }
 
 .adress {
+	flex-wrap: wrap;
 	display: flex;
 	justify-content: space-between;
 }

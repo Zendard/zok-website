@@ -36,6 +36,7 @@
 
 /*info*/
 .info {
+	flex-wrap: wrap;
 	background-color: var(--primary);
 	color: var(--text);
 	padding: 10vw;
@@ -53,7 +54,8 @@
 }
 
 .info-button {
-	outline: var(--text) 6px solid;
+	margin: 5vw;
+	border: var(--text) 6px solid;
 	padding: 20px 30px;
 	color: var(--text);
 	text-decoration: none;
@@ -61,7 +63,7 @@
 	font-size: 20px;
 }
 
-.info-button:focus {
+.info-button:hover {
 	scale: 1.1;
 	background-color: var(--text);
 	color: var(--primary);
