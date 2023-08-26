@@ -12,11 +12,11 @@ table {
 }
 
 thead th:nth-child(1) {
-	width: 30%;
+	width: min(80vw, 30rem);
 }
 
 thead th:nth-child(2) {
-	width: 35%;
+	width: 30%;
 }
 
 thead th:nth-child(3) {
@@ -33,6 +33,7 @@ td {
 }
 
 th {
+	border: solid 3px var(--primary);
 	letter-spacing: 2px;
 }
 
@@ -51,7 +52,6 @@ tfoot th {
 
 thead {
 	background-color: var(--secondary);
-	border: solid 3px var(--primary);
 }
 
 tbody tr:nth-child(odd) {
