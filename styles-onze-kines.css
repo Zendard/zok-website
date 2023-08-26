@@ -1,7 +1,12 @@
 /* spacing */
+main {
+	overflow: scroll;
+}
+
 
 table {
 	table-layout: fixed;
+	min-width: 1500px;
 	width: 100%;
 	border-collapse: collapse;
 }
@@ -32,6 +37,7 @@ th {
 }
 
 td {
+	overflow: hidden;
 	letter-spacing: 1px;
 }
 
