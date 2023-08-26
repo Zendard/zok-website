@@ -1,9 +1,9 @@
 :root {
 	--text: #edfeff;
 	--background: #111a1d;
-	--primary: #0099cc;
+	--primary: #009fd4;
 	--secondary: #003142;
-	--accent: #00ceff;
+	--accent: #33d6ff;
 }
 
 body {
@@ -44,7 +44,7 @@ h3 {
 p {
 	font-size: 15px;
 	color: var(--text);
-	margin-left: 2vw;
+	margin-left: 5vw;
 }
 
 a {
@@ -68,7 +68,7 @@ li {
 }
 
 form {
-	margin: 20px 8vw;
+	margin: 20px 5vw;
 	height: 900px;
 	display: flex;
 	flex-direction: column;
@@ -76,6 +76,7 @@ form {
 }
 
 input {
+	margin-left: -10px;
 	padding: 3px 10px;
 	font-size: 20px;
 	border-radius: 30px;
@@ -86,6 +87,7 @@ input {
 }
 
 #message {
+	margin-left: -1rem;
 	background-color: var(--text);
 	padding: 1rem;
 	border-radius: 30px;
@@ -96,7 +98,6 @@ input {
 }
 
 label {
-	margin-left: 20px;
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
@@ -137,7 +138,7 @@ header {
 }
 
 .logo>span {
-	color: var(--primary);
+	color: var(--accent);
 	font-size: 70px;
 }
 
