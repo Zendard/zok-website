@@ -220,7 +220,7 @@ nav {
 .sponsors-photos>img {
 	border-radius: 0px;
 	margin-left: 0px;
-	height: 20vw;
+	height: clamp(10px, 20vw, 100px);
 }
 
 .adress {
