@@ -11,7 +11,7 @@ body {
 	background-color: var(--background);
 	margin: 0;
 	font-family: 'Inter', sans-serif;
-	font-weight: 700;
+	font-weight: 500;
 }
 
 h1 {
@@ -48,8 +48,9 @@ p {
 }
 
 a {
+	font-weight: 700;
 	color: var(--primary);
-	transition-duration: .5s;
+	transition: scale .5s;
 	border-radius: 30px;
 }
 
@@ -64,7 +65,7 @@ img {
 
 li {
 	font-size: 25px;
-	margin: 30px 25vw;
+	margin: 30px clamp(3px, 10vw, 80px);
 }
 
 form {
