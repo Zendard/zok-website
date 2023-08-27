@@ -84,12 +84,12 @@
 }
 
 .kalender-items {
-	height: 30rem;
-	overflow-y: visible;
-	overflow-x: scroll;
+	overflow: hidden;
 	align-self: stretch;
-	margin: 60px 0px;
-	display: flex
+	margin: 60px 10vw;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 .kalender-item {
