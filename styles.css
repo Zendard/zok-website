@@ -60,7 +60,7 @@ a:hover {
 	color: var(--accent);
 }
 
-img {
+i {
 	border-radius: 30px;
 	margin: 50px 2vw
 }
@@ -167,6 +167,7 @@ header {
 }
 
 #burger-menu-button {
+	font-size: 2rem;
 	z-index: 2;
 	padding: 15px 30px;
 	background-color: var(--primary);
