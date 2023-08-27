@@ -65,7 +65,7 @@ img {
 
 li {
 	font-size: 25px;
-	margin: 30px clamp(3px, 10vw, 80px);
+	margin: 30px clamp(3px, 5vw, 80px);
 }
 
 form {
