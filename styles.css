@@ -110,15 +110,15 @@ button {
 	background-color: var(--primary);
 	border: none;
 	font-size: 25px;
-	height: 70px;
-	width: 150px;
+	min-height: 70px;
+	min-width: 150px;
 	color: var(--text);
 	transition-duration: .5s;
 }
 
 button:hover {
 	background-color: var(--accent);
-	width: 175px;
+	min-width: 175px;
 }
 
 /*menu*/
