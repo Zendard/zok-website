@@ -1,4 +1,6 @@
 const express = require("express");
+const { MongoClient } = require("mongodb");
+
 const app = express();
 
 app.use(express.static(__dirname + "/views"));
@@ -19,5 +21,8 @@ app.get("/contact", (req, res) => {
 app.get("/lid-worden", (req, res) => {
 	res.render("lid-worden");
 });
+
+const kalenderRouter = require("./routes/kalender");
+app.use("/kalender", kalenderRouter);
 
 app.listen(3000);
