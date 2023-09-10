@@ -1,11 +1,11 @@
 const { MongoClient } = require("mongodb");
-const credentials = require("./env_variables.json");
+
+console.log(credentials);
 
 // Replace the uri string with your connection string.
-const uri =
-	"mongodb+srv://:@zok.srwzq7w.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${credentials.username}:${credentials.Password}@zok.srwzq7w.mongodb.net/?retryWrites=true&w=majority`;
 
-const client = new MongoClient(uri);
+const mongoCient = new MongoClient(uri);
 
 async function getItems() {
 	try {

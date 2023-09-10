@@ -1,9 +1,12 @@
 const express = require("express");
 const { MongoClient } = require("mongodb");
+const credentials = require("./env_variables.json");
 
 const app = express();
+const uri = `mongodb+srv://${credentials.username}:${credentials.Password}@zok.srwzq7w.mongodb.net/?retryWrites=true&w=majority`;
+module.exports = uri;
 
-app.use(express.static(__dirname + "/views"));
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {

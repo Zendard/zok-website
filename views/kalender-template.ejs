@@ -5,12 +5,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>
-		<%= locals.title%>
+		<%= locals.title%> - <%=locals.date%>
 	</title>
+	<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-	<%= locals.title || "Bericht niet gevonden" %>
+	<h1>
+		<%= locals.title || "Bericht niet gevonden" %>
+	</h1>
+	<h2>
+		<%=locals.date%>
+	</h2>
+	<script src="./scripts/header-footer.js"></script>
 </body>
 
 </html>
