@@ -4,11 +4,11 @@ const footer = document.createElement("footer");
 header.innerHTML = `
 		<div class="logo"><span>Z</span><small>OK</small></div>
 		<nav>
-			<a class="menu-button" href="./index.html">Home</a>
-			<a class="menu-button" href="./zok.html">ZOK</a>
-			<a class="menu-button" href="./onze-kines.html">Onze kine's</a>
-			<a class="menu-button" href="./contact.html">Contact</a>
-			<a class="menu-button" href="./lid-worden.html">Lid worden</a>
+			<a class="menu-button" href="/">Home</a>
+			<a class="menu-button" href="./zok">ZOK</a>
+			<a class="menu-button" href="./onze-kines">Onze kine's</a>
+			<a class="menu-button" href="./contact">Contact</a>
+			<a class="menu-button" href="./lid-worden">Lid worden</a>
 		</nav>
 		<i class="fa-solid fa-bars menu-button" id="burger-menu-button">
 `;

@@ -19,3 +19,5 @@ async function getItems() {
 		await client.close();
 	}
 }
+
+export default getItems;
