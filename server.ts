@@ -1,7 +1,7 @@
-const express = require("express");
-const { MongoClient } = require("mongodb");
-const credentials = require("./env_variables.json");
+const express = require("express")
+const credentials = require("./env_variables.json")
 
+const port=3000
 const app = express();
 const uri = `mongodb+srv://${credentials.username}:${credentials.Password}@zok.srwzq7w.mongodb.net/?retryWrites=true&w=majority`;
 module.exports = uri;
@@ -28,4 +28,6 @@ app.get("/lid-worden", (req, res) => {
 const kalenderRouter = require("./routes/kalender");
 app.use("/kalender", kalenderRouter);
 
-app.listen(3000);
+app.listen(port, () => {
+	console.log(`Listening on port ${port}...`);
+  });
