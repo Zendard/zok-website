@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 import { MongoClient } from "mongodb";
-import uri from "../uri";
+import { uri } from "../uri";
 
 const router = express.Router();
 router.use(express.static("public"));

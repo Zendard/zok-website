@@ -26,5 +26,5 @@ app.listen(port, () => {
 	console.log(`Listening on port ${port}...`);
 });
 
-import router from "./routes/kalender";
-app.use("/kalender", router);
+import kalenderRouter from "./routes/kalender";
+app.use("/kalender", kalenderRouter);
