@@ -1,7 +1,10 @@
 import express, { NextFunction, Request, Response } from "express";
-const router = express.Router();
+import { MongoClient } from "mongodb";
+import uri from "../uri";
 
-router.use(express.static("../public"));
+const router = express.Router();
+router.use(express.static("public"));
+
 router.get("/", (req, res) => {
 	res.render("kalender");
 });
@@ -9,11 +12,22 @@ router.get("/:event", getData, (req, res) => {
 	res.render("kalender-template");
 });
 
-function getData(req: Request, res: Response, next: NextFunction) {
+async function getData(req: Request, res: Response, next: NextFunction) {
 	const eventName = req.params.event;
-	console.log(eventName);
-	res.locals.title = eventName;
-	next();
+	const client = new MongoClient(uri);
+	try {
+		const event = await client
+			.db("Zok")
+			.collection("Calendar")
+			.findOne({ name: eventName });
+		res.locals.event = (await event) || {
+			title: "Bericht niet gevonden",
+			date: "",
+		};
+	} finally {
+		await client.close();
+		await next();
+	}
 }
 
 export default router;
