@@ -5,18 +5,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>
-		<%= locals.title%> - <%=locals.date%>
+		<%= locals.event.title+" - "+locals.event.date%>
 	</title>
-	<link rel="stylesheet" href="./styles.css">
+	<link rel=" stylesheet" href="./styles.css">
+			<link rel="stylesheet" href="./styles-kalender-template.css">
 </head>
 
 <body>
-	<h1>
-		<%= locals.title || "Bericht niet gevonden" %>
-	</h1>
-	<h2>
-		<%=locals.date%>
-	</h2>
+	<div id="topbar">
+		<h1>
+			<%= locals.event.title || "Bericht niet gevonden" %>
+		</h1>
+		<h2>
+			<%=locals.event.date%>
+		</h2>
+		<h2>
+			<%= locals.event.time %>
+		</h2>
+		<img src="<%=locals.event.img%>" alt="">
+	</div>
+	<p>
+		<%-locals.event.descr %>
+	</p>
 	<script src="./scripts/header-footer.js"></script>
 </body>
 
