@@ -25,3 +25,6 @@ app.get("/lid-worden", (req, res) => {
 app.listen(port, () => {
 	console.log(`Listening on port ${port}...`);
 });
+
+import router from "./routes/kalender";
+app.use("/kalender", router);
