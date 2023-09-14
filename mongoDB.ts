@@ -12,7 +12,7 @@ async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 			.collection("Calendar")
 			.findOne({ name: eventName });
 		const locationString = "Geraardsbergen";
-		if (await event) {
+		if (event) {
 			const locationString = event.location;
 		}
 		await console.log(locationString);
