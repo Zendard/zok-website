@@ -3,6 +3,7 @@
 	align-items: center;
 	justify-content: start;
 	width: 100%;
+	flex-wrap: wrap;
 }
 
 img {
@@ -14,7 +15,32 @@ img {
 
 p {
 	font-size: 2rem;
-	line-height: 2.3;
+	line-height: 2rem;
 	margin-left: 2vw;
-	width: clamp(30rem, 90vw, 300rem);
+	width: clamp(12rem, 90vw, 300rem);
+}
+
+br {
+	line-height: 10rem;
+}
+
+#map {
+	aspect-ratio: 1;
+	width: clamp(10px, 100vw, 30rem);
+	border-radius: 3rem;
+	margin: 2vw;
+}
+
+.leaflet-tile {
+	border-radius: 0px;
+}
+
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-right-radius: 30px;
+	border-top-left-radius: 30px;
 }
