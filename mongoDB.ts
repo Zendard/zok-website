@@ -11,7 +11,14 @@ async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 			.db("Zok")
 			.collection("Calendar")
 			.findOne({ name: eventName });
-		const location = await Nominatim.search({ q: event.location });
+		const locationString = "Geraardsbergen";
+		if (await event) {
+			const locationString = event.location;
+		}
+		await console.log(locationString);
+		const location = await Nominatim.search({
+			q: locationString,
+		});
 		res.locals.event = (await event) || {
 			title: "Bericht niet gevonden",
 			date: "",

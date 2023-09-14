@@ -119,6 +119,7 @@
 }
 
 .kalender-item>img {
+	border-radius: 3rem;
 	margin: 0;
 	width: clamp(7rem, 50vw, 200px);
 	height: clamp(7rem, 50vw, 200px);
