@@ -65,6 +65,12 @@ i {
 	margin: 50px 2vw
 }
 
+.fa-up-right-from-square {
+	margin: 0.5rem;
+	margin-left: 1rem;
+	font-size: inherit;
+}
+
 li {
 	font-size: 25px;
 	margin: 30px clamp(3px, 5vw, 80px);

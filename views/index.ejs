@@ -14,7 +14,8 @@
 	<main>
 		<div class="hero">
 			<h2 class="hero-title">Welkom bij ZOK</h2>
-			<a class="hero-button" href="./lid-worden.html">Lid worden</a>
+			<a class="hero-button" href="./lid-worden.html">Lid worden <i
+					class="fa-solid fa-up-right-from-square"></i></a>
 		</div>
 		<div class="info">
 			<h2 class="info-text">Onze kring verenigt en informeert de kinesitherapeuten van Geraardsbergen, Ninove,
@@ -27,23 +28,16 @@
 			<h3 class="kalender-descr">Welke bijscholingen en activiteiten staan er op het programma?</h3>
 			<div class="kalender-items">
 				<% locals.events.forEach(event=> {%>
-					<div class="kalender-item">
+					<div class="kalender-item" onclick="window.location.href='/kalender/<%=event.name%>'">
 						<img src=<%=event.img%>>
 						<h2 class="kalender-item-title">
-							<%=event.title%>
+							<%=event.title%><i class="fa-solid fa-up-right-from-square"></i>
 						</h2>
 						<h3 class="kalender-item-date">
 							<%=event.date%>
 						</h3>
-						<script>
-							const kalenderItem = document.querySelector(".kalender-item");
-							kalenderItem.addEventListener("click", (e) => {
-								window.location.href = "/kalender/<%=event.name%>"
-							})
-						</script>
 					</div>
 					<%}); %>
-						<script src="./scripts/add-calendar-items.js" type="module"></script>
 			</div>
 		</div>
 		<div class="kalender">

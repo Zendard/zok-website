@@ -110,6 +110,7 @@
 	padding: max(2rem, 2vw);
 	background-color: var(--secondary);
 	transition-duration: .5s;
+	cursor: pointer;
 }
 
 .kalender-item:hover {
@@ -127,6 +128,7 @@
 	color: var(--text);
 	font-size: 25px;
 	margin: 1rem;
+	padding-right: 1vw;
 }
 
 .kalender-item-date {
