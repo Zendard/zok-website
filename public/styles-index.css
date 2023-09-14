@@ -83,8 +83,12 @@
 	margin-bottom: 10px;
 }
 
+.kalender-descr {
+	text-align: center;
+}
+
 .kalender-items {
-	overflow: hidden;
+	overflow: visible;
 	align-self: stretch;
 	margin: 60px 10vw;
 	display: flex;
@@ -93,6 +97,7 @@
 }
 
 .kalender-item {
+	z-index: 10;
 	flex-shrink: 0;
 	margin: 10px;
 	border-radius: 50px;
@@ -121,6 +126,13 @@
 .kalender-item-title {
 	color: var(--text);
 	font-size: 25px;
+	margin: 1rem;
+}
+
+.kalender-item-date {
+	color: var(--text);
+	font-size: 25px;
+	margin: 1rem;
 }
 
 .kalender-item-link {
