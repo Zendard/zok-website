@@ -3,7 +3,7 @@ const footer = document.createElement("footer");
 
 header.innerHTML = `
 		<div class="logo"><span>Z</span><small>OK</small></div>
-		<nav>
+		<nav class="menu-close">
 			<a class="menu-button" href="/">Home</a>
 			<a class="menu-button" href="./zok">ZOK</a>
 			<a class="menu-button" href="./onze-kines">Onze kine's</a>

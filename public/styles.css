@@ -179,13 +179,22 @@ header {
 nav {
 	flex-direction: column;
 	align-items: start;
-	transition: right 1s;
 	padding: 1rem;
+}
+
+@keyframes menu-anim {
+	0% {
+		right: -50vw;
+	}
+
+	100% {
+		right: 0vw;
+	}
 }
 
 .menu-open {
 	display: flex;
-	right: 0%;
+	animation: menu-anim 0.5s ease forwards;
 }
 
 @media(max-width:700px) {
