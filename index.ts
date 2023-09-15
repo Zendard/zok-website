@@ -8,7 +8,7 @@ import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
 
 const app = express();
-const port = 3000;
+const port = Bun.env.PORT;
 const allowedSources = [
 	"'self'",
 	"kit.fontawesome.com",
