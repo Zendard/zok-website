@@ -1,2 +1,2 @@
 node_modules/
-uri.ts
+.env.development

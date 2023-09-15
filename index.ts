@@ -1,6 +1,6 @@
 import express from "express";
 import { getDataAll } from "./mongoDB";
-if(!Bun.env.uri){console.error("Please set uri ENV")}
+if(!Bun.env.URI){console.error("Please set uri ENV")}
 
 const app = express();
 const port = 3000;
