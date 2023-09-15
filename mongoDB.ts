@@ -1,11 +1,10 @@
 import { MongoClient } from "mongodb";
-import { uri } from "./uri";
 import { NextFunction, Request, Response, application } from "express";
 import Nominatim from "nominatim-ts";
 
 async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 	const eventName = req.params.event;
-	const client = new MongoClient(uri);
+	const client = new MongoClient(Bun.env.uri||"");
 	try {
 		const event = await client
 			.db("Zok")
@@ -33,7 +32,7 @@ async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 }
 
 async function getDataAll(req: Request, res: Response, next: NextFunction) {
-	const client = new MongoClient(uri);
+	const client = new MongoClient(Bun.env.uri||"");
 	try {
 		const events = await client
 			.db("Zok")
