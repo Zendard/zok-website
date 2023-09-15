@@ -14,7 +14,6 @@ async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 		if (event) {
 			const locationString = event.location;
 		}
-		await console.log(locationString);
 		const location = await Nominatim.search({
 			q: locationString,
 		});
@@ -22,7 +21,6 @@ async function getDataEvent(req: Request, res: Response, next: NextFunction) {
 			title: "Bericht niet gevonden",
 			date: "",
 		};
-		console.log(location);
 		res.locals.event.lat = parseFloat(location[0].lat);
 		res.locals.event.lon = parseFloat(location[0].lon);
 	} finally {
