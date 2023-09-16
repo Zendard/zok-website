@@ -49,6 +49,17 @@ p {
 	margin-left: 5vw;
 }
 
+br {
+	content: "";
+	display: block;
+	font-size: 200%;
+	margin-bottom: 0.3em;
+}
+
+.double {
+	margin-bottom: 0.8em;
+}
+
 a {
 	font-weight: 700;
 	color: var(--primary);
