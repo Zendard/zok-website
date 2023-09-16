@@ -5,7 +5,7 @@ if (!Bun.env.MONGODB_URI) {
 }
 
 const app = express();
-const port = Bun.env.PORT;
+const port = parseInt(Bun.env.PORT || "3000");
 
 app.use(express.static("public"));
 app.set("view engine", "ejs");
