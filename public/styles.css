@@ -53,11 +53,11 @@ br {
 	content: "";
 	display: block;
 	font-size: 200%;
-	margin-bottom: 0.3em;
+	margin-bottom: 0em;
 }
 
 .double {
-	margin-bottom: 0.8em;
+	margin-bottom: 1em;
 }
 
 a {
