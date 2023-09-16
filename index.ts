@@ -10,6 +10,7 @@ const port = parseInt(Bun.env.PORT || "3000");
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
+
 app.get("/", getDataAll, (req, res) => {
 	res.render("index");
 });
