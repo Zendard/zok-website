@@ -29,6 +29,7 @@ br {
 	width: clamp(10px, 100vw, 30rem);
 	border-radius: 3rem;
 	margin: 2vw;
+	z-index: 0;
 }
 
 .leaflet-tile {

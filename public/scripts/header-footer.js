@@ -29,7 +29,6 @@ footer.innerHTML = `
 			</div>
 			<p class="contact-text">email: ZOKKinekring@gmail.com</p>
 			<p class="contact-text">tel: 054/33.43.41</p>
-			<a class="disclaimer-link" href="./disclaimer">Disclaimer & privacy</a>
 		</div>
 `;
 document.body.insertBefore(header, document.body.firstChild);
