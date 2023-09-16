@@ -5,7 +5,6 @@ if (!Bun.env.MONGODB_URI) {
 }
 import compression from "compression";
 import helmet from "helmet";
-import { rateLimit } from "express-rate-limit";
 
 const app = express();
 const port = parseInt(Bun.env.PORT || "");
@@ -39,13 +38,6 @@ app.use(
 		},
 	})
 );
-const limiter = rateLimit({
-	windowMs: 1 * 60 * 1000, // 1 minute
-	max: 20,
-	standardHeaders: "draft-7",
-	legacyHeaders: false,
-});
-app.use(limiter);
 
 app.get("/", getDataAll, (req, res) => {
 	res.render("index");
