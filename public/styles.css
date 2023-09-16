@@ -52,7 +52,7 @@ p {
 a {
 	font-weight: 700;
 	color: var(--primary);
-	transition: scale .5s;
+	transition: all .5s;
 	border-radius: 30px;
 }
 
@@ -127,6 +127,7 @@ button {
 button:hover {
 	background-color: var(--accent);
 	min-width: 175px;
+	padding-left: calc(initial*1.1);
 }
 
 /*menu*/

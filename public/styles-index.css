@@ -29,9 +29,10 @@
 }
 
 .hero-button:hover {
-	scale: 1.1;
+	padding: 10px 2rem;
 	background-color: var(--accent);
 	color: var(--text);
+
 }
 
 /*info*/
@@ -64,7 +65,7 @@
 }
 
 .info-button:hover {
-	scale: 1.1;
+	padding: 20px 3rem;
 	background-color: var(--text);
 	color: var(--primary);
 }
@@ -114,8 +115,7 @@
 }
 
 .kalender-item:hover {
-	scale: 1.1;
-	;
+	translate: 0rem -3rem;
 }
 
 .kalender-item>img {
