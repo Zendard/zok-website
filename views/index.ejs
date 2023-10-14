@@ -24,14 +24,14 @@
 			<a class="info-button" href="./zok.html">Meer over ZOK</a>
 		</div>
 		<div class="kalender">
-			<h2 class="kalender-title">Kalender</h2>
+			<a class="kalender-title" href="/kalender">Kalender <i class="fa-solid fa-up-right-from-square"></i></a>
 			<h3 class="kalender-descr">Welke bijscholingen en activiteiten staan er op het programma?</h3>
 			<div class="kalender-items">
 				<% locals.events.forEach(event=> {%>
 					<div class="kalender-item" onclick="window.location.href='/kalender/<%=event.name%>'">
 						<img src=<%=event.img%>>
 						<h3 class="kalender-item-title">
-							<%=event.title%><i class="fa-solid fa-up-right-from-square"></i>
+							<%=event.title%>
 						</h3>
 						<h4 class="kalender-item-date">
 							<%=event.date%>

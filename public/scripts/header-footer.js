@@ -3,13 +3,15 @@ const footer = document.createElement("footer");
 
 header.innerHTML = `
 		<div class="logo"><span>Z</span><small>OK</small></div>
-		<nav class="menu-close">
-			<a class="menu-button" href="/">Home</a>
-			<a class="menu-button" href="./zok">ZOK</a>
-			<a class="menu-button" href="./onze-kines">Onze kine's</a>
-			<a class="menu-button" href="./contact">Contact</a>
-			<a class="menu-button" href="./lid-worden">Lid worden</a>
-		</nav>
+		<div class="nav-container">
+			<nav class="menu-close">
+				<a class="menu-button" href="/">Home</a>
+				<a class="menu-button" href="./zok">ZOK</a>
+				<a class="menu-button" href="./onze-kines">Onze kine's</a>
+				<a class="menu-button" href="./contact">Contact</a>
+				<a class="menu-button" href="./lid-worden">Lid worden</a>
+			</nav>
+		</div>
 		<i class="fa-solid fa-bars menu-button" id="burger-menu-button">
 `;
 
@@ -40,6 +42,7 @@ const menu = document.querySelector("nav");
 
 burgerButton.addEventListener("click", (e) => {
 	menu.classList.toggle("menu-open");
+	menu.classList.toggle("menu-close");
 });
 
 //color current page
