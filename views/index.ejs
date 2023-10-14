@@ -13,7 +13,7 @@
 <body>
 	<main>
 		<div class="hero">
-			<h2 class="hero-title">Welkom bij ZOK</h2>
+			<h1 class="hero-title">Welkom bij ZOK</h1>
 			<a class="hero-button" href="./lid-worden.html">Lid worden <i
 					class="fa-solid fa-up-right-from-square"></i></a>
 		</div>
@@ -30,12 +30,12 @@
 				<% locals.events.forEach(event=> {%>
 					<div class="kalender-item" onclick="window.location.href='/kalender/<%=event.name%>'">
 						<img src=<%=event.img%>>
-						<h2 class="kalender-item-title">
+						<h3 class="kalender-item-title">
 							<%=event.title%><i class="fa-solid fa-up-right-from-square"></i>
-						</h2>
-						<h3 class="kalender-item-date">
-							<%=event.date%>
 						</h3>
+						<h4 class="kalender-item-date">
+							<%=event.date%>
+						</h4>
 					</div>
 					<%}); %>
 			</div>

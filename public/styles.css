@@ -141,6 +141,10 @@ button:hover {
 	padding-left: calc(initial*1.1);
 }
 
+::-webkit-scrollbar {
+	background: var(--primary);
+}
+
 /*menu*/
 header {
 	width: 100%;

@@ -15,7 +15,7 @@
 }
 
 .hero-title {
-	font-size: 40px;
+	font-size: 4rem;
 	color: var(--text);
 	margin: 50px 0px;
 
@@ -72,10 +72,9 @@
 
 /*kalender*/
 .kalender {
-	display: flex;
+	display: grid;
 	flex-direction: column;
 	align-items: center;
-
 }
 
 .kalender-title {
@@ -91,23 +90,19 @@
 .kalender-items {
 	overflow: visible;
 	align-self: stretch;
-	margin: 60px 10vw;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+	margin: 60px 2vw;
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .kalender-item {
 	z-index: 10;
-	flex-shrink: 0;
-	margin: 10px;
 	border-radius: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: start;
-	width: clamp(18rem, 30vw, 400px);
-	height: clamp(20rem, 30vw, 400px);
 	padding: max(2rem, 2vw);
 	background-color: var(--secondary);
 	transition-duration: .5s;
@@ -130,6 +125,7 @@
 	font-size: 25px;
 	margin: 1rem;
 	padding-right: 1vw;
+	text-decoration: 0.2em underline var(--accent);
 }
 
 .kalender-item-date {
