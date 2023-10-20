@@ -12,6 +12,7 @@ body {
 	margin: 0px;
 	font-family: sans-serif;
 	font-size: 1.25rem;
+	font-weight: 400;
 }
 
 a {
@@ -57,16 +58,171 @@ nav {
 }
 
 /* ----hero---- */
+
 .hero {
 	display: flex;
 	justify-content: space-around;
+	margin-bottom: 10rem;
 
 	.text {
-		max-width: 26rem;
+		margin-top: auto;
+		margin-bottom: auto;
+		max-width: 35rem;
+
+		h1 {
+			font-size: 3.5rem;
+			margin-bottom: 1rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 0px;
+			margin-bottom: 4rem;
+			font-weight: 500;
+		}
 	}
 
 	img {
-
+		object-fit: cover;
 		border-radius: var(--br);
+	}
+}
+
+/* ----kalender---- */
+
+.kalender {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 4rem;
+
+	.title {
+		h2 {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		h4 {
+			margin-top: 1rem;
+			font-size: 1.2rem;
+			font-weight: 500;
+		}
+	}
+
+	.kalender-items {
+		display: flex;
+		justify-content: space-evenly;
+		gap: 3rem;
+		margin-bottom: 12rem;
+
+		.event {
+			display: flex;
+			flex-direction: column;
+			background-color: var(--primary);
+			border-radius: var(--br);
+			padding: 2rem;
+			max-width: 24rem;
+			cursor: pointer;
+
+			img {
+				max-width: 50%;
+				border-radius: var(--br);
+			}
+
+			h3 {
+				text-align: left;
+				font-size: 1.75rem;
+			}
+		}
+	}
+}
+
+/* ----berichten---- */
+
+.berichten {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 12rem;
+
+	h2 {
+		font-size: 3rem;
+		margin-bottom: 5rem;
+	}
+
+	.list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4rem;
+
+		.bericht {
+			background-color: var(--primary);
+			padding: 2rem;
+			border-radius: var(--br);
+			max-width: 81rem;
+			height: 18rem;
+			display: flex;
+			align-items: start;
+			gap: 2.5rem;
+			cursor: pointer;
+
+			img {
+				border-radius: var(--br);
+			}
+
+			.text {
+				overflow: hidden;
+
+				h4 {
+					margin-top: 0px;
+					margin-bottom: 1rem;
+					font-size: 2rem;
+				}
+
+				p {
+					position: relative;
+					margin-top: 1rem;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					max-height: 15rem;
+
+					&::after {
+						content: "";
+						text-align: right;
+						position: absolute;
+						bottom: 0;
+						right: 0;
+						width: 70%;
+						height: 1.2em;
+						background: linear-gradient(to right, transparent, var(--primary) 80%);
+					}
+				}
+			}
+		}
+	}
+}
+
+/* ----footer---- */
+
+footer {
+	background-color: var(--primary);
+	padding: 2rem;
+	display: flex;
+	justify-content: space-between;
+
+	.sponsors {
+		h3 {
+			font-size: 2rem;
+		}
+
+		img {
+			height: 5rem;
+		}
+	}
+
+	.contact>h3 {
+		font-size: 2rem;
 	}
 }
