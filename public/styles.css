@@ -26,6 +26,26 @@ a {
 	color: var(--background);
 }
 
+main {
+	margin: 1rem 5rem;
+}
+
+p>a {
+	background: none;
+	color: var(--accent);
+	padding: initial;
+	text-decoration: underline 2px;
+
+	&:hover {
+		filter: brightness(200%);
+	}
+}
+
+img {
+	object-fit: cover;
+	border-radius: var(--br);
+}
+
 /* ----hero---- */
 
 .hero {
@@ -49,11 +69,6 @@ a {
 			margin-bottom: 4rem;
 			font-weight: 500;
 		}
-	}
-
-	img {
-		object-fit: cover;
-		border-radius: var(--br);
 	}
 }
 
