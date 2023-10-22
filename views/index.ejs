@@ -33,21 +33,14 @@
 					<h4>Welke bijscholingen en activiteiten staan er op het programma?</h4>
 				</div>
 				<div class="kalender-items">
-					<div class="event">
-						<img
-							src="https://zuid-oost-vlaamsekinekring.be/wp-content/uploads/2019/08/voet-e1565879376466.jpg">
-						<h3>Peer review blessurepreventie</h3>
-					</div>
-					<div class="event">
-						<img
-							src="https://zuid-oost-vlaamsekinekring.be/wp-content/uploads/2019/08/voet-e1565879376466.jpg">
-						<h3>Peer review blessurepreventie</h3>
-					</div>
-					<div class="event">
-						<img
-							src="https://zuid-oost-vlaamsekinekring.be/wp-content/uploads/2019/08/voet-e1565879376466.jpg">
-						<h3>Peer review blessurepreventie</h3>
-					</div>
+					<% locals.kalender.forEach(item=> { %>
+						<div class="event">
+							<img src="<%= item.img %>">
+							<h3>
+								<%= item.title %>
+							</h3>
+						</div>
+						<% }) %>
 				</div>
 			</div>
 			<div class="berichten">

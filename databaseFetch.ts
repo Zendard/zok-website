@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const kalenderItemSchema = new mongoose.Schema({
+const kalenderItemStructure = {
 	title: String,
 	name:String,
 	descr:String,
@@ -10,7 +10,8 @@ const kalenderItemSchema = new mongoose.Schema({
 	time:String,
 	cost:Number,
 	costMember:Number,
-});
+};
+const kalenderItemSchema = new mongoose.Schema(kalenderItemStructure);
 const kalenderItem = mongoose.model('kalenderItem', kalenderItemSchema);
 
 async function getKalender(){
@@ -19,4 +20,10 @@ async function getKalender(){
 	return items;
 }
 
-export {getKalender};
+async function postKalender(item:typeof kalenderItemStructure) {
+	await mongoose.connect(Bun.env.MONGODB_URI||'');
+	const newItem=new kalenderItem(item);
+	await newItem.save();
+}
+
+export {getKalender, postKalender};
