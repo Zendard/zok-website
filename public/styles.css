@@ -1,3 +1,6 @@
+@import url(/header.css);
+@import url(/footer.css);
+
 :root {
 	--background: #171a1b;
 	--accent: #47d3ff;
@@ -21,40 +24,6 @@ a {
 	border-radius: var(--br);
 	text-decoration: none;
 	color: var(--background);
-}
-
-/* ----header---- */
-
-header {
-	display: flex;
-	justify-content: space-between;
-	padding: 1.7rem;
-	margin-bottom: 12rem;
-}
-
-#logo {
-	font-family: serif;
-	flex-grow: 5;
-	font-size: 4rem;
-
-	&::first-letter {
-		font-size: 5.3rem;
-		color: var(--accent);
-	}
-}
-
-nav {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	flex-grow: 4;
-	height: 6rem;
-
-	a {
-		background-color: transparent;
-		color: var(--text);
-		text-decoration: none;
-	}
 }
 
 /* ----hero---- */
@@ -201,28 +170,5 @@ nav {
 				}
 			}
 		}
-	}
-}
-
-/* ----footer---- */
-
-footer {
-	background-color: var(--primary);
-	padding: 2rem;
-	display: flex;
-	justify-content: space-between;
-
-	.sponsors {
-		h3 {
-			font-size: 2rem;
-		}
-
-		img {
-			height: 5rem;
-		}
-	}
-
-	.contact>h3 {
-		font-size: 2rem;
 	}
 }

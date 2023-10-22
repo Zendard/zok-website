@@ -9,6 +9,10 @@ app.get('/', (req, res) => {
 	res.render('index');
 });
 
+app.get('/wie-zijn-wij', (req, res) => {
+	res.render('wieZijnWij');
+});
+
 app.listen(port, () => {
 	console.log(`Listening on port ${port}...`);
 });

@@ -1,0 +1,20 @@
+footer {
+	background-color: var(--primary);
+	padding: 2rem;
+	display: flex;
+	justify-content: space-between;
+
+	.sponsors {
+		h3 {
+			font-size: 2rem;
+		}
+
+		img {
+			height: 5rem;
+		}
+	}
+
+	.contact>h3 {
+		font-size: 2rem;
+	}
+}

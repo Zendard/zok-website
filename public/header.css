@@ -1,0 +1,31 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 1.7rem;
+	margin-bottom: 12rem;
+}
+
+#logo {
+	font-family: serif;
+	flex-grow: 5;
+	font-size: 4rem;
+
+	&::first-letter {
+		font-size: 5.3rem;
+		color: var(--accent);
+	}
+}
+
+nav {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-grow: 4;
+	height: 6rem;
+
+	a {
+		background-color: transparent;
+		color: var(--text);
+		text-decoration: none;
+	}
+}
