@@ -46,6 +46,15 @@ img {
 	border-radius: var(--br);
 }
 
+h1 {
+	margin-bottom: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
 /* ----hero---- */
 
 .hero {
@@ -186,4 +195,74 @@ img {
 			}
 		}
 	}
+}
+
+/* ----leden tabel---- */
+/* spacing */
+main {
+	overflow: scroll;
+}
+
+
+table {
+	table-layout: fixed;
+	min-width: 1500px;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead th:nth-child(1) {
+	width: min(80vw, 30rem);
+}
+
+thead th:nth-child(2) {
+	width: 30%;
+}
+
+thead th:nth-child(3) {
+	width: 30%;
+}
+
+thead th:nth-child(4) {
+	width: 15%;
+}
+
+th,
+td {
+	padding: 20px;
+}
+
+th {
+	border: solid 3px var(--primary);
+	letter-spacing: 2px;
+}
+
+td {
+	overflow: hidden;
+	letter-spacing: 1px;
+}
+
+tbody td {
+	text-align: center;
+}
+
+tfoot th {
+	text-align: right;
+}
+
+thead {
+	background-color: #003142;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: var(--background);
+}
+
+tbody tr:nth-child(even) {
+	background-color: #003142;
+}
+
+#disclaimer {
+	margin-top: 30px;
+	font-size: 20px;
 }
