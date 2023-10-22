@@ -109,6 +109,13 @@ h2 {
 		gap: 3rem;
 		margin-bottom: 12rem;
 
+		a {
+			background: none;
+			color: var(--text);
+			padding: 0px;
+			border-radius: 0px;
+		}
+
 		.event {
 			display: flex;
 			flex-direction: column;
@@ -116,7 +123,6 @@ h2 {
 			border-radius: var(--br);
 			padding: 2rem;
 			max-width: 24rem;
-			cursor: pointer;
 
 			img {
 				max-width: 50%;

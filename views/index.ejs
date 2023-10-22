@@ -34,12 +34,14 @@
 				</div>
 				<div class="kalender-items">
 					<% locals.kalender.forEach(item=> { %>
-						<div class="event">
-							<img src="<%= item.img %>">
-							<h3>
-								<%= item.title %>
-							</h3>
-						</div>
+						<a href=<%='/kalender/' + item.name %>>
+							<div class="event">
+								<img src="<%= item.img %>">
+								<h3>
+									<%= item.title %>
+								</h3>
+							</div>
+						</a>
 						<% }) %>
 				</div>
 			</div>
