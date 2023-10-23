@@ -9,7 +9,6 @@ app.get('/',(req,res)=>{
 
 app.get('/:pageTitle',async (req,res)=>{
 	const item = await getItemInfo(req.params.pageTitle);
-	console.log(item);
 	res.render('kalenderItem',{item});
 });
 

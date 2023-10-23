@@ -21,7 +21,6 @@ async function getKalender(){
 }
 
 async function getItemInfo(title:string){
-	console.log(title);
 	await mongoose.connect(Bun.env.MONGODB_URI||'');
 	const items = await kalenderItem.find({name:title});
 	return items[0];
