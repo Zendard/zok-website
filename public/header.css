@@ -5,9 +5,16 @@ header {
 	margin-bottom: 3rem;
 }
 
+#logo-link {
+	background: none;
+	color: var(--text);
+	padding: 0px;
+	flex-grow: 5;
+	border: none;
+}
+
 #logo {
 	font-family: serif;
-	flex-grow: 5;
 	font-size: 4rem;
 
 	&::first-letter {
@@ -24,8 +31,41 @@ nav {
 	height: 6rem;
 
 	a {
+		position: relative;
 		background-color: transparent;
 		color: var(--text);
 		text-decoration: none;
+		padding: 0.5rem 0px;
+
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			border-bottom: solid var(--accent) 0.3rem;
+			top: 0;
+			left: 0;
+			height: 80%;
+		}
+
+		&:hover {
+
+			&::after {
+				animation: underline 0.2s forwards ease-in-out;
+			}
+		}
+	}
+}
+
+@keyframes underline {
+	from {
+		width: 0%;
+	}
+
+	1% {
+		width: 1%;
+	}
+
+	to {
+		width: 100%;
 	}
 }
