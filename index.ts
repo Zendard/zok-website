@@ -1,4 +1,5 @@
 import express from 'express';
+import kalenderRouter from './routes/kalender';
 import {getKalender} from './databaseFetch';
 
 const app = express();
@@ -21,6 +22,8 @@ app.get('/leden', (req, res) => {
 app.get('/contact', (req, res) => {
 	res.render('contact');
 });
+
+app.use('/kalender',kalenderRouter);
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}...`);

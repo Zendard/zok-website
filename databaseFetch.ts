@@ -20,10 +20,17 @@ async function getKalender(){
 	return items;
 }
 
+async function getItemInfo(title:string){
+	console.log(title);
+	await mongoose.connect(Bun.env.MONGODB_URI||'');
+	const items = await kalenderItem.find({name:title});
+	return items[0];
+}
+
 async function postKalender(item:typeof kalenderItemStructure) {
 	await mongoose.connect(Bun.env.MONGODB_URI||'');
 	const newItem=new kalenderItem(item);
 	await newItem.save();
 }
 
-export {getKalender, postKalender};
+export {getKalender, postKalender, getItemInfo};
