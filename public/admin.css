@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--text: #edfeff;
+	--background: #111a1d;
+	--primary: #009fd4;
+	--secondary: #003142;
+	--accent: #33d6ff;
+}
+
+li {
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.invisible {
+	display: none;
+}
+
+.delete-button {
+	background-color: red;
+}
+
+.delete-button:hover {
+	background-color: red;
+}
+
+img {
+	width: 3rem;
+	border-radius: 3rem;
+}
+
+input {
+	min-height: 2rem;
+}
+
+.container {
+	background-color: var(--secondary);
+	border-radius: 3rem;
+	margin: .3rem;
+	display: flex;
+	flex-direction: column;
+}
+
+body {
+	color: var(--text);
+	background-color: var(--background);
+	margin: 0;
+	font-family: 'Rubik', sans-serif;
+	font-weight: 500;
+	display: flex;
+	padding: 2vw;
+}
+
+h1 {
+	overflow: scroll;
+	font-size: 3rem;
+	color: var(--text);
+	font-weight: 800;
+	margin: 40px 2vw;
+	text-decoration: underline solid var(--accent) 5px;
+}
+
+h2 {
+	overflow: scroll;
+	border-radius: 30px;
+	padding: 10px 3vw;
+	font-size: 30px;
+	color: var(--text);
+	font-weight: 700;
+	margin: 40px 2vw;
+	background-color: var(--primary);
+}
+
+h3 {
+	font-size: 20px;
+	color: var(--text);
+	font-weight: 600;
+	margin: 40px 5vw;
+}
+
+p {
+	font-size: 1.5rem;
+	color: var(--text);
+	margin: 1rem;
+}
+
+br {
+	content: "";
+	display: block;
+	margin-bottom: 0rem;
+}
+
+.double {
+	margin-bottom: 2rem;
+}
+
+a {
+	font-weight: 700;
+	color: var(--primary);
+	transition: scale .5s;
+	border-radius: 30px;
+}
+
+a:hover {
+	color: var(--accent);
+}
+
+i {
+	border-radius: 30px;
+	margin: 50px 2vw
+}
+
+li {
+	font-size: 25px;
+	margin: 30px clamp(3px, 5vw, 80px);
+}
+
+form {
+	padding: 2vw;
+	margin: 20px 5vw;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	overflow: visible;
+}
+
+input {
+	margin-left: -10px;
+	padding: 3px 10px;
+	font-size: 20px;
+	border-radius: 30px;
+	height: 25px;
+	width: clamp(15rem, 50vw, 30rem);
+	border: solid 1px;
+	background-color: var(--text);
+}
+
+#message {
+	margin-left: -1rem;
+	background-color: var(--text);
+	padding: 1rem;
+	border-radius: 30px;
+	height: clamp(15rem, 50vh, 500px);
+	width: clamp(15rem, 70vw, 1000px);
+	font-size: 15px;
+	border: solid 1px;
+}
+
+label {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+button {
+	cursor: pointer;
+	font-weight: 700;
+	border-radius: 30px;
+	margin-top: 20px;
+	background-color: var(--primary);
+	border: none;
+	font-size: 25px;
+	min-height: 70px;
+	min-width: 150px;
+	color: var(--text);
+	transition-duration: .5s;
+	padding: 1rem 2vw;
+}
+
+button:hover {
+	background-color: var(--accent);
+	scale: 110%;
+}
