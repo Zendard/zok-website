@@ -9,8 +9,8 @@ header {
 	background: none;
 	color: var(--text);
 	padding: 0px;
-	flex-grow: 5;
 	border: none;
+	margin-right: 45vw;
 }
 
 #logo {
