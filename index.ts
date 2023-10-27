@@ -9,8 +9,9 @@ if (!Bun.env.MONGODB_URI) {
 
 const app = express();
 app.set('view engine', 'ejs');
+app.set('views', './views')
 app.use(express.static('./public'));
-const port = Bun.env.PORT||3000;
+const port = Bun.env.PORT||'3000';
 
 app.get('/', async (req, res) => {
 	res.render('index',{kalender:await getKalender()});
@@ -31,6 +32,6 @@ app.get('/contact', (req, res) => {
 app.use('/kalender',kalenderRouter);
 app.use('/admin',adminRouter);
 
-app.listen(port, () => {
+app.listen(parseInt(port), () => {
 	console.log(`Listening on port ${port}...`);
 });

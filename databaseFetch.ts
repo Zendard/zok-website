@@ -17,6 +17,7 @@ const kalenderItem = mongoose.model('kalenderItem', kalenderItemSchema);
 async function getKalender(){
 	await mongoose.connect(Bun.env.MONGODB_URI||'');
 	const items = await kalenderItem.find();
+	console.log(items);
 	return items;
 }
 

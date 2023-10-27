@@ -33,7 +33,7 @@
 	<div class="container">
 		<h2>Event list</h2>
 		<ul id="event-list">
-			<% locals.events.forEach(event=> {%>
+			<% events.forEach(event=> {%>
 				<li data-event="<%=event.name %>">
 					<img src="<%=event.img%>">
 					<%=event.title%>
@@ -42,7 +42,7 @@
 		</ul>
 	</div>
 	<div class="container" id="events-container">
-		<% locals.events.forEach(event=> {%>
+		<% events.forEach(event=> {%>
 			<div class="invisible" data-event="<%=event.name %>">
 				<h1>
 					<%=event.title %>
