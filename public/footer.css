@@ -9,8 +9,13 @@ footer {
 			font-size: 2rem;
 		}
 
-		img {
-			height: 5rem;
+		a {
+			background: none;
+			padding: initial;
+
+			img {
+				height: 5rem;
+			}
 		}
 	}
 
