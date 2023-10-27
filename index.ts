@@ -29,6 +29,10 @@ app.get('/contact', (req, res) => {
 	res.render('contact');
 });
 
+app.get('/lid-worden', (req, res) => {
+	res.render('lid-worden');
+});
+
 app.use('/kalender',kalenderRouter);
 app.use('/admin',adminRouter);
 
