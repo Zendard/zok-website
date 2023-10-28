@@ -1,14 +1,15 @@
-import express, { NextFunction, Request, Response } from "express";
-import { getDataEvent } from "../mongoDB";
+import Express from 'express';
+import {getItemInfo} from '../databaseFetch';
 
-const router = express.Router();
-router.use(express.static("public"));
+const app = Express.Router();
 
-router.get("/", (req, res) => {
-	res.render("kalender");
-});
-router.get("/:event", getDataEvent, (req, res) => {
-	res.render("kalender-template");
+app.get('/',(req,res)=>{
+	res.send('kalender');
 });
 
-export default router;
+app.get('/:pageTitle',async (req,res)=>{
+	const item = await getItemInfo(req.params.pageTitle);
+	res.render('kalenderItem',{item});
+});
+
+export default app;

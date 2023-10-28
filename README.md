@@ -1,4 +1,4 @@
-# zok-test
+# zok-website
 
 To install dependencies:
 
