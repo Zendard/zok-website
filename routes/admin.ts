@@ -1,7 +1,9 @@
 import Express, { NextFunction, Request, Response } from 'express';
 import { getKalender,deleteKalender } from '../databaseFetch';
+import bodyParser from 'body-parser'
 
 const app = Express.Router();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 function authenticate(req:Request, res:Response, next:NextFunction) {
 	const auth = { login: 'marten', password: 'studio54' };
@@ -27,6 +29,12 @@ app.get('/',authenticate, async (req, res) => {
 
 app.get('/add-kalender',authenticate,async (req,res)=>{
 	res.render('addKalender')
+})
+
+app.post('/post-kalender',authenticate,async (req,res)=>{
+	const item = req.body
+	console.log(item)
+	res.send(item)
 })
 
 app.get('/delete/:name', authenticate,async(req,res)=>{
