@@ -15,7 +15,7 @@
 	<%- include('./templates/header') %>
 		<main>
 			<div style="display: flex;  align-items: end; gap: 3vw; margin-bottom: 4rem;">
-				<img src="<%= locals.item.img %>" alt="">
+				<img src="../<%= locals.item.img %>" alt="">
 				<h1>
 					<%= locals.item.title %>
 				</h1>
@@ -31,11 +31,11 @@
 			</h3>
 			<h3>
 				<i class="fa-solid fa-money-bill"></i>
-				<%= locals.item.cost %>
+				€<%= locals.item.cost %>
 			</h3>
 			<h3>
 				<i class="fa-solid fa-money-bill"></i>
-				<%= locals.item.costMember || locals.item.cost%>(leden)
+				€<%= locals.item.costMember || locals.item.cost%>(leden)
 			</h3>
 			<p>
 				<%- locals.item.descr %>

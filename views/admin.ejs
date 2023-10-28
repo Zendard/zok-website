@@ -12,9 +12,10 @@
 	<%- include('./templates/header') %>
 		<main>
 			<h1>Admin panel</h1>
+			<h2>Kalender</h2>
 			<a href="/admin/add-kalender">Nieuw item</a>
 			<ul>
-				<% locals.items.forEach(item=> {%>
+				<% locals.kalenderItems.forEach(item=> {%>
 					<div class="kalender-item" id="<%= item.name%>">
 						<div class="text">
 							<img src="<%= item.img %>">
@@ -23,6 +24,22 @@
 							</h3>
 						</div>
 						<a class="delete" href="/admin/delete/<%= item.name %>">X</a>
+					</div>
+					<%}); %>
+			</ul>
+
+			<h2>Berichten</h2>
+			<a href="/admin/add-berichten">Nieuw bericht</a>
+			<ul>
+				<% locals.berichtenItems.forEach(item=> {%>
+					<div class="kalender-item" id="<%= item.name%>">
+						<div class="text">
+							<img src="<%= item.img %>">
+							<h3>
+								<%= item.title%>
+							</h3>
+						</div>
+						<a class="delete" href="/admin/delete/berichten/<%= item.name %>">X</a>
 					</div>
 					<%}); %>
 			</ul>

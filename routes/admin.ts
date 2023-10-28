@@ -1,5 +1,5 @@
 import Express, { NextFunction, Request, Response } from 'express';
-import { getKalender,deleteKalender,addKalender } from '../databaseFetch';
+import { getKalender,deleteKalender,addKalender,getBerichten,deleteBerichten,addBerichten } from '../databaseFetch';
 import bodyParser from 'body-parser'
 import fileUpload from 'express-fileupload'
 
@@ -25,12 +25,18 @@ function authenticate(req:Request, res:Response, next:NextFunction) {
 };
 
 app.get('/',authenticate, async (req, res) => {
-	const items=await getKalender()
-	res.render('admin', {items:items});
+	const kalenderItems=await getKalender()
+	const berichtenItems=await getBerichten()
+	console.log(kalenderItems)
+	res.render('admin', {kalenderItems:kalenderItems,berichtenItems:berichtenItems});
 });
 
 app.get('/add-kalender',authenticate,async (req,res)=>{
 	res.render('addKalender')
+})
+
+app.get('/add-berichten',authenticate,async (req,res)=>{
+	res.render('addBerichten')
 })
 
 app.post('/post-kalender',authenticate,async (req,res)=>{
@@ -38,9 +44,21 @@ app.post('/post-kalender',authenticate,async (req,res)=>{
 	await res.redirect('/admin')
 })
 
+app.post('/post-berichten',authenticate,async (req,res)=>{
+	console.log('tjoem')
+	addBerichten(req.body,req.files.img||undefined)
+	await res.redirect('/admin')
+})
+
 app.get('/delete/:name', authenticate,async(req,res)=>{
 	const name=req.params.name
 	await deleteKalender(name)
+	res.redirect('/admin')
+})
+
+app.get('/delete/berichten/:name', authenticate,async(req,res)=>{
+	const name=req.params.name
+	await deleteBerichten(name)
 	res.redirect('/admin')
 })
 
