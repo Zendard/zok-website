@@ -27,7 +27,6 @@ function authenticate(req:Request, res:Response, next:NextFunction) {
 app.get('/',authenticate, async (req, res) => {
 	const kalenderItems=await getKalender()
 	const berichtenItems=await getBerichten()
-	console.log(kalenderItems)
 	res.render('admin', {kalenderItems:kalenderItems,berichtenItems:berichtenItems});
 });
 
@@ -45,7 +44,6 @@ app.post('/post-kalender',authenticate,async (req,res)=>{
 })
 
 app.post('/post-berichten',authenticate,async (req,res)=>{
-	console.log('tjoem')
 	addBerichten(req.body,req.files.img||undefined)
 	await res.redirect('/admin')
 })

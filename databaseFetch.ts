@@ -44,7 +44,6 @@ async function addKalender(formdata:AnyObject,img:UploadedFile) {
 	const imgPath= `uploads/${formdata.name}${img.name}`
 	img.mv(`./public/${imgPath}`)
 	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember})
-	console.log(newItem)
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }

@@ -49,7 +49,7 @@ p>a {
 }
 
 img {
-	width: 100%;
+	width: clamp(10px, 100%, 450px);
 	object-fit: cover;
 	border-radius: var(--br);
 }
@@ -145,10 +145,12 @@ h2 {
 			padding: 0px;
 			border-radius: 0px;
 			flex-grow: 1;
+			width: clamp(15rem, 100%, 50px);
+			height: 100%;
 		}
 
 		.event {
-			width: auto;
+			height: 100%;
 			display: flex;
 			flex-direction: column;
 			background-color: var(--primary);
@@ -157,11 +159,14 @@ h2 {
 			transition: all 0.5s;
 
 			img {
+				aspect-ratio: 1/1;
 				max-width: 50%;
 				border-radius: var(--br);
 			}
 
 			h3 {
+				word-wrap: break-word;
+				height: 100%;
 				text-align: left;
 				font-size: 1.75rem;
 			}
