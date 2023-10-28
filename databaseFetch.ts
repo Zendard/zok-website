@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { AnyObject } from 'mongoose';
 
 const mongoUri=Bun.env.MONGODB_URI||''
 
@@ -28,9 +28,9 @@ async function getItemInfo(title:String){
 	return items[0];
 }
 
-async function postKalender(item:typeof kalenderItemStructure) {
+async function addKalender(formdata:AnyObject) {
+	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),date:formdata.date,img:formdata.img,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember})
 	await mongoose.connect(mongoUri);
-	const newItem=new kalenderItem(item);
 	await newItem.save();
 }
 
@@ -40,4 +40,4 @@ async function deleteKalender(name:String) {
 	await item[0].deleteOne()
 }
 
-export {getKalender, postKalender, getItemInfo, deleteKalender};
+export {getKalender, addKalender, getItemInfo, deleteKalender};

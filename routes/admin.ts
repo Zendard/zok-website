@@ -1,5 +1,5 @@
 import Express, { NextFunction, Request, Response } from 'express';
-import { getKalender,deleteKalender } from '../databaseFetch';
+import { getKalender,deleteKalender,addKalender } from '../databaseFetch';
 import bodyParser from 'body-parser'
 
 const app = Express.Router();
@@ -32,9 +32,9 @@ app.get('/add-kalender',authenticate,async (req,res)=>{
 })
 
 app.post('/post-kalender',authenticate,async (req,res)=>{
-	const item = req.body
-	console.log(item)
-	res.send(item)
+	addKalender(req.body)
+	console.log(req.body)
+	res.redirect('/admin')
 })
 
 app.get('/delete/:name', authenticate,async(req,res)=>{
