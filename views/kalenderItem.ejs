@@ -15,15 +15,16 @@
 	<%- include('./templates/header') %>
 		<main>
 			<div style="display: flex;  align-items: end; gap: 3vw; margin-bottom: 4rem;">
-				<img src="../<%= locals.item.img %>" alt="">
+				<img src="../<%= locals.item.img %>" style="width: 100px;">
 				<h1>
 					<%= locals.item.title %>
 				</h1>
 			</div>
 			<h3>
 				<i class="fa-solid fa-calendar-days"></i>
-				<%= locals.item.date.toLocaleDateString() %> - <i class="fa-solid fa-clock"></i>
-					<%= locals.item.time %>
+				<%=locals.item.date.getDay()%>/<%=locals.item.date.getMonth()%>/<%=locals.item.date.getFullYear()%> - <i
+								class="fa-solid fa-clock"></i>
+							<%= locals.item.time %>
 			</h3>
 			<h3>
 				<i class="fa-solid fa-location-dot"></i>

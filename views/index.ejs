@@ -38,7 +38,8 @@
 							<div class="event">
 								<img src="<%= item.img %>">
 								<h3>
-									<%= item.title %>
+									<%=item.title%> -
+										<%=item.date.getDay()%>/<%=item.date.getMonth()%>/<%=item.date.getFullYear()%>
 								</h3>
 							</div>
 						</a>
