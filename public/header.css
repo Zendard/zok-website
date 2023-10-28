@@ -3,6 +3,7 @@ header {
 	justify-content: space-between;
 	padding: 1.7rem;
 	margin-bottom: 3rem;
+	align-items: center;
 }
 
 #logo-link {
@@ -10,17 +11,18 @@ header {
 	color: var(--text);
 	padding: 0px;
 	border: none;
-	margin-right: 45vw;
-}
-
-#logo {
 	font-family: serif;
 	font-size: 4rem;
 
-	&::first-letter {
+	div::first-letter {
 		font-size: 5.3rem;
 		color: var(--accent);
 	}
+}
+
+
+#logo {
+	flex-grow: 5;
 }
 
 nav {
@@ -54,6 +56,17 @@ nav {
 			}
 		}
 	}
+
+}
+
+#nav-button {
+	position: relative;
+	display: none;
+	background: none;
+	font-size: 3rem;
+	border: none;
+	color: var(--text);
+	cursor: pointer;
 }
 
 @keyframes underline {
@@ -67,5 +80,38 @@ nav {
 
 	to {
 		width: 100%;
+	}
+}
+
+@media(max-width:650px) {
+	body {
+		overflow-x: hidden;
+	}
+
+	#nav-button {
+		display: initial;
+	}
+
+	nav {
+		height: 100vh;
+		position: absolute;
+		right: calc(-25vw - 4rem - 98.9167px);
+		top: 0px;
+		padding: 4rem;
+		padding-right: 25vw;
+		flex-direction: column;
+		justify-content: start;
+		align-items: start;
+		background-color: var(--primary);
+		transition: all 1s;
+	}
+
+	nav>a::after {
+		width: 100%;
+	}
+
+	.nav-open {
+		right: 0px;
+		display: flex;
 	}
 }

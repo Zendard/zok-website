@@ -17,7 +17,7 @@
 					<h2>Onze kring verenigt en informeert de kinesitherapeuten van Zuid-Oost-Vlaanderen</h2>
 					<a href="/lid-worden">Word lid</a>
 				</div>
-				<img src="/img/bestuur.jpg" alt="Photo of person describing a model of a spine">
+				<img src="/img/bestuur.jpg" alt="Foto van het bestuur">
 			</div>
 			<div class="hero">
 				<img src="/img/belgium.svg" alt="a drawing of belgium">
@@ -48,66 +48,19 @@
 			<div class="berichten">
 				<h2>Berichten</h2>
 				<div class="list">
-					<div class="bericht">
-						<img
-							src="https://zuid-oost-vlaamsekinekring.be/wp-content/uploads/2019/08/voet-e1565879376466.jpg">
-						<div class="text">
-							<h4>Vacature kineshist</h4>
-							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, delectus dolores!
-								Maxime quod incidunt dolore perspiciatis ullam! In accusamus minus sapiente excepturi
-								dolore, consectetur beatae, unde nobis dolorum pariatur at! Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Veritatis numquam ex nesciunt quia et dicta praesentium
-								architecto consequuntur suscipit, quo nostrum quos perferendis voluptatem magnam id
-								alias,
-								eius odio nemo! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni
-								temporibus
-								alias neque dolorem adipisci illo, dolorum quod rerum minima reiciendis dicta
-								necessitatibus
-								suscipit asperiores esse aspernatur accusamus perspiciatis eum doloremque. Lorem ipsum,
-								dolor sit amet consectetur adipisicing elit. Assumenda illo debitis doloremque dolorem
-								adipisci asperiores, tempora accusantium laboriosam, nulla, labore ut vel esse nihil
-								fuga?
-								Minus similique error quos incidunt? Lorem ipsum, dolor sit amet consectetur adipisicing
-								elit. Quos totam, tenetur officia incidunt enim accusamus unde ratione assumenda. Sit,
-								quos
-								odit omnis quibusdam numquam dolor rerum laudantium similique soluta quo! Lorem ipsum
-								dolor
-								sit amet consectetur adipisicing elit. Aut enim ducimus reiciendis magnam, quis
-								doloremque
-								veniam eius, cupiditate hic praesentium incidunt repellat nihil sapiente magni voluptas
-								harum architecto suscipit nostrum!</p>
+					<% locals.berichten.forEach(item=> { %>
+						<div class="bericht">
+							<img src="<%= item.img %>">
+							<div class="text">
+								<h4>
+									<%= item.title %>
+								</h4>
+								<p>
+									<%= item.descr %>
+								</p>
+							</div>
 						</div>
-					</div>
-					<div class="bericht">
-						<img
-							src="https://zuid-oost-vlaamsekinekring.be/wp-content/uploads/2019/08/voet-e1565879376466.jpg">
-						<div class="text">
-							<h4>Vacature kineshist</h4>
-							<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur, delectus dolores!
-								Maxime quod incidunt dolore perspiciatis ullam! In accusamus minus sapiente excepturi
-								dolore, consectetur beatae, unde nobis dolorum pariatur at! Lorem ipsum dolor sit amet
-								consectetur adipisicing elit. Veritatis numquam ex nesciunt quia et dicta praesentium
-								architecto consequuntur suscipit, quo nostrum quos perferendis voluptatem magnam id
-								alias,
-								eius odio nemo! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni
-								temporibus
-								alias neque dolorem adipisci illo, dolorum quod rerum minima reiciendis dicta
-								necessitatibus
-								suscipit asperiores esse aspernatur accusamus perspiciatis eum doloremque. Lorem ipsum,
-								dolor sit amet consectetur adipisicing elit. Assumenda illo debitis doloremque dolorem
-								adipisci asperiores, tempora accusantium laboriosam, nulla, labore ut vel esse nihil
-								fuga?
-								Minus similique error quos incidunt? Lorem ipsum, dolor sit amet consectetur adipisicing
-								elit. Quos totam, tenetur officia incidunt enim accusamus unde ratione assumenda. Sit,
-								quos
-								odit omnis quibusdam numquam dolor rerum laudantium similique soluta quo! Lorem ipsum
-								dolor
-								sit amet consectetur adipisicing elit. Aut enim ducimus reiciendis magnam, quis
-								doloremque
-								veniam eius, cupiditate hic praesentium incidunt repellat nihil sapiente magni voluptas
-								harum architecto suscipit nostrum!</p>
-						</div>
-					</div>
+						<% }) %>
 				</div>
 			</div>
 		</main>

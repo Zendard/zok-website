@@ -29,17 +29,19 @@
 				<i class="fa-solid fa-location-dot"></i>
 				<%= locals.item.location %>
 			</h3>
-			<h3>
-				<i class="fa-solid fa-money-bill"></i>
-				€<%= locals.item.cost %>
-			</h3>
-			<h3>
-				<i class="fa-solid fa-money-bill"></i>
-				€<%= locals.item.costMember || locals.item.cost%>(leden)
-			</h3>
-			<p>
-				<%- locals.item.descr %>
-			</p>
+			<% if (locals.item.cost) {%>
+				<h3>
+					<i class="fa-solid fa-money-bill"></i>
+					€<%= locals.item.cost %>
+				</h3>
+				<h3>
+					<i class="fa-solid fa-money-bill"></i>
+					€<%= locals.item.costMember || locals.item.cost%>(leden)
+				</h3>
+				<% } %>
+					<p>
+						<%- locals.item.descr %>
+					</p>
 		</main>
 		<%- include('./templates/footer') %>
 </body>

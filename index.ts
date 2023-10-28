@@ -1,7 +1,7 @@
 import express from 'express';
 import kalenderRouter from './routes/kalender';
 import adminRouter from './routes/admin';
-import {getKalender} from './databaseFetch';
+import {getKalender, getBerichten} from './databaseFetch';
 
 if (!Bun.env.MONGODB_URI) {
 	throw new Error('Please set mongo uri');
@@ -14,7 +14,7 @@ app.use(express.static('./public'));
 const port = Bun.env.PORT||'3000';
 
 app.get('/', async (req, res) => {
-	res.render('index',{kalender:await getKalender()});
+	res.render('index',{kalender:await getKalender(),berichten:await getBerichten()});
 });
 
 app.get('/wie-zijn-wij', (req, res) => {
