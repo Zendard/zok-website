@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../admin.css">
+	<title>Nieuw item</title>
+</head>
+
+<body>
+	<%- include('./templates/header') %>
+		<main>
+			<h1>Nieuw item</h1>
+			<form action="post" target="/post-kalender">
+				<label for="title">Titel*</label>
+				<input type="text" name="title" required>
+				<label for="name">Permalink (enkel kleine letters en -)*</label>
+				<input type="text" name="name" required>
+				<label for="date">Datum*</label>
+				<input type="date" name="date" required>
+				<label for="time-start">Van</label>
+				<input type="time" name="time-start">
+				<label for="time-end">Tot</label>
+				<input type="time" name="time-end">
+				<label for="location">Locatie</label>
+				<input type="text" name="location">
+				<label for="cost">Prijs (met . geen ,)</label>
+				<input type="number" name="cost">
+				<label for="costMember">Prijs leden (met . geen ,) </label>
+				<input type="number" name="costMember">
+				<label for="descr">Beschrijving</label>
+				<textarea name="descr"></textarea>
+				<button>Item toevoegen</button>
+			</form>
+		</main>
+</body>
+
+</html>

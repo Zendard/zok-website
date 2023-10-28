@@ -1,5 +1,5 @@
 import Express, { NextFunction, Request, Response } from 'express';
-import { getKalender } from '../databaseFetch';
+import { getKalender,deleteKalender } from '../databaseFetch';
 
 const app = Express.Router();
 
@@ -22,7 +22,17 @@ function authenticate(req:Request, res:Response, next:NextFunction) {
 
 app.get('/',authenticate, async (req, res) => {
 	const items=await getKalender()
-	res.render('admin', {events:items});
+	res.render('admin', {items:items});
 });
+
+app.get('/add-kalender',authenticate,async (req,res)=>{
+	res.render('addKalender')
+})
+
+app.get('/delete/:name', authenticate,async(req,res)=>{
+	const name=req.params.name
+	await deleteKalender(name)
+	res.redirect('/admin')
+})
 
 export default app;

@@ -9,78 +9,24 @@
 </head>
 
 <body>
-	<div class="container">
-		<h2>Add calendar event</h2>
-		<form action="/add-item" method="post">
-			<label for="title">Title</label>
-			<input type="text" name="title" placeholder="Title" required>
-			<label for="name">Permalink</label>
-			<input type="text" name="name" id="name" required>
-			<label for="img">Image URL</label>
-			<input type="text" name="img">
-			<label for="date">Date</label>
-			<input type="date" name="date" id="date" required>
-			<label for="time">Time</label>
-			<input type="time" name="timeBegin" required>
-			<input type="time" name="timeEnd" required>
-			<label for="location">Location</label>
-			<input type="text" name="location" required>
-			<label for="description">Description</label>
-			<textarea name="descr" id="description" cols="30" rows="10"></textarea>
-			<button>Add calendar event</button>
-		</form>
-	</div>
-	<div class="container">
-		<h2>Event list</h2>
-		<ul id="event-list">
-			<% events.forEach(event=> {%>
-				<li data-event="<%=event.name %>">
-					<img src="<%=event.img%>">
-					<%=event.title%>
-				</li>
-				<%}); %>
-		</ul>
-	</div>
-	<div class="container" id="events-container">
-		<% events.forEach(event=> {%>
-			<div class="invisible" data-event="<%=event.name %>">
-				<h1>
-					<%=event.title %>
-				</h1>
-				<h2>
-					<%=event.date %>
-				</h2>
-				<h2>
-					<%=event.time %>
-				</h2>
-				<p>
-					<%-event.descr %>
-				</p>
-				<form action="/delete-item" method="post">
-					<input type="text" name="name" readonly class="invisible">
-					<button type="submit" class="delete-button" data-event="<%=event.title %>">Delete</button>
-				</form>
-			</div>
-			<%}); %>
-	</div>
-	<script>
-		const eventList = document.getElementById("event-list")
-		Array.from(eventList.children).forEach((child) => {
-			child.addEventListener("click", inspectItem)
-
-		})
-		function inspectItem(e) {
-			const eventsContainer = document.getElementById("events-container")
-			Array.from(eventsContainer.children).forEach((child) => {
-				if (child.dataset.event === this.dataset.event) {
-					child.classList.remove("invisible")
-					child.lastElementChild.firstElementChild.value = child.dataset.event
-				} else {
-					child.classList.add("invisible")
-				}
-			})
-		}
-	</script>
+	<%- include('./templates/header') %>
+		<main>
+			<h1>Admin panel</h1>
+			<a href="/admin/add-kalender">Nieuw item</a>
+			<ul>
+				<% locals.items.forEach(item=> {%>
+					<div class="kalender-item" id="<%= item.name%>">
+						<div class="text">
+							<img src="<%= item.img %>">
+							<h3>
+								<%= item.title%>
+							</h3>
+						</div>
+						<a class="delete" href="/admin/delete/<%= item.name %>">X</a>
+					</div>
+					<%}); %>
+			</ul>
+		</main>
 </body>
 
 </html>
