@@ -4,32 +4,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
 	<title>Contact</title>
-	<link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-	<h1>Contact</h1>
-	<h2>Zuid-Oost-Vlaamse kinesitherapeutenkring vzw</h2>
-	<h3>Groendal 67 9500 Geraardsbergen</h3>
-	<h3>tel: 054/41.01.04</h3>
-	<h3>email: ZOKKinekring@gmail.com</h3>
-
-	<h2>Of vul onderstaand formulier in</h2>
-	<form>
-		<label for="name">Je naam*</label>
-		<input type="text" id="name" name="name">
-		<label for="email">Je e-mailadres*</label>
-		<input type="email" id="email" name="email">
-		<label for="subject">Onderwerp*</label>
-		<input type="text" id="subject" name="subject">
-		<label for="message">Je bericht*</label>
-		<textarea id="message" name="message"></textarea>
-		<button type="submit">Verstuur</button>
-	</form>
-	<p>Velden met een * zijn verplicht</p>
-
-	<script src="./scripts/header-footer.js"></script>
+	<%- include('templates/header') %>
+		<main>
+			<h1>Contact</h1>
+			<h2>Zuid-Oost-Vlaamse kinesitherapeutenkring vzw</h2>
+			<p>Groendal 67 9500 Geraardsbergen<br>
+				tel: 054/41.01.04<br>
+				email: ZOKKinekring@gmail.com</p>
+		</main>
+		<%- include('templates/footer') %>
 </body>
 
 </html>

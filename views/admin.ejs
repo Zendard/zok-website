@@ -5,29 +5,45 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Admin panel</title>
-	<link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./admin.css">
 </head>
 
 <body>
-	<div style="background-color: var(--secondary); border-radius: 30px;">
-		<form action="#" method="post">
-			<h3>Add calendar item</h3>
-			<label for="title">Title</label>
-			<input type="text" name="title" placeholder="Title" required>
-			<label for="name">Permalink</label>
-			<input type="text" name="name">
-			<label for="img">Image</label>
-			<input type="file" name="img" required accept="image/*">
-			<label for="description">Description</label>
-			<input type="text" name="description" placeholder="Description" required>
-			<label for="date">Date</label>
-			<input type="date" name="date" required>
-			<label for="time">time</label>
-			<input type="time" name="begin-time">
-			<input type="time" name="end-time">
-			<button>Add calendar item</button>
-		</form>
-	</div>
+	<%- include('./templates/header') %>
+		<main>
+			<h1>Admin panel</h1>
+			<h2>Kalender</h2>
+			<a href="/admin/add-kalender">Nieuw item</a>
+			<ul>
+				<% locals.kalenderItems.forEach(item=> {%>
+					<div class="kalender-item" id="<%= item.name%>">
+						<div class="text">
+							<img src="<%= item.img %>">
+							<h3>
+								<%= item.title%>
+							</h3>
+						</div>
+						<a class="delete" href="/admin/delete/<%= item.name %>">X</a>
+					</div>
+					<%}); %>
+			</ul>
+
+			<h2>Berichten</h2>
+			<a href="/admin/add-berichten">Nieuw bericht</a>
+			<ul>
+				<% locals.berichtenItems.forEach(item=> {%>
+					<div class="kalender-item" id="<%= item.name%>">
+						<div class="text">
+							<img src="<%= item.img %>">
+							<h3>
+								<%= item.title%>
+							</h3>
+						</div>
+						<a class="delete" href="/admin/delete/berichten/<%= item.name %>">X</a>
+					</div>
+					<%}); %>
+			</ul>
+		</main>
 </body>
 
 </html>

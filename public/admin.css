@@ -1,0 +1,63 @@
+@import url(./styles.css);
+
+.kalender-item {
+	background-color: var(--primary);
+	border-radius: var(--br);
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
+
+.text {
+	display: flex;
+	gap: 1rem;
+
+	img {
+		width: 4rem;
+	}
+}
+
+.delete {
+	background-color: red;
+	color: var(--text);
+	line-height: 200%;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+
+	input,
+	textarea {
+		background-color: var(--primary);
+		border-radius: var(--br);
+		color: var(--text);
+		border: none;
+		padding: 5px 1em;
+		margin-bottom: 1rem;
+		font-size: 1rem;
+
+		&:focus-visible {
+			border: 1px solid var(--accent);
+			outline: none;
+		}
+	}
+
+	textarea {
+		border-radius: 0.2rem;
+		padding: 0.3em;
+		min-height: 10rem;
+		resize: vertical;
+	}
+
+	button {
+		background-color: var(--accent);
+		border: none;
+		border-radius: var(--br);
+		color: var(--background);
+		font-size: 1rem;
+		padding: 1rem;
+		cursor: pointer;
+	}
+}
