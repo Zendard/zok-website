@@ -34,6 +34,7 @@ a {
 
 main {
 	margin: 1rem 5rem;
+	overflow: visible;
 }
 
 p>a {
@@ -69,8 +70,10 @@ h2 {
 
 .hero {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	margin-bottom: 10rem;
+	margin-left: -5rem;
+	width: 100vw;
 
 	.text {
 		margin-top: auto;
@@ -235,9 +238,6 @@ h2 {
 
 /* ----leden tabel---- */
 /* spacing */
-main {
-	overflow: scroll;
-}
 
 
 table {
