@@ -145,7 +145,8 @@ h2 {
 			background-color: var(--primary);
 			border-radius: var(--br);
 			padding: 2rem;
-			max-width: 24rem;
+			height: 24rem;
+			width: clamp(10rem, 30vw, 24rem);
 			transition: all 0.5s;
 
 			img {

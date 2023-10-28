@@ -1,9 +1,11 @@
 import Express, { NextFunction, Request, Response } from 'express';
 import { getKalender,deleteKalender,addKalender } from '../databaseFetch';
 import bodyParser from 'body-parser'
+import fileUpload from 'express-fileupload'
 
 const app = Express.Router();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 function authenticate(req:Request, res:Response, next:NextFunction) {
 	const auth = { login: 'marten', password: 'studio54' };
@@ -32,9 +34,8 @@ app.get('/add-kalender',authenticate,async (req,res)=>{
 })
 
 app.post('/post-kalender',authenticate,async (req,res)=>{
-	addKalender(req.body)
-	console.log(req.body)
-	res.redirect('/admin')
+	addKalender(req.body,req.files.img||undefined)
+	await res.redirect('/admin')
 })
 
 app.get('/delete/:name', authenticate,async(req,res)=>{

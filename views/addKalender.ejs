@@ -12,11 +12,13 @@
 	<%- include('./templates/header') %>
 		<main>
 			<h1>Nieuw item</h1>
-			<form action="post-kalender" method="post">
+			<form action="post-kalender" method="post" encType="multipart/form-data">
 				<label for="title">Titel*</label>
 				<input type="text" name="title" required>
 				<label for="name">Permalink (enkel kleine letters en -)*</label>
 				<input type="text" name="name" required>
+				<label for="img">Afbeelding</label>
+				<input type="file" accept="image/*" name="img">
 				<label for="date">Datum*</label>
 				<input type="date" name="date" required>
 				<label for="timeStart">Van</label>
@@ -30,7 +32,7 @@
 				<label for="costMember">Prijs leden (met . geen ,) </label>
 				<input type="number" name="costMember">
 				<label for="descr">Beschrijving</label>
-				<textarea name="descr"></textarea>
+				<textarea name="descr" required></textarea>
 				<button>Item toevoegen</button>
 			</form>
 		</main>
