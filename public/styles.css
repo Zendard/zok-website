@@ -138,6 +138,7 @@ h2 {
 		justify-content: space-evenly;
 		gap: 3rem;
 		margin-bottom: 12rem;
+		width: 100%;
 
 		a {
 			background: none;
