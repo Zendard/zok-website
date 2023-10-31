@@ -61,6 +61,12 @@ form {
 		background: none;
 	}
 
+	.ql-snow .ql-picker,
+	.ql-snow .ql-stroke {
+		color: var(--text) !important;
+		stroke: var(--text) !important;
+	}
+
 	button {
 		background-color: var(--accent);
 		border: none;
