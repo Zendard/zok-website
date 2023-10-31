@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Admin panel</title>
-	<link rel="stylesheet" href="./admin.css">
+	<link rel="stylesheet" href="../admin.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 				<% locals.kalenderItems.forEach(item=> {%>
 					<div class="kalender-item" id="<%= item.name%>">
 						<div class="text">
-							<img src="<%= item.img %>">
+							<img src="../<%= item.img %>">
 							<h3>
 								<%= item.title%>
 							</h3>
@@ -34,7 +34,7 @@
 				<% locals.berichtenItems.forEach(item=> {%>
 					<div class="kalender-item" id="<%= item.name%>">
 						<div class="text">
-							<img src="<%= item.img %>">
+							<img src="../<%= item.img %>">
 							<h3>
 								<%= item.title%>
 							</h3>
