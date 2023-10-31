@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../styles.css">
+	<script src="https://kit.fontawesome.com/dc3124471a.js" crossorigin="anonymous"></script>
+	<title>
+		<%= locals.item.title || 'Not found' %>
+	</title>
+</head>
+
+<body>
+	<%- include('./templates/header') %>
+		<main>
+			<div style="display: flex; flex-wrap: wrap;  align-items: end; gap: 3vw; margin-bottom: 4rem;">
+				<img src="../<%= locals.item.img %>" style="width: 100px;">
+				<h1>
+					<%= locals.item.title %>
+				</h1>
+			</div>
+			<h3>
+				<i class="fa-solid fa-calendar-days"></i>
+				<%=locals.item.date.getDay()%>/<%=locals.item.date.getMonth()%>/<%=locals.item.date.getFullYear()%> - <i
+								class="fa-solid fa-clock"></i>
+							<%= locals.item.time %>
+			</h3>
+			<h3>
+				<i class="fa-solid fa-location-dot"></i>
+				<%= locals.item.location %>
+			</h3>
+			<% if (locals.item.cost) {%>
+				<h3>
+					<i class="fa-solid fa-money-bill"></i>
+					€<%= locals.item.cost %>
+				</h3>
+				<h3>
+					<i class="fa-solid fa-money-bill"></i>
+					€<%= locals.item.costMember || locals.item.cost%>(leden)
+				</h3>
+				<% } %>
+					<p>
+						<%- locals.item.descr %>
+					</p>
+		</main>
+		<%- include('./templates/footer') %>
+</body>
+
+</html>

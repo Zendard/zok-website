@@ -5,52 +5,67 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Zok</title>
-	<link rel="stylesheet" href="./styles.css">
-	<link rel="stylesheet" href="./styles-index.css">
-	<script src="https://kit.fontawesome.com/dc3124471a.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<main>
-		<div class="hero">
-			<h1 class="hero-title">Welkom bij ZOK</h1>
-			<a class="hero-button" href="./lid-worden.html">Lid worden <i
-					class="fa-solid fa-up-right-from-square"></i></a>
-		</div>
-		<div class="info">
-			<h2 class="info-text">Onze kring verenigt en informeert de kinesitherapeuten van Geraardsbergen, Ninove,
-				Brakel,
-				Herzele, Lierde, Oosterzele, Sint-Lievens-Houtem en Zottegem.</h2>
-			<a class="info-button" href="./zok.html">Meer over ZOK</a>
-		</div>
-		<div class="kalender">
-			<a class="kalender-title" href="/kalender">Kalender <i class="fa-solid fa-up-right-from-square"></i></a>
-			<h3 class="kalender-descr">Welke bijscholingen en activiteiten staan er op het programma?</h3>
-			<div class="kalender-items">
-				<% locals.events.forEach(event=> {%>
-					<div class="kalender-item" onclick="window.location.href='/kalender/<%=event.name%>'">
-						<img src=<%=event.img%>>
-						<h3 class="kalender-item-title">
-							<%=event.title%>
-						</h3>
-						<h4 class="kalender-item-date">
-							<%=event.date%>
-						</h4>
-					</div>
-					<%}); %>
+	<%- include('templates/header') %>
+		<main>
+			<div class="hero">
+				<div class="text">
+					<h1>Welkom bij Zok</h1>
+					<h2>Onze kring verenigt en informeert de kinesitherapeuten van Zuid-Oost-Vlaanderen</h2>
+					<a href="/lid-worden">Word lid</a>
+				</div>
+				<img src="/img/bestuur.jpg" alt="Foto van het bestuur">
 			</div>
-		</div>
-		<div class="kalender">
-			<h2 class="kalender-title">Berichten</h2>
-			<div class="kalender-items">
-				<div class="kalender-item">
-					<img src="./images/samenwerking.jpg" alt="samenwerking-foto">
-					<h4 class="kalender-item-title">14/12/2023 MKO</h4>
+			<div class="hero">
+				<img src="/img/belgium.svg" alt="a drawing of belgium">
+				<div class="text">
+					<h1>Voor wie?</h1>
+					<h2>Kinesitherapeuten van Geraardsbergen, Ninove, Brakel, Herzele, Lierde, Oosterzele,
+						Sint-Lievens-Houtem en Zottegem</h2>
 				</div>
 			</div>
-		</div>
-	</main>
-	<script src="./scripts/header-footer.js"></script>
+			<div class="kalender">
+				<div class="title">
+					<h2>Kalender</h2>
+					<h4>Welke bijscholingen en activiteiten staan er op het programma?</h4>
+				</div>
+				<div class="kalender-items">
+					<% locals.kalender.forEach(item=> { %>
+						<a href=<%='/kalender/' + item.name %>>
+							<div class="event">
+								<img src="<%= item.img %>">
+								<h3>
+									<%=item.title%> -
+										<%=item.date.getDay()%>/<%=item.date.getMonth()%>/<%=item.date.getFullYear()%>
+								</h3>
+							</div>
+						</a>
+						<% }) %>
+				</div>
+			</div>
+			<div class="berichten">
+				<h2>Berichten</h2>
+				<div class="list">
+					<% locals.berichten.forEach(item=> { %>
+						<div class="bericht">
+							<img src="<%= item.img %>">
+							<div class="text">
+								<h4>
+									<%= item.title %>
+								</h4>
+								<p>
+									<%= item.descr %>
+								</p>
+							</div>
+						</div>
+						<% }) %>
+				</div>
+			</div>
+		</main>
+		<%- include('templates/footer') %>
 </body>
 
 </html>
