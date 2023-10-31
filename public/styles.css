@@ -276,6 +276,9 @@ p {
 /* ----leden tabel---- */
 /* spacing */
 
+.table-container {
+	overflow-x: scroll;
+}
 
 table {
 	table-layout: fixed;
