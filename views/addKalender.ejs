@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 	<link rel="stylesheet" href="../admin.css">
 	<title>Nieuw item</title>
 </head>
@@ -32,10 +33,23 @@
 				<label for="costMember">Prijs leden (met . geen ,) </label>
 				<input type="number" name="costMember">
 				<label for="descr">Beschrijving</label>
-				<textarea name="descr" required></textarea>
+				<input name="descr" type="hidden" required></input>
+				<div id="editor"></div>
 				<button>Item toevoegen</button>
 			</form>
 		</main>
+		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+		<script>
+			const form = document.querySelector('form')
+			form.onsubmit = function () {
+				var about = document.querySelector('input[name=descr]');
+				about.value = quill.root.innerHTML
+			}
+			var quill = new Quill('#editor', {
+				theme: 'snow'
+			})
+
+		</script>
 </body>
 
 </html>

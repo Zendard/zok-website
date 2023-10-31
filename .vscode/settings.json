@@ -6,5 +6,8 @@
 	"vs-code-prettier-eslint.prettierLast": false,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
+	},
+	"[json]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	}
 }
