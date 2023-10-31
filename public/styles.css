@@ -139,6 +139,7 @@ h2 {
 		justify-content: space-evenly;
 		gap: 3rem;
 		margin-bottom: 12rem;
+		width: 100%;
 
 		a {
 			background: none;
@@ -250,6 +251,18 @@ h2 {
 	}
 }
 
+.kalender-descr {
+	display: flex;
+	align-items: end;
+	gap: 3vw;
+	margin-bottom: 4rem;
+	flex-wrap: wrap;
+}
+
+p {
+	margin-top: 0px;
+}
+
 /* ----lid-worden---- */
 
 .lid-title {
@@ -263,6 +276,9 @@ h2 {
 /* ----leden tabel---- */
 /* spacing */
 
+.table-container {
+	overflow-x: scroll;
+}
 
 table {
 	table-layout: fixed;

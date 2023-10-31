@@ -18,7 +18,7 @@ const port = Bun.env.PORT||'3000';
 app.use(
 	helmet.contentSecurityPolicy({
 		directives: {
-			'script-src': ['\'self\'', 'http://*.fontawesome.com'],
+			'script-src': ['\'self\'', 'http://*.fontawesome.com', 'http://*.quilljs.com'],
 			'default-src': ['\'self\'', 'http://*.fontawesome.com']
 		},
 	}),
