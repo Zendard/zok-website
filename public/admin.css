@@ -28,8 +28,7 @@ form {
 	display: flex;
 	flex-direction: column;
 
-	input,
-	textarea {
+	input {
 		background-color: var(--primary);
 		border-radius: var(--br);
 		color: var(--text);
@@ -44,11 +43,28 @@ form {
 		}
 	}
 
-	textarea {
-		border-radius: 0.2rem;
-		padding: 0.3em;
+	#editor {
+		height: auto;
 		min-height: 10rem;
-		resize: vertical;
+		border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
+		margin-bottom: 1rem;
+		padding-bottom: 1rem;
+		overflow-y: visible
+	}
+
+	.ql-toolbar {
+		border-radius: var(--br) var(--br) 0.5rem 0.5rem;
+		padding-left: 2rem !important;
+	}
+
+	.ql-action {
+		background: none;
+	}
+
+	.ql-snow .ql-picker,
+	.ql-snow .ql-stroke {
+		color: var(--text) !important;
+		stroke: var(--text) !important;
 	}
 
 	button {

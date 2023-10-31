@@ -14,8 +14,8 @@
 <body>
 	<%- include('./templates/header') %>
 		<main>
-			<div style="display: flex; flex-wrap: wrap;  align-items: end; gap: 3vw; margin-bottom: 4rem;">
-				<img src="../<%= locals.item.img %>" style="width: 100px;">
+			<div class="kalender-descr">
+				<img src="../<%= locals.item.img %>" style="width: clamp(10px,20vw,200px);">
 				<h1>
 					<%= locals.item.title %>
 				</h1>
@@ -33,11 +33,11 @@
 			<% if (locals.item.cost) {%>
 				<h3>
 					<i class="fa-solid fa-money-bill"></i>
-					€<%= locals.item.cost %>
+					€<%= locals.item.cost %> (niet axxon-leden)
 				</h3>
 				<h3>
 					<i class="fa-solid fa-money-bill"></i>
-					€<%= locals.item.costMember || locals.item.cost%>(leden)
+					€<%= locals.item.costMember || locals.item.cost%> (axxon-leden)
 				</h3>
 				<% } %>
 					<p>
