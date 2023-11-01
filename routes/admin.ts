@@ -79,7 +79,6 @@ app.get('/refresh-list',async(req,res)=>{
 		});
 		let ledenString = ledenSimple.join('</td></tr><tr><td>');
 		ledenString = '<tr><td>' + ledenString + '</td></tr>';
-		console.log(ledenString);
 		Bun.write('./views/templates/lijst.ejs',ledenString);
 	});
 	res.redirect('/admin');
