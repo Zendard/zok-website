@@ -1,7 +1,9 @@
 import Express, { NextFunction, Request, Response } from 'express';
 import { getKalender,deleteKalender,addKalender,getBerichten,deleteBerichten,addBerichten } from '../databaseFetch';
-import bodyParser from 'body-parser';
+import bodyParser, { text } from 'body-parser';
 import fileUpload from 'express-fileupload';
+import axios from 'axios';
+import {load} from 'cheerio';
 
 if(!Bun.env.ADMIN_NAME||!Bun.env.ADMIN_PASSWD){
 	console.log('Set admin name and password env!');
@@ -61,6 +63,25 @@ app.get('/delete/:name', authenticate,async(req,res)=>{
 app.get('/delete/berichten/:name', authenticate,async(req,res)=>{
 	const name=req.params.name;
 	await deleteBerichten(name);
+	res.redirect('/admin');
+});
+
+app.get('/refresh-list',async(req,res)=>{
+	await axios.get('https://axxon.be/kringsite/35-zuid-oost-vlaamse-kinesitherapeuten/leden/').then((res)=>{
+		const ledenDoc=res.data;
+		const $=load(ledenDoc);
+		const leden:string[][] = [];
+		$('.bodycontent').find('ul').children('li').each((i,e)=>{
+			leden.push($(e).text().split(' - '));
+		});
+		const ledenSimple = leden.map((e)=>{
+			return e.join('</td><td>');
+		});
+		let ledenString = ledenSimple.join('</td></tr><tr><td>');
+		ledenString = '<tr><td>' + ledenString + '</td></tr>';
+		console.log(ledenString);
+		Bun.write('./views/templates/lijst.ejs',ledenString);
+	});
 	res.redirect('/admin');
 });
 
