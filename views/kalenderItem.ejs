@@ -43,8 +43,23 @@
 					<p>
 						<%- locals.item.descr %>
 					</p>
-					<% if (locals.item.inschrijven) { %>
-						<h2>Inschijven</h2>
+					<% if (locals.item.inschrijven=='on' ) { %>
+						<h2>Inschijven:</h2>
+						<form action="/kalender/<%= locals.item.name %>/inschrijven" method="post">
+							<label for="name">Naam</label>
+							<input type="text" name="name" id="name" required>
+							<fieldset style="border: none; padding: 0;">
+								<label for="lid">Lid van AXXON?</label>
+								<input type="checkbox" name="lid" id="lid">
+							</fieldset>
+							<label for="email">E-mail</label>
+							<input type="email" inputmode="email" name="email" id="email" required>
+							<label for="riziv">Riziv-nummer (middelste 7 cijfers)</label>
+							<%-locals.notValid?'<p style="color:red">Ongeldig Riziv-nummer</p>':'' %>
+								<input type="tel" inputmode="numeric" name="riziv" id="riziv" placeholder="XXXXX-XX"
+									required minlength="8" maxlength="8" pattern="\d{5}-\d{2}$">
+								<button>Verstuur</button>
+						</form>
 						<% } %>
 		</main>
 		<%- include('./templates/footer') %>

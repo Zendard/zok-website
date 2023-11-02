@@ -49,6 +49,7 @@ app.get('/edit/kalender/:name',authenticate,async(req,res)=>{
 
 app.post('/edit-kalender',authenticate,async (req,res)=>{
 	const itemForm = req.body
+	console.log(itemForm)
 	mongoose.connect(mongoUri);
 	let item =  await db.kalenderItem.findOne({name:itemForm.name})||new db.kalenderItem;
 	await item.set({
@@ -63,6 +64,7 @@ app.post('/edit-kalender',authenticate,async (req,res)=>{
 		inschrijven:itemForm.inschrijven
 	})
 	await item.save()
+	console.log(item)
 	res.redirect('/admin')
 })
 

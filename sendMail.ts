@@ -14,13 +14,13 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-const sendMail = (name:string|Address|undefined, email:string|Address|undefined, subject:string, text:string, cb:any) => {
+const sendMail = (name:string|Address|undefined, subject:string, text:string, cb:any) => {
     const mailOptions = {
         sender: name,
         from: Bun.env.EMAIL_NAME,
         to: Bun.env.EMAIL_TO,
         subject: subject,
-        text: email + ' stuurt via het contactformulier:\n\r\n\r' + text
+        text: text
     };
 
     transporter.sendMail(mailOptions);}

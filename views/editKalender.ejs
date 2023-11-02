@@ -32,7 +32,8 @@
 				<input type="number" name="costMember" value="<%= locals.costMember %>">
 				<fieldset style="border: none; padding: 0;">
 					<label for="inschrijving">Inschrijven:</label>
-					<input type="checkbox" name="inschrijven" id="inschrijven" value="<%= locals.inschrijven %>">
+					<input type="checkbox" name="inschrijven" id="inschrijven" <%=locals.inschrijven=='on' ? 'checked'
+						:'' %>>
 				</fieldset>
 				<label for="descr">Beschrijving</label>
 				<input name="descr" type="hidden" required value="<%= locals.descr %>"></input>
