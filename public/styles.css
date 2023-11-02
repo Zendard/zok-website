@@ -68,6 +68,46 @@ h2 {
 	font-size: 0.9em;
 }
 
+form {
+	display: flex;
+	flex-direction: column;
+
+	input {
+		background-color: var(--primary);
+		border-radius: var(--br);
+		color: var(--text);
+		border: none;
+		padding: 5px 1em;
+		margin-bottom: 1rem;
+		font-size: 1rem;
+
+		&:focus-visible {
+			border: 1px solid var(--accent);
+			outline: none;
+		}
+	}
+
+	#body {
+		border: none;
+		height: auto;
+		min-height: 10rem;
+		border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
+		margin-bottom: 1rem;
+		padding-bottom: 1rem;
+		overflow-y: visible
+	}
+
+	button {
+		background-color: var(--accent);
+		border: none;
+		border-radius: var(--br);
+		color: var(--background);
+		font-size: 1rem;
+		padding: 1rem;
+		cursor: pointer;
+	}
+}
+
 /* ----hero---- */
 
 .hero {
@@ -134,8 +174,8 @@ h2 {
 	}
 
 	.kalender-items {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		justify-content: space-evenly;
 		gap: 3rem;
 		margin-bottom: 12rem;
@@ -146,13 +186,9 @@ h2 {
 			color: var(--text);
 			padding: 0px;
 			border-radius: 0px;
-			flex-grow: 1;
-			width: max(90vw, 50px);
-			height: 100%;
 		}
 
 		.event {
-			height: 100%;
 			display: flex;
 			flex-direction: column;
 			background-color: var(--primary);
@@ -183,10 +219,12 @@ h2 {
 /* ----berichten---- */
 
 .berichten {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	justify-content: space-evenly;
+	gap: 3rem;
 	margin-bottom: 12rem;
+	width: 100%;
 
 	h2 {
 		font-size: 3rem;

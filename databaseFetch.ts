@@ -15,6 +15,7 @@ const kalenderItemStructure = {
 	time:String,
 	cost:Number,
 	costMember:Number,
+	inschrijven:String
 };
 const berichtenItemStructure={
 	title:String,
@@ -43,7 +44,7 @@ async function getItemInfo(name:String){
 async function addKalender(formdata:AnyObject,img:UploadedFile) {
 	const imgPath= `uploads/${formdata.name}${img.name}`
 	img.mv(`./public/${imgPath}`)
-	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember})
+	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr,date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember,inschrijven:formdata.inschrijven})
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }
@@ -88,4 +89,4 @@ async function deleteBerichten(name:String) {
 	await item.deleteOne()
 }
 
-export {getKalender, addKalender, getItemInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten};
+export {getKalender, addKalender, getItemInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten, kalenderItem};
