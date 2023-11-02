@@ -4,6 +4,8 @@ import adminRouter from './routes/admin';
 import {getKalender, getBerichten} from './databaseFetch';
 import compression from 'compression';
 import helmet from 'helmet';
+import sendEmail from './sendMail'
+import bodyParser, { text } from 'body-parser';
 
 if (!Bun.env.MONGODB_URI) {
 	throw new Error('Please set mongo uri');
@@ -40,12 +42,21 @@ app.get('/contact', (req, res) => {
 	res.render('contact');
 });
 
+
 app.get('/lid-worden', (req, res) => {
 	res.render('lid-worden');
 });
 
 app.use('/kalender',kalenderRouter);
 app.use('/admin',adminRouter);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.post('/send-mail',async (req,res)=>{
+	await console.log(req.body)
+	sendEmail(req.body.from,req.body.from,req.body.subject,req.body.body)
+	res.send('/contact')
+})
 
 app.listen(parseInt(port), () => {
 	console.log(`Listening on port ${port}...`);
