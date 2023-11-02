@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../../admin.css">
+	<title>Edit item</title>
+</head>
+
+<body>
+	<%- include('./templates/header') %>
+		<main>
+			<h1>Edit item</h1>
+			<form action="/admin/edit-kalender" method="post" encType="multipart/form-data">
+				<label for="title">Titel*</label>
+				<input type="text" name="title" required value="<%= locals.title %>">
+				<label for="name">Permalink (enkel kleine letters en -)*</label>
+				<input type="text" name="name" required value="<%= locals.name %>">
+				<label for="date">Datum*</label>
+				<input type="date" name="date" required value="<%= locals.date?.toISOString().split('T')[0]%>">
+				<label for=" timeStart">Van</label>
+				<input type="time" name="timeStart" value="<%= locals.time.split(' - ')[0] %>">
+				<label for="timeEnd">Tot</label>
+				<input type="time" name="timeEnd" value="<%= locals.time?.split(' - ')[1] %>">
+				<label for=" location">Locatie</label>
+				<input type="text" name="location" value="<%= locals.location %>">
+				<label for="cost">Prijs (met . geen ,)</label>
+				<input type="number" name="cost" value="<%= locals.cost %>">
+				<label for="costMember">Prijs leden (met . geen ,) </label>
+				<input type="number" name="costMember" value="<%= locals.costMember %>">
+				<fieldset style="border: none; padding: 0;">
+					<label for="inschrijving">Inschrijven:</label>
+					<input type="checkbox" name="inschrijven" id="inschrijven" value="<%= locals.inschrijven %>">
+				</fieldset>
+				<label for="descr">Beschrijving</label>
+				<input name="descr" type="hidden" required value="<%= locals.descr %>"></input>
+				<div id="editor"></div>
+				<button>Item bewerken</button>
+			</form>
+		</main>
+		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+		<script src="../../scripts/quill.js"></script>
+</body>
+
+</html>

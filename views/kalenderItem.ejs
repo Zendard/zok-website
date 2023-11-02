@@ -43,6 +43,9 @@
 					<p>
 						<%- locals.item.descr %>
 					</p>
+					<% if (locals.item.inschrijven) { %>
+						<h2>Inschijven</h2>
+						<% } %>
 		</main>
 		<%- include('./templates/footer') %>
 </body>

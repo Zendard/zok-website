@@ -54,8 +54,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/send-mail',async (req,res)=>{
 	await console.log(req.body)
-	sendEmail(req.body.from,req.body.from,req.body.subject,req.body.body)
-	res.send('/contact')
+	sendEmail(req.body.from,req.body.from,req.body.subject,req.body.body,'')
+	res.redirect('/contact')
 })
 
 app.listen(parseInt(port), () => {
