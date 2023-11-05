@@ -97,7 +97,8 @@ nav>a:hover::after {
 		position: absolute;
 		right: 0px;
 		top: 0px;
-		padding: 0px;
+		padding: 0px 15vh;
+		font-size: 3rem;
 		flex-direction: column;
 		background-color: var(--background);
 		transition: opacity 0.3s;
