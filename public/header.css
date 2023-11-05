@@ -1,9 +1,5 @@
 header {
 	position: relative;
-<<<<<<< HEAD
-	overflow: hidden;
-=======
->>>>>>> main
 	display: flex;
 	justify-content: space-between;
 	padding: 1.7rem;
