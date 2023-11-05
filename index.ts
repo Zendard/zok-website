@@ -4,7 +4,7 @@ import adminRouter from './routes/admin';
 import {getKalender, getBerichten} from './databaseFetch';
 import compression from 'compression';
 import helmet from 'helmet';
-import sendEmail from './sendMail'
+import sendEmail from './sendMail';
 import bodyParser, { text } from 'body-parser';
 
 if (!Bun.env.MONGODB_URI) {
@@ -47,15 +47,19 @@ app.get('/lid-worden', (req, res) => {
 	res.render('lid-worden');
 });
 
+app.get('/disclaimer',(req,res)=>{
+	res.render('disclaimer');
+});
+
 app.use('/kalender',kalenderRouter);
 app.use('/admin',adminRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/send-mail',async (req,res)=>{
-	sendEmail(req.body.from , req.body.subject,`${req.body.from} Stuurt via het contactformulier:\n\r\n\r${req.body.body}`,'')
-	res.redirect('/contact')
-})
+	sendEmail(req.body.from , req.body.subject,`${req.body.from} Stuurt via het contactformulier:\n\r\n\r${req.body.body}`,'');
+	res.redirect('/contact');
+});
 
 app.listen(parseInt(port), () => {
 	console.log(`Listening on port ${port}...`);
