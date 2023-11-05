@@ -42,10 +42,10 @@ p>a {
 	color: var(--accent);
 	padding: initial;
 	text-decoration: underline 2px;
+}
 
-	&:hover {
-		filter: brightness(200%);
-	}
+p>a:hover {
+	filter: brightness(200%);
 }
 
 img {
@@ -71,41 +71,42 @@ h2 {
 form {
 	display: flex;
 	flex-direction: column;
+}
 
-	input {
-		background-color: var(--primary);
-		border-radius: var(--br);
-		color: var(--text);
-		border: none;
-		padding: 5px 1em;
-		margin-bottom: 1rem;
-		font-size: 1rem;
+form>input {
+	background-color: var(--primary);
+	border-radius: var(--br);
+	color: var(--text);
+	border: none;
+	padding: 5px 1em;
+	margin-bottom: 1rem;
+	font-size: 1rem;
+}
 
-		&:focus-visible {
-			border: 1px solid var(--accent);
-			outline: none;
-		}
-	}
+form>input:focus-visible {
+	border: 1px solid var(--accent);
+	outline: none;
+}
 
-	#body {
-		border: none;
-		height: auto;
-		min-height: 10rem;
-		border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
-		margin-bottom: 1rem;
-		padding-bottom: 1rem;
-		overflow-y: visible
-	}
+form>#body {
+	background-color: var(--primary);
+	border: none;
+	height: auto;
+	min-height: 10rem;
+	border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
+	margin-bottom: 1rem;
+	padding-bottom: 1rem;
+	overflow-y: visible
+}
 
-	button {
-		background-color: var(--accent);
-		border: none;
-		border-radius: var(--br);
-		color: var(--background);
-		font-size: 1rem;
-		padding: 1rem;
-		cursor: pointer;
-	}
+form>button {
+	background-color: var(--accent);
+	border: none;
+	border-radius: var(--br);
+	color: var(--background);
+	font-size: 1rem;
+	padding: 1rem;
+	cursor: pointer;
 }
 
 /* ----hero---- */
@@ -115,34 +116,34 @@ form {
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	margin-bottom: 10rem;
+}
 
-	.text {
-		margin-top: auto;
-		margin-bottom: auto;
-		max-width: 35rem;
+.hero>.text {
+	margin-top: auto;
+	margin-bottom: auto;
+	max-width: 35rem;
+}
 
-		h1 {
-			font-size: 3.5rem;
-			margin-bottom: 1rem;
-		}
+.hero>.text>h1 {
+	font-size: 3.5rem;
+	margin-bottom: 1rem;
+}
 
-		h2 {
-			font-size: 1.5rem;
-			margin-top: 0px;
-			margin-bottom: 4rem;
-			font-weight: 500;
-		}
+.hero>.text>h2 {
+	font-size: 1.5rem;
+	margin-top: 0px;
+	margin-bottom: 4rem;
+	font-weight: 500;
+}
 
-		a {
-			border: solid var(--accent) 0.2rem;
+.hero>.text>a {
+	border: solid var(--accent) 0.2rem;
+}
 
-			&:hover {
-				padding: 1rem 4rem;
-				background-color: var(--background);
-				color: var(--accent);
-			}
-		}
-	}
+.hero>.text>a:hover {
+	padding: 1rem 4rem;
+	background-color: var(--background);
+	color: var(--accent);
 }
 
 @media(max-width:1180px) {
@@ -159,61 +160,59 @@ form {
 	align-items: center;
 	text-align: center;
 	gap: 4rem;
+}
 
-	.title {
-		h2 {
-			font-size: 3rem;
-			margin-bottom: 1rem;
-		}
+.kalender>.title>h2 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
 
-		h4 {
-			margin-top: 1rem;
-			font-size: 1.2rem;
-			font-weight: 500;
-		}
-	}
+.kalender>.title>h4 {
+	margin-top: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
 
-	.kalender-items {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		justify-content: space-evenly;
-		gap: 3rem;
-		margin-bottom: 12rem;
-		width: 100%;
+.kalender-items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	justify-content: space-evenly;
+	gap: 3rem;
+	margin-bottom: 12rem;
+	width: 100%;
+}
 
-		a {
-			background: none;
-			color: var(--text);
-			padding: 0px;
-			border-radius: 0px;
-		}
+.kalender-items>a {
+	background: none;
+	color: var(--text);
+	padding: 0px;
+	border-radius: 0px;
+}
 
-		.event {
-			display: flex;
-			flex-direction: column;
-			background-color: var(--primary);
-			border-radius: var(--br);
-			padding: 2rem;
-			transition: all 0.5s;
+.event {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--primary);
+	border-radius: var(--br);
+	padding: 2rem;
+	transition: all 0.5s;
+}
 
-			img {
-				aspect-ratio: 1/1;
-				max-width: 50%;
-				border-radius: var(--br);
-			}
+.event>img {
+	aspect-ratio: 1/1;
+	max-width: 50%;
+	border-radius: var(--br);
+}
 
-			h3 {
-				word-wrap: break-word;
-				height: 100%;
-				text-align: left;
-				font-size: 1.75rem;
-			}
+.event>h3 {
+	word-wrap: break-word;
+	height: 100%;
+	text-align: left;
+	font-size: 1.75rem;
+}
 
-			&:hover {
-				translate: 0 -10%;
-			}
-		}
-	}
+.event:hover {
+	translate: 0 -10%;
 }
 
 /* ----berichten---- */
@@ -225,68 +224,68 @@ form {
 	gap: 3rem;
 	margin-bottom: 12rem;
 	width: 100%;
+}
 
-	h2 {
-		font-size: 3rem;
-		margin-bottom: 5rem;
-	}
+.berichten>h2 {
+	font-size: 3rem;
+	margin-bottom: 5rem;
+}
 
-	.list {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 4rem;
+.berichten>.list {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4rem;
+}
 
-		.bericht {
-			background-color: var(--primary);
-			padding: 2rem;
-			border-radius: var(--br);
-			max-width: 81rem;
-			height: 18rem;
-			display: flex;
-			align-items: start;
-			gap: 2.5rem;
-			cursor: pointer;
-			transition: all 0.5s;
+.berichten>.list>.bericht {
+	background-color: var(--primary);
+	padding: 2rem;
+	border-radius: var(--br);
+	max-width: 81rem;
+	height: 18rem;
+	display: flex;
+	align-items: start;
+	gap: 2.5rem;
+	cursor: pointer;
+	transition: all 0.5s;
+}
 
-			img {
-				border-radius: var(--br);
-			}
+.bericht>img {
+	border-radius: var(--br);
+}
 
-			.text {
-				overflow: hidden;
+.bericht>.text {
+	overflow: hidden;
+}
 
-				h4 {
-					margin-top: 0px;
-					margin-bottom: 1rem;
-					font-size: 2rem;
-				}
+.bericht>.text>h4 {
+	margin-top: 0px;
+	margin-bottom: 1rem;
+	font-size: 2rem;
+}
 
-				p {
-					position: relative;
-					margin-top: 1rem;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					max-height: 15rem;
+.bericht>.text>p {
+	position: relative;
+	margin-top: 1rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-height: 15rem;
+}
 
-					&::after {
-						content: "";
-						text-align: right;
-						position: absolute;
-						bottom: 0;
-						right: 0;
-						width: 70%;
-						height: 1.2em;
-						background: linear-gradient(to right, transparent, var(--primary) 80%);
-					}
-				}
-			}
+.bericht>.text>p::after {
+	content: "";
+	text-align: right;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 70%;
+	height: 1.2em;
+	background: linear-gradient(to right, transparent, var(--primary) 80%);
+}
 
-			&:hover {
-				translate: 0 -10%;
-			}
-		}
-	}
+.bericht:hover {
+	translate: 0 -10%;
 }
 
 .kalender-descr {

@@ -13,13 +13,12 @@ header {
 	border: none;
 	font-family: serif;
 	font-size: 4rem;
-
-	div::first-letter {
-		font-size: 5.3rem;
-		color: var(--accent);
-	}
 }
 
+#logo-link>div::first-letter {
+	font-size: 5.3rem;
+	color: var(--accent);
+}
 
 #logo {
 	flex-grow: 5;
@@ -31,32 +30,27 @@ nav {
 	align-items: center;
 	flex-grow: 4;
 	height: 6rem;
+}
 
-	a {
-		position: relative;
-		background-color: transparent;
-		color: var(--text);
-		text-decoration: none;
-		padding: 0.5rem 0px;
+nav>a {
+	position: relative;
+	background-color: transparent;
+	color: var(--text);
+	padding: 0.5rem 0px;
+}
 
-		&::after {
-			content: '';
-			display: block;
-			position: absolute;
-			border-bottom: solid var(--accent) 0.3rem;
-			top: 0;
-			left: 0;
-			height: 80%;
-		}
+nav>a::after {
+	content: '';
+	display: block;
+	position: absolute;
+	border-bottom: solid var(--accent) 0.3rem;
+	top: 0;
+	left: 0;
+	height: 80%;
+}
 
-		&:hover {
-
-			&::after {
-				animation: underline 0.2s forwards ease-in-out;
-			}
-		}
-	}
-
+nav>a:hover::after {
+	animation: underline 0.2s forwards ease-in-out;
 }
 
 #nav-button {
@@ -84,41 +78,33 @@ nav {
 }
 
 @media(max-width:650px) {
-	body {
-		overflow-x: hidden;
-		touch-action: pan-y;
-	}
 
 	#nav-button {
 		display: initial;
+	}
 
-		p {
-			position: relative;
-			z-index: 10;
-		}
+	#nav-buttonp {
+		position: relative;
+		z-index: 10;
 	}
 
 	nav {
-		height: 100vh;
+		/* height: 100vh; */
 		position: absolute;
 		right: 0px;
 		translate: calc(25vw + 4rem + 111.617px);
 		top: 0px;
-		padding: 4rem;
-		padding-right: 25vw;
+		padding: 0px;
 		flex-direction: column;
-		justify-content: start;
-		align-items: start;
 		background-color: var(--primary);
 		transition: all 1s;
 	}
 
 	nav>a::after {
-		width: 100%;
+		display: none;
 	}
 
 	.nav-open {
 		translate: 0px;
-		display: flex;
 	}
 }
