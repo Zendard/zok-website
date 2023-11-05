@@ -46,11 +46,13 @@
 					<% if (locals.item.inschrijven=='on' ) { %>
 						<h2>Inschijven:</h2>
 						<form action="/kalender/<%= locals.item.name %>/inschrijven" method="post">
-							<label for="name">Naam</label>
+							<label for="name">Voornaam + achternaam</label>
 							<input type="text" name="name" id="name" required>
 							<fieldset style="border: none; padding: 0;">
-								<label for="lid">Lid van AXXON?</label>
-								<input type="checkbox" name="lid" id="lid">
+								<label for="lid">AXXON-lid</label>
+								<input type="radio" name="lid" id="lid" value="lid">
+								<label for="not-lid">Geen AXXON-lid</label>
+								<input type="radio" name="lid" id="not-lid" value="not-lid">
 							</fieldset>
 							<label for="email">E-mail</label>
 							<input type="email" inputmode="email" name="email" id="email" required>
@@ -63,6 +65,8 @@
 						<% } %>
 		</main>
 		<%- include('./templates/footer') %>
+			<script src="./scripts/check-riziv.js">
+			</script>
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 header {
 	position: relative;
+<<<<<<< HEAD
 	overflow: hidden;
+=======
+>>>>>>> main
 	display: flex;
 	justify-content: space-between;
 	padding: 1.7rem;
@@ -91,15 +94,17 @@ nav>a:hover::after {
 	}
 
 	nav {
-		/* height: 100vh; */
+		pointer-events: none;
+		opacity: 0;
+		width: 100vw;
+		height: 100vh;
 		position: absolute;
 		right: 0px;
-		translate: calc(25vw + 4rem + 111.617px);
 		top: 0px;
 		padding: 0px;
 		flex-direction: column;
-		background-color: var(--primary);
-		transition: all 1s;
+		background-color: var(--background);
+		transition: opacity 0.3s;
 	}
 
 	nav>a::after {
@@ -107,6 +112,8 @@ nav>a:hover::after {
 	}
 
 	.nav-open {
+		pointer-events: initial;
+		opacity: 1;
 		translate: 0px;
 	}
 }

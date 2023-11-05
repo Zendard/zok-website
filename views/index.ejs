@@ -39,8 +39,7 @@
 							<div class="event">
 								<img src="<%= item.img %>">
 								<h3>
-									<%=item.title%> -
-										<%=item.date.getDay()%>/<%=item.date.getMonth()%>/<%=item.date.getFullYear()%>
+									<%=item.title%> - <%=item.date.toLocaleDateString('gl-ES')%>
 								</h3>
 							</div>
 						</a>
