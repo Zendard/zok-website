@@ -4,24 +4,22 @@ footer {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+}
 
-	.sponsors {
-		h3 {
-			font-size: 2rem;
-		}
+footer>.sponsors>h3 {
+	font-size: 2rem;
+}
 
-		a {
-			background: none;
-			padding: initial;
+footer>.sponsors>a {
+	background: none;
+	padding: initial;
+}
 
-			img {
-				height: 5rem;
-				width: auto;
-			}
-		}
-	}
+footer>.sponsors>a>img {
+	height: 5rem;
+	width: auto;
+}
 
-	.contact>h3 {
-		font-size: 2rem;
-	}
+footer>.contact>h3 {
+	font-size: 2rem;
 }
