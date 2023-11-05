@@ -96,7 +96,8 @@ nav>a:hover::after {
 		opacity: 0;
 		width: 100vw;
 		height: 100vh;
-		position: absolute;
+		position: fixed;
+		z-index: 20;
 		right: 0px;
 		top: 0px;
 		padding: 0px 5vw;
