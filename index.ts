@@ -61,6 +61,10 @@ app.post('/send-mail',async (req,res)=>{
 	res.redirect('/contact');
 });
 
+app.get('/*',(req,res)=>{
+	res.render('404');
+});
+
 app.listen(parseInt(port), () => {
 	console.log(`Listening on port ${port}...`);
 });
