@@ -97,11 +97,12 @@ nav>a:hover::after {
 		width: 100vw;
 		height: 100vh;
 		position: fixed;
-		z-index: 20;
+		z-index: 5;
 		right: 0px;
 		top: 0px;
 		padding: 20vh 5vw;
 		font-size: 2rem;
+		font-weight: 700;
 		flex-direction: column;
 		background-color: var(--background);
 		transition: opacity 0.3s;
