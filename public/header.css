@@ -91,6 +91,7 @@ nav>a:hover::after {
 
 	nav {
 		justify-content: start;
+		align-items: center;
 		gap: 1.5rem;
 		pointer-events: none;
 		opacity: 0;
