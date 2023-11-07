@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer';
 import { Address } from 'nodemailer/lib/mailer';
 
-if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO){
-	throw new Error('Please set email name, passwd and/or to env');
-}
+// if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO){
+// 	throw new Error('Please set email name, passwd and/or to env');
+// }
 
 const transporter = nodemailer.createTransport({
 	port:587,

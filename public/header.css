@@ -55,7 +55,7 @@ nav>a:hover::after {
 }
 
 #nav-button {
-	position: relative;
+	z-index: 20;
 	display: none;
 	background: none;
 	font-size: 3rem;
