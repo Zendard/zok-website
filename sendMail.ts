@@ -3,7 +3,7 @@ import { Address } from 'nodemailer/lib/mailer';
 
 if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO||!Bun.env.CLIENT_ID||!Bun.env.CLIENT_SECRET||!Bun.env.REFRESH_TOKEN||!Bun.env.ACCES_TOKEN){
 	throw new Error('Please set email name, passwd, client_id, client_secret, refresh token, to and/or refresh token env');
-},
+}
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
