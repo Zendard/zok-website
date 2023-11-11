@@ -6,8 +6,9 @@ if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO){
 }
 
 const transporter = nodemailer.createTransport({
-	port:587,
-	host:'smtp.office365.com',
+	service: "Gmail",
+	port:993,
+	host:'imap.gmail.com',
 	auth: {
 		user: Bun.env.EMAIL_NAME,
 		pass: Bun.env.EMAIL_PASSWD
