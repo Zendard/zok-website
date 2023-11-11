@@ -9,6 +9,11 @@ const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
+	debug: true,
+	tls: {
+        // do not fail on invalid certs
+        rejectUnauthorized: false
+    },
     auth: {
         type: 'OAuth2',
         user: Bun.env.EMAIL_NAME,
@@ -16,8 +21,7 @@ const transporter = nodemailer.createTransport({
         clientSecret: Bun.env.CLIENT_SECRET,
         refreshToken: Bun.env.REFRESH_TOKEN,
         accessToken: Bun.env.ACCES_TOKEN
-    },
-	debug:true
+    }
 });
 
 const sendMail = (name:string|Address|undefined, subject:string, text:string, cb:any) => {
