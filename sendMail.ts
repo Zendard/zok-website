@@ -16,7 +16,8 @@ const transporter = nodemailer.createTransport({
         clientSecret: Bun.env.CLIENT_SECRET,
         refreshToken: Bun.env.REFRESH_TOKEN,
         accessToken: Bun.env.ACCES_TOKEN
-    }
+    },
+	debug:true
 });
 
 const sendMail = (name:string|Address|undefined, subject:string, text:string, cb:any) => {
