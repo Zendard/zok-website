@@ -1,20 +1,22 @@
 import nodemailer from 'nodemailer';
 import { Address } from 'nodemailer/lib/mailer';
 
-if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO){
-	throw new Error('Please set email name, passwd and/or to env');
-}
+if(!Bun.env.EMAIL_NAME||!Bun.env.EMAIL_PASSWD||!Bun.env.EMAIL_TO||!Bun.env.CLIENT_ID||!Bun.env.CLIENT_SECRET||!Bun.env.REFRESH_TOKEN||!Bun.env.ACCES_TOKEN){
+	throw new Error('Please set email name, passwd, client_id, client_secret, refresh token, to and/or refresh token env');
+},
 
 const transporter = nodemailer.createTransport({
-	service: "Gmail",
-	port:993,
-	host:'imap.gmail.com',
-	auth: {
-		user: Bun.env.EMAIL_NAME,
-		pass: Bun.env.EMAIL_PASSWD
-	},
-	debug:true,
-	logger:true
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        type: 'OAuth2',
+        user: Bun.env.EMAIL_NAME,
+        clientId: Bun.env.CLIENT_ID,
+        clientSecret: Bun.env.CLIENT_SECRET,
+        refreshToken: Bun.env.REFRESH_TOKEN,
+        accessToken: Bun.env.ACCES_TOKEN
+    }
 });
 
 const sendMail = (name:string|Address|undefined, subject:string, text:string, cb:any) => {
@@ -26,6 +28,7 @@ const sendMail = (name:string|Address|undefined, subject:string, text:string, cb
 		text: text
 	};
 
-	transporter.sendMail(mailOptions);};
+	transporter.sendMail(mailOptions);
+	transporter.close()};
 
 export default sendMail;
