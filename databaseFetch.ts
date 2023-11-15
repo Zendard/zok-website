@@ -115,9 +115,9 @@ async function addInschrijving(formdata:AnyObject, kalenderName:string) {
 	}
 }
 
-async function getInschrijving() {
+async function getInschrijving(kalenderName:string) {
 	await mongoose.connect(mongoUri);
-	const items=await inschrijvingItem.find();
+	const items=await inschrijvingItem.find({kalenderName:kalenderName});
 	return items;
 }
 

@@ -1,15 +1,15 @@
 import Express, { NextFunction, Request, Response } from 'express';
 import * as db from '../databaseFetch';
-import bodyParser, { text } from 'body-parser';
+import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import axios from 'axios';
 import {load} from 'cheerio';
-import mongoose, { AnyObject } from 'mongoose';
+import mongoose from 'mongoose';
 
 if(!Bun.env.ADMIN_NAME||!Bun.env.ADMIN_PASSWD){
 	console.log('Set admin name and password env!');
 }
-const mongoUri=Bun.env.MONGODB_URI||''
+const mongoUri=Bun.env.MONGODB_URI||'';
 
 const app = Express.Router();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,20 +38,26 @@ app.get('/',authenticate, async (req, res) => {
 	res.render('admin', {kalenderItems:kalenderItems,berichtenItems:berichtenItems});
 });
 
+app.get('/inschrijvings/:name',authenticate,async (req,res)=>{
+	const items=await db.getInschrijving(req.params.name);
+	console.log(items);
+	res.render('inschrijvings',{items});
+});
+
 app.get('/add-kalender',authenticate,async (req,res)=>{
 	res.render('addKalender');
 });
 
 app.get('/edit/kalender/:name',authenticate,async(req,res)=>{
-	const item= await db.getItemInfo(req.params.name)
-	await res.render('editKalender',item)
-})
+	const item= await db.getItemInfo(req.params.name);
+	await res.render('editKalender',item);
+});
 
 app.post('/edit-kalender',authenticate,async (req,res)=>{
-	const itemForm = req.body
-	console.log(itemForm)
+	const itemForm = req.body;
+	console.log(itemForm);
 	mongoose.connect(mongoUri);
-	let item =  await db.kalenderItem.findOne({name:itemForm.name})||new db.kalenderItem;
+	const item =  await db.kalenderItem.findOne({name:itemForm.name})||new db.kalenderItem;
 	await item.set({
 		title:itemForm.title,
 		name:itemForm.name,
@@ -62,11 +68,11 @@ app.post('/edit-kalender',authenticate,async (req,res)=>{
 		cost:itemForm.cost,
 		costMember:itemForm.costMember,
 		inschrijven:itemForm.inschrijven
-	})
-	await item.save()
-	console.log(item)
-	res.redirect('/admin')
-})
+	});
+	await item.save();
+	console.log(item);
+	res.redirect('/admin');
+});
 
 app.get('/add-berichten',authenticate,async (req,res)=>{
 	res.render('addBerichten');

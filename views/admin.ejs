@@ -24,7 +24,9 @@
 								<%= item.title%>
 							</h3>
 						</div>
-						<div>
+						<div class="admin-buttons">
+							<a href="/admin/inschrijvings/<%= item.name%>" class="edit">
+								<i class="fa-solid fa-list"></i></a>
 							<a href="/admin/edit/kalender/<%= item.name%>" class="edit"><i
 									class="fa-solid fa-pen"></i></a>
 							<a class="delete" href="/admin/delete/<%= item.name %>">X</a>
