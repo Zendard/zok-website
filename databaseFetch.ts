@@ -53,7 +53,17 @@ async function getItemInfo(name:string){
 async function addKalender(formdata:AnyObject,img:UploadedFile) {
 	const imgPath= `uploads/${formdata.name}${img.name}`;
 	img.mv(`./public/${imgPath}`);
-	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr,date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember,inschrijven:formdata.inschrijven});
+	const newItem=new kalenderItem({title:formdata.title,
+		name:formdata.name,
+		descr:formdata.descr,
+		date:formdata.date,
+		img:imgPath||undefined,
+		location:formdata.location,
+		time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,
+		cost:formdata.cost,
+		costMember:formdata.costMember,
+		inschrijven:formdata.inschrijven
+	});
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }
