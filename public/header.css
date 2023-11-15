@@ -55,7 +55,7 @@ nav>a:hover::after {
 }
 
 #nav-button {
-	position: relative;
+	z-index: 20;
 	display: none;
 	background: none;
 	font-size: 3rem;
@@ -84,20 +84,26 @@ nav>a:hover::after {
 		display: initial;
 	}
 
-	#nav-buttonp {
+	#nav-button>p {
 		position: relative;
 		z-index: 10;
 	}
 
 	nav {
+		justify-content: start;
+		align-items: center;
+		gap: 1.5rem;
 		pointer-events: none;
 		opacity: 0;
 		width: 100vw;
 		height: 100vh;
-		position: absolute;
+		position: fixed;
+		z-index: 5;
 		right: 0px;
 		top: 0px;
-		padding: 0px;
+		padding: 20vh 5vw;
+		font-size: 2rem;
+		font-weight: 700;
 		flex-direction: column;
 		background-color: var(--background);
 		transition: opacity 0.3s;
