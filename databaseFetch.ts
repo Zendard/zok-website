@@ -1,9 +1,16 @@
 import { FileSystemRouter } from 'bun';
 import { UploadedFile } from 'express-fileupload';
 import mongoose, { AnyObject } from 'mongoose';
-import fs from 'fs'
+import fs from 'fs';
 
-const mongoUri=Bun.env.MONGODB_URI||''
+const mongoUri=Bun.env.MONGODB_URI||'';
+
+const inschrijvingStructure = {
+	name: String,
+	lid: Boolean,
+	email: String,
+	riziv: String
+};
 
 const kalenderItemStructure = {
 	title: String,
@@ -22,12 +29,14 @@ const berichtenItemStructure={
 	name:String,
 	descr:String,
 	img:String
-}
+};
 
 const kalenderItemSchema = new mongoose.Schema(kalenderItemStructure);
 const kalenderItem = mongoose.model('kalenderItem', kalenderItemSchema);
 const berichtenItemSchema = new mongoose.Schema(berichtenItemStructure);
 const berichtenItem = mongoose.model('berichtenItem', berichtenItemSchema);
+const inschrijvingSchema = new mongoose.Schema(inschrijvingStructure);
+const inschrijvingItem = mongoose.model('inschrijving', inschrijvingSchema);
 
 async function getKalender(){
 	await mongoose.connect(mongoUri);
@@ -35,28 +44,28 @@ async function getKalender(){
 	return items;
 }
 
-async function getItemInfo(name:String){
+async function getItemInfo(name:string){
 	await mongoose.connect(mongoUri);
 	const items = await kalenderItem.find({name:name});
 	return items[0];
 }
 
 async function addKalender(formdata:AnyObject,img:UploadedFile) {
-	const imgPath= `uploads/${formdata.name}${img.name}`
-	img.mv(`./public/${imgPath}`)
-	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr,date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember,inschrijven:formdata.inschrijven})
+	const imgPath= `uploads/${formdata.name}${img.name}`;
+	img.mv(`./public/${imgPath}`);
+	const newItem=new kalenderItem({title:formdata.title,name:formdata.name,descr:formdata.descr,date:formdata.date,img:imgPath||undefined,location:formdata.location,time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,cost:formdata.cost,costMember:formdata.costMember,inschrijven:formdata.inschrijven});
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }
 
-async function deleteKalender(name:String) {
+async function deleteKalender(name:string) {
 	await mongoose.connect(mongoUri);
-	const items = await kalenderItem.find({name:name})
-	const item = items[0]
+	const items = await kalenderItem.find({name:name});
+	const item = items[0];
 	if(item.img){
-		await fs.unlink(`./public/${item.img}`,(err)=>{if (err) console.log(err);})
+		await fs.unlink(`./public/${item.img}`,(err)=>{if (err) console.log(err);});
 	}
-	await item.deleteOne()
+	await item.deleteOne();
 }
 
 async function getBerichten() {
@@ -65,28 +74,47 @@ async function getBerichten() {
 	return items;
 }
 
-async function getBerichtenItemInfo(name:String){
+async function getBerichtenItemInfo(name:string){
 	await mongoose.connect(mongoUri);
 	const items = await berichtenItem.find({name:name});
 	return items[0];
 }
 
 async function addBerichten(formdata:AnyObject,img:UploadedFile) {
-	const imgPath= `uploads/${formdata.name}${img.name}`
-	img.mv(`./public/${imgPath}`)
-	const newItem=new berichtenItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),img:imgPath||undefined})
+	const imgPath= `uploads/${formdata.name}${img.name}`;
+	img.mv(`./public/${imgPath}`);
+	const newItem=new berichtenItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),img:imgPath||undefined});
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }
 
-async function deleteBerichten(name:String) {
+async function deleteBerichten(name:string) {
 	await mongoose.connect(mongoUri);
-	const items = await berichtenItem.find({name:name})
-	const item = items[0]
+	const items = await berichtenItem.find({name:name});
+	const item = items[0];
 	if(item.img){
-		await fs.unlink(`./public/${item.img}`,(err)=>{if (err) console.log(err);})
+		await fs.unlink(`./public/${item.img}`,(err)=>{if (err) console.log(err);});
 	}
-	await item.deleteOne()
+	await item.deleteOne();
 }
 
-export {getKalender, addKalender, getItemInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten, kalenderItem};
+async function addInschrijving(formdata:AnyObject, kalenderName:string) {
+	const newItem=new inschrijvingItem({
+		name:formdata.name,
+		lid:(formdata.lid=='lid')?true:false,
+		email:formdata.email,
+		riziv:formdata.riziv,
+		kalenderName:kalenderName
+	});
+	await mongoose.connect(mongoUri);
+	await newItem.save();
+	return true;
+}
+
+async function getInschrijving() {
+	await mongoose.connect(mongoUri);
+	const items=await inschrijvingItem.find();
+	return items;
+}
+
+export {getInschrijving, addInschrijving, getKalender, addKalender, getItemInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten, kalenderItem};

@@ -109,6 +109,34 @@ form>button {
 	cursor: pointer;
 }
 
+dialog {
+	position: fixed;
+	background-color: var(--primary);
+	color: var(--text);
+	border: 0.3rem solid;
+	border-radius: var(--br);
+	padding: 1rem 3rem;
+	animation: dialog-load 1s 0.2s forwards;
+}
+
+dialog.success {
+	border-color: lime;
+}
+
+dialog.error {
+	border-color: red;
+}
+
+@keyframes dialog-load {
+	from {
+		bottom: -200px;
+	}
+
+	to {
+		bottom: 1rem;
+	}
+}
+
 /* ----hero---- */
 
 .hero {

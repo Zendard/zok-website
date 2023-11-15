@@ -1,7 +1,7 @@
 import Express from 'express';
 import {getItemInfo} from '../databaseFetch';
 import bodyParser from 'body-parser';
-import sendEmail from '../sendMail';
+import { addInschrijving } from '../databaseFetch';
 
 const app = Express.Router();
 
@@ -11,24 +11,22 @@ app.get('/',(req,res)=>{
 
 app.get('/:pageTitle',async (req,res)=>{
 	const item = await getItemInfo(req.params.pageTitle);
-	res.render('kalenderItem',{item});
+	const inschrijvingStatus= req.query.inschrijving;
+	res.render('kalenderItem',{item,inschrijvingStatus});
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/:name/inschrijven',async (req,res)=>{
 	if(97-((5+req.body.riziv.split('-')[0])%97)==req.body.riziv.split('-')[1]){
-		if(req.body.lid=='lid'){
-			sendEmail(req.body.name,`Inschrijving ${req.params.name}`,`${req.body.name}(axxon lid) met riziv nummer ${req.body.riziv} schrijft zich in voor ${req.params.name}`,'');
-			res.redirect(`/kalender/${req.params.name}`);
-		}
-		else{
-			sendEmail(req.body.name,`Inschrijving ${req.params.name}`,`${req.body.name} met riziv nummer ${req.body.riziv} schrijft zich in voor ${req.params.name}`,'');
-			res.redirect(`/kalender/${req.params.name}`);
-		}
+		const result=addInschrijving(req.body,req.params.name);
+		result.then(async (e)=>{
+			if (e){
+				res.redirect(`/kalender/${req.params.name}?inschrijving=success`);
+			}
+		});
 	}else{
-		const item = await getItemInfo(req.params.name);
-		res.render('kalenderItem',{item,notValid:true});
+		res.redirect(`/kalender/${req.params.name}?inschrijving=invalid`);
 	}
 });
 
