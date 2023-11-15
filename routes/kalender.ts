@@ -21,10 +21,7 @@ app.post('/:name/inschrijven',async (req,res)=>{
 	if(97-((5+req.body.riziv.split('-')[0])%97)==req.body.riziv.split('-')[1]){
 		const result=addInschrijving(req.body,req.params.name);
 		result.then(async (e)=>{
-			if (e){
-				res.redirect(`/kalender/${req.params.name}?inschrijving=success`);
-			}
-		});
+			res.redirect(`/kalender/${req.params.name}?inschrijving=${e}`);});
 	}else{
 		res.redirect(`/kalender/${req.params.name}?inschrijving=invalid`);
 	}

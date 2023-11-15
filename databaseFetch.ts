@@ -99,16 +99,20 @@ async function deleteBerichten(name:string) {
 }
 
 async function addInschrijving(formdata:AnyObject, kalenderName:string) {
-	const newItem=new inschrijvingItem({
-		name:formdata.name,
-		lid:(formdata.lid=='lid')?true:false,
-		email:formdata.email,
-		riziv:formdata.riziv,
-		kalenderName:kalenderName
-	});
 	await mongoose.connect(mongoUri);
-	await newItem.save();
-	return true;
+	if((await inschrijvingItem.find({riziv:formdata.riziv})).length>0){
+		return 'double';
+	} else{
+		const newItem=new inschrijvingItem({
+			name:formdata.name,
+			lid:(formdata.lid=='lid')?true:false,
+			email:formdata.email,
+			riziv:formdata.riziv,
+			kalenderName:kalenderName
+		});
+		await newItem.save();
+		return 'success';
+	}
 }
 
 async function getInschrijving() {

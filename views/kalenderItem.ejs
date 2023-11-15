@@ -61,21 +61,28 @@
 							<button>Verstuur</button>
 						</form>
 						<% } %>
-							<% if (locals.inschrijvingStatus=='success' ) { %>
+							<% if (locals.inschrijvingStatus=='success' ) {%>
 								<dialog class="success" open>
 									<p>Inschrijving successvol verzonden!</p>
 									<form method="dialog">
 										<button>Ok</button>
 									</form>
 								</dialog>
-								<% } else if (locals.inschrijvingStatus=='invalid' ) {%>
+								<%} if (locals.inschrijvingStatus=='invalid' ) {%>
 									<dialog class="error" open>
 										<p>Controleer riziv nummer!</p>
 										<form method="dialog">
 											<button>Ok</button>
 										</form>
 									</dialog>
-									<% } %>
+									<%} if (locals.inschrijvingStatus=='double' ) {%>
+										<dialog class="error" open>
+											<p>Reeds ingeschreven.</p>
+											<form method="dialog">
+												<button>Ok</button>
+											</form>
+										</dialog>
+										<% } %>
 		</main>
 		<%- include('./templates/footer') %>
 			<script src="../../scripts/check-riziv.js">
