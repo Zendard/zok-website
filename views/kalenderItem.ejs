@@ -22,9 +22,8 @@
 			</div>
 			<h3>
 				<i class="fa-solid fa-calendar-days"></i>
-				<%=item.date.toLocaleDateString('gl-ES')%> - <i
-								class="fa-solid fa-clock"></i>
-							<%= locals.item.time %>
+				<%=item.date.toLocaleDateString('gl-ES')%> - <i class="fa-solid fa-clock"></i>
+					<%= locals.item.time %>
 			</h3>
 			<h3>
 				<i class="fa-solid fa-location-dot"></i>
@@ -46,7 +45,7 @@
 					<% if (locals.item.inschrijven=='on' ) { %>
 						<h2>Inschrijven:</h2>
 						<form action="/kalender/<%= locals.item.name %>/inschrijven" method="post">
-							<label for="name">Voornaam + achternaam</label>
+							<label for="name">Voornaam en achternaam</label>
 							<input type="text" name="name" id="name" required>
 							<fieldset style="border: none; padding: 0;">
 								<label for="lid">AXXON-lid</label>
@@ -57,15 +56,15 @@
 							<label for="email">E-mail</label>
 							<input type="email" inputmode="email" name="email" id="email" required>
 							<label for="riziv">Riziv-nummer (middelste 7 cijfers)</label>
-							<%-locals.notValid?'<p style="color:red">Ongeldig Riziv-nummer</p>':'' %>
-								<input type="tel" inputmode="numeric" name="riziv" id="riziv" placeholder="XXXXX-XX"
-									required minlength="8" maxlength="8" pattern="\d{5}-\d{2}$">
-								<button>Verstuur</button>
+							<input type="tel" inputmode="numeric" name="riziv" id="riziv" placeholder="XXXXX-XX"
+								required minlength="8" maxlength="8" pattern="\d{5}-\d{2}$">
+							<button>Verstuur</button>
 						</form>
 						<% } %>
 		</main>
 		<%- include('./templates/footer') %>
-			<script src="./scripts/check-riziv.js">
+			<script src="../../scripts/check-riziv.js">
+
 			</script>
 </body>
 
