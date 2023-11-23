@@ -6,7 +6,11 @@
 	--accent: #47d3ff;
 	--primary: #2d3435;
 	--text: #fffbef;
-	--br: 3.75rem;
+	--br: 2rem;
+}
+
+html {
+	color-scheme: dark;
 }
 
 body {
