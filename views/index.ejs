@@ -18,7 +18,22 @@
 					</h2>
 					<a href="/lid-worden">Word lid</a>
 				</div>
-				<img src="/img/bestuur.jpg" alt="Foto van het bestuur">
+				<div class="carousel">
+					<img src="/img/carousel/1.jpg" id="img1">
+					<img src="/img/carousel/2.jpg" id="img2">
+					<img src="/img/carousel/3.jpg" id="img3">
+				</div>
+				<script src="/scripts/carousel.js">
+					const img1 = document.getElementById('img1')
+					const img2 = document.getElementById('img2')
+					const img3 = document.getElementById('img3')
+					const imgList = [img1, img2, img3]
+					function changeSlide(slideNumber) {
+						imgList[slideNumber].animate([{ opacity: 0 }, { opacity: 1 }], 1000)
+						imgList[slideNumber - 1].animate([{ opacity: 1 }, { opacity: 0 }], 1000)
+						setTimeout(changeSlide(slideNumber - 1), 3000)
+					}
+				</script>
 			</div>
 			<div class="hero">
 				<img src="/img/zov.svg" alt="a drawing of south-east-flanders" style="width: 20rem;">

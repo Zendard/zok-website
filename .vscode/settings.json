@@ -14,5 +14,8 @@
 		"Inschrijving",
 		"kalender",
 		"riziv"
-	]
+	],
+	"[javascript]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+	}
 }

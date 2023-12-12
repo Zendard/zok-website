@@ -156,6 +156,29 @@ dialog.error {
 	max-width: 35rem;
 }
 
+.hero>.carousel {
+	width: clamp(10px, 100%, 450px);
+}
+
+.carousel {
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+.carousel img.active {
+	opacity: 1;
+}
+
 .hero>.text>h1 {
 	font-size: 3.5rem;
 	margin-bottom: 1rem;
