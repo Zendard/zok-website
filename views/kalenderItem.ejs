@@ -26,63 +26,71 @@
 					<%= locals.item.time %>
 			</h3>
 			<h3>
+				<i class="fa-solid fa-star"></i>
+				PQK: <%= item.pqk%>
+			</h3>
+			<h3>
 				<i class="fa-solid fa-location-dot"></i>
 				<%= locals.item.location %>
 			</h3>
-			<% if (locals.item.cost) {%>
-				<h3>
-					<i class="fa-solid fa-money-bill"></i>
-					€<%= locals.item.cost %> (niet axxon-leden)
-				</h3>
-				<h3>
-					<i class="fa-solid fa-money-bill"></i>
-					€<%= locals.item.costMember || locals.item.cost%> (axxon-leden)
-				</h3>
+			<h3>
+				<i class="fa-solid fa-money-bill"></i>
+				<% if(locals.item.cost) {%>
+					€
+					<% } %>
+						<%= locals.item.cost || "Gratis" %> (niet axxon-leden)
+			</h3>
+			<h3>
+				<i class="fa-solid fa-money-bill"></i>
+				<% if(locals.item.cost) {%>
+					€
+					<% } %>
+						<%= locals.item.costMember || locals.item.cost || "Gratis" %> (axxon-leden)
+			</h3>
+			<p>
+				<%- locals.item.descr %>
+			</p>
+			<% if (locals.item.inschrijven=='on' ) { %>
+				<h2>Inschrijven:</h2>
+				<form action="/kalender/<%= locals.item.name %>/inschrijven" method="post">
+					<label for="name">Voornaam en achternaam</label>
+					<input type="text" name="name" id="name" required>
+					<fieldset style="border: none; padding: 0;">
+						<label for="lid">AXXON-lid</label>
+						<input type="radio" name="lid" id="lid" value="lid">
+						<label for="not-lid">Geen AXXON-lid</label>
+						<input type="radio" name="lid" id="not-lid" value="not-lid">
+					</fieldset>
+					<label for="email">E-mail</label>
+					<input type="email" inputmode="email" name="email" id="email" required>
+					<label for="riziv">Riziv-nummer (middelste 7 cijfers)</label>
+					<input type="tel" inputmode="numeric" name="riziv" id="riziv" placeholder="XXXXX-XX" required
+						minlength="8" maxlength="8" pattern="\d{5}-\d{2}$">
+					<button>Verstuur</button>
+				</form>
 				<% } %>
-					<p>
-						<%- locals.item.descr %>
-					</p>
-					<% if (locals.item.inschrijven=='on' ) { %>
-						<h2>Inschrijven:</h2>
-						<form action="/kalender/<%= locals.item.name %>/inschrijven" method="post">
-							<label for="name">Voornaam en achternaam</label>
-							<input type="text" name="name" id="name" required>
-							<fieldset style="border: none; padding: 0;">
-								<label for="lid">AXXON-lid</label>
-								<input type="radio" name="lid" id="lid" value="lid">
-								<label for="not-lid">Geen AXXON-lid</label>
-								<input type="radio" name="lid" id="not-lid" value="not-lid">
-							</fieldset>
-							<label for="email">E-mail</label>
-							<input type="email" inputmode="email" name="email" id="email" required>
-							<label for="riziv">Riziv-nummer (middelste 7 cijfers)</label>
-							<input type="tel" inputmode="numeric" name="riziv" id="riziv" placeholder="XXXXX-XX"
-								required minlength="8" maxlength="8" pattern="\d{5}-\d{2}$">
-							<button>Verstuur</button>
-						</form>
-						<% } %>
-							<% if (locals.inschrijvingStatus=='success' ) {%>
-								<dialog class="success" open>
-									<p>Inschrijving successvol verzonden!</p>
+					<% if (locals.inschrijvingStatus=='success' ) {%>
+						<dialog class="success" open>
+							<p>Inschrijving successvol verzonden!</p>
+							<form method="dialog">
+								<button>Ok</button>
+							</form>
+						</dialog>
+						<%} if (locals.inschrijvingStatus=='invalid' ) {%>
+							<dialog class="error" open>
+								<p>Controleer riziv nummer!</p>
+								<form method="dialog">
+									<button>Ok</button>
+								</form>
+							</dialog>
+							<%} if (locals.inschrijvingStatus=='double' ) {%>
+								<dialog class="error" open>
+									<p>Reeds ingeschreven.</p>
 									<form method="dialog">
 										<button>Ok</button>
 									</form>
 								</dialog>
-								<%} if (locals.inschrijvingStatus=='invalid' ) {%>
-									<dialog class="error" open>
-										<p>Controleer riziv nummer!</p>
-										<form method="dialog">
-											<button>Ok</button>
-										</form>
-									</dialog>
-									<%} if (locals.inschrijvingStatus=='double' ) {%>
-										<dialog class="error" open>
-											<p>Reeds ingeschreven.</p>
-											<form method="dialog">
-												<button>Ok</button>
-											</form>
-										</dialog>
-										<% } %>
+								<% } %>
 		</main>
 		<%- include('./templates/footer') %>
 			<script src="../../scripts/check-riziv.js">

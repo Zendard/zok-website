@@ -22,6 +22,7 @@ const kalenderItemStructure = {
 	time:String,
 	cost:Number,
 	costMember:Number,
+	pqk:Number,
 	inschrijven:String
 };
 const berichtenItemStructure={

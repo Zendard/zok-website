@@ -5,7 +5,7 @@
 	"files.autoSave": "onFocusChange",
 	"vs-code-prettier-eslint.prettierLast": false,
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
+		"source.fixAll.eslint": "explicit"
 	},
 	"[json]": {
 		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
