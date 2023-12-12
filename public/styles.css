@@ -175,6 +175,12 @@ dialog.error {
 	transition: opacity 1s ease-in-out;
 }
 
+.carousel .starter-img {
+	opacity: 1;
+	z-index: -1;
+	transition: none;
+}
+
 .carousel img.active {
 	opacity: 1;
 }
