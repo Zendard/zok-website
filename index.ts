@@ -57,6 +57,7 @@ app.use('/admin',adminRouter);
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/send-mail',async (req,res)=>{
+	console.log(req.body.from,' : ', req.body.subject,'\n',req.body.body);
 	sendEmail(req.body.from , req.body.subject,`${req.body.from} Stuurt via het contactformulier:\n\r\n\r${req.body.body}`,'');
 	res.redirect('/contact');
 });
