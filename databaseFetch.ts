@@ -63,6 +63,7 @@ async function addKalender(formdata:AnyObject,img:UploadedFile) {
 		time:`${formdata.timeStart.toString()} - ${formdata.timeEnd.toString()}`,
 		cost:formdata.cost,
 		costMember:formdata.costMember,
+		pqk:formdata.pqk,
 		inschrijven:formdata.inschrijven
 	});
 	await mongoose.connect(mongoUri);
