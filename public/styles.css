@@ -287,6 +287,13 @@ dialog.error {
 	width: 100%;
 }
 
+.berichten>.list>a {
+	background: none;
+	color: var(--text);
+	padding: 0px;
+	border-radius: 0px;
+}
+
 .berichten>h2 {
 	font-size: 3rem;
 	margin-bottom: 5rem;
@@ -299,7 +306,7 @@ dialog.error {
 	gap: 4rem;
 }
 
-.berichten>.list>.bericht {
+.bericht {
 	background-color: var(--primary);
 	padding: 2rem;
 	border-radius: var(--br);
@@ -314,10 +321,8 @@ dialog.error {
 
 .bericht>img {
 	border-radius: var(--br);
-}
-
-.bericht>.text {
-	overflow: hidden;
+	min-width: 30%;
+	max-width: 30%;
 }
 
 .bericht>.text>h4 {
@@ -326,7 +331,7 @@ dialog.error {
 	font-size: 2rem;
 }
 
-.bericht>.text>p {
+.bericht>.text {
 	position: relative;
 	margin-top: 1rem;
 	text-overflow: ellipsis;

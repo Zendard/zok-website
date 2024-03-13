@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/styles.css">
+	<title>
+		<%= locals.item.title || 'Not found' %>
+	</title>
+</head>
+
+<body>
+	<%- include('./templates/header') %>
+		<main>
+			<div class="kalender-descr">
+				<img src="../<%= locals.item.img %>" style="width: clamp(10px,20vw,200px);">
+				<h1>
+					<%= locals.item.title %>
+				</h1>
+			</div>
+			<p>
+				<%- locals.item.descr %>
+			</p>
+		</main>
+		<%- include('./templates/footer') %>
+</body>
+
+</html>

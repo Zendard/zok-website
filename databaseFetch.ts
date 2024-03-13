@@ -42,6 +42,8 @@ const inschrijvingItem = mongoose.model('inschrijving', inschrijvingSchema);
 async function getKalender(){
 	await mongoose.connect(mongoUri);
 	const items = await kalenderItem.find();
+	console.log('kalender:')
+	console.log(items)
 	return items;
 }
 
@@ -51,10 +53,17 @@ async function getItemInfo(name:string){
 	return items[0];
 }
 
+async function getBerichtInfo(name:string){
+	await mongoose.connect(mongoUri);
+	const items = await berichtenItem.find({name:name});
+	return items[0];
+}
+
 async function addKalender(formdata:AnyObject,img:UploadedFile) {
 	const imgPath= `uploads/${formdata.name}${img.name}`;
 	img.mv(`./public/${imgPath}`);
-	const newItem=new kalenderItem({title:formdata.title,
+	const newItem=new kalenderItem({
+		title:formdata.title,
 		name:formdata.name,
 		descr:formdata.descr,
 		date:formdata.date,
@@ -83,6 +92,8 @@ async function deleteKalender(name:string) {
 async function getBerichten() {
 	await mongoose.connect(mongoUri);
 	const items = await berichtenItem.find();
+	console.log('berichten:')
+	console.log(items)
 	return items;
 }
 
@@ -95,7 +106,11 @@ async function getBerichtenItemInfo(name:string){
 async function addBerichten(formdata:AnyObject,img:UploadedFile) {
 	const imgPath= `uploads/${formdata.name}${img.name}`;
 	img.mv(`./public/${imgPath}`);
-	const newItem=new berichtenItem({title:formdata.title,name:formdata.name,descr:formdata.descr.replaceAll('\n','<br>'),img:imgPath||undefined});
+	const newItem=new berichtenItem({
+		title:formdata.title,
+		name:formdata.name,
+		descr:formdata.descr,
+		img:imgPath||undefined});
 	await mongoose.connect(mongoUri);
 	await newItem.save();
 }
@@ -133,4 +148,4 @@ async function getInschrijving(kalenderName:string) {
 	return items;
 }
 
-export {getInschrijving, addInschrijving, getKalender, addKalender, getItemInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten, kalenderItem};
+export {getInschrijving, addInschrijving, getKalender, addKalender, getItemInfo, getBerichtInfo, deleteKalender,getBerichten,getBerichtenItemInfo,addBerichten,deleteBerichten, kalenderItem};

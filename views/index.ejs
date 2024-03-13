@@ -43,10 +43,11 @@
 					<% locals.kalender.forEach(item=> { %>
 						<a href=<%='/kalender/' + item.name %>>
 							<div class="event">
-								<img src="<%= item.img %>">
-								<h3>
-									<%=item.title%> - <%=item.date.toLocaleDateString('gl-ES')%>
-								</h3>
+								<% if (item.img) {%> <img src="<%= item.img %>">
+									<%}%>
+										<h3>
+											<%=item.title%> - <%=item.date.toLocaleDateString('gl-ES')%>
+										</h3>
 							</div>
 						</a>
 						<% }) %>
@@ -56,15 +57,15 @@
 				<h2>Berichten</h2>
 				<div class="list">
 					<% locals.berichten.forEach(item=> { %>
-						<div class="bericht">
+						<div class="bericht" onclick="window.location.href= '<%='/berichten/' + item.name %>'">
 							<img src="<%= item.img %>">
+
 							<div class="text">
 								<h4>
 									<%= item.title %>
 								</h4>
-								<p>
-									<%= item.descr %>
-								</p>
+								<%- item.descr %>
+
 							</div>
 						</div>
 						<% }) %>

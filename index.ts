@@ -1,5 +1,6 @@
 import express from 'express';
 import kalenderRouter from './routes/kalender';
+import berichtenRouter from './routes/berichten';
 import adminRouter from './routes/admin';
 import {getKalender, getBerichten} from './databaseFetch';
 import compression from 'compression';
@@ -52,15 +53,10 @@ app.get('/disclaimer',(req,res)=>{
 });
 
 app.use('/kalender',kalenderRouter);
+app.use('/berichten',berichtenRouter);
 app.use('/admin',adminRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.post('/send-mail',async (req,res)=>{
-	console.log(req.body.from,' : ', req.body.subject,'\n',req.body.body);
-	sendEmail(req.body.from , req.body.subject,`${req.body.from} Stuurt via het contactformulier:\n\r\n\r${req.body.body}`,'');
-	res.redirect('/contact');
-});
 
 app.get('/*',(req,res)=>{
 	res.render('404');
