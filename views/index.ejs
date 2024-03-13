@@ -57,17 +57,19 @@
 				<h2>Berichten</h2>
 				<div class="list">
 					<% locals.berichten.forEach(item=> { %>
-						<div class="bericht" onclick="window.location.href= '<%='/berichten/' + item.name %>'">
-							<img src="<%= item.img %>">
+						<a href=<%='/berichten/' + item.name %>>
+							<div class="bericht">
+								<img src="<%= item.img %>">
 
-							<div class="text">
-								<h4>
-									<%= item.title %>
-								</h4>
-								<%- item.descr %>
+								<div class="text">
+									<h4>
+										<%= item.title %>
+									</h4>
+									<%- item.descr.replace(/<\/?a[^>]*>/g,'') %>
 
+								</div>
 							</div>
-						</div>
+						</a>
 						<% }) %>
 				</div>
 			</div>
