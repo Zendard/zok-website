@@ -16,7 +16,10 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
 
 #[get("/leden")]
 async fn leden() -> Template {
-    Template::render("leden", context! {})
+    let leden = zok_website::fetch_leden().await;
+    dbg!(&leden);
+
+    Template::render("leden", context! {leden})
 }
 
 #[get("/contact")]
