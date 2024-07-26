@@ -8,6 +8,7 @@ pub struct Lid {
     email: Option<String>,
     phone: Option<String>,
 }
+
 pub async fn fetch_leden() -> Option<Vec<Lid>> {
     let response =
         minreq::get("https://axxon.be/kringsite/35-zuid-oost-vlaamse-kinesitherapeuten/leden/")

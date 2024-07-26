@@ -1,3 +1,11 @@
+/debug
+/target
+*.pdb
+
+**/*.rs.bk
+
+/database
+/tls
 .env
 
-/target
+Cargo.lock
