@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zok</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <header>
+    <div id="logo">
+      <div style="width: 3em;">
+        <a href="/" id="logo-link">
+          <div>Zok</div>
+        </a>
+      </div>
+    </div>
+    <nav>
+      <a href="/" class="nav-button">Home</a>
+      <a href="/wie-zijn-wij" class="nav-button">Wie zijn wij</a>
+      <a href="/leden" class="nav-button">Leden</a>
+      <a href="/contact" class="nav-button">Contact</a>
+    </nav>
+    <button id="nav-button">☰</button>
+    <script src="./scripts/header.js"></script>
+  </header>
+  <main>
+    <div class="hero">
+      <div class="text">
+        <h1>Welkom bij Zok</h1>
+        <h2>Onze kinesitherapeutenkring verenigt en informeert de kinesitherapeuten van Zuid-Oost-Vlaanderen
+        </h2>
+        <a href="/lid-worden">Word lid</a>
+      </div>
+      <div class="carousel">
+        <img src="/img/carousel/1.jpg" id="img1">
+        <img src="/img/carousel/2.jpg" id="img2">
+        <img src="/img/carousel/3.jpg" id="img3">
+        <img src="/img/carousel/1.jpg" class="starter-img">
+      </div>
+      <script src="/scripts/carousel.js"></script>
+    </div>
+    <div class="hero">
+      <img src="/img/zov.svg" alt="a drawing of south-east-flanders" style="width: 20rem;">
+      <div class="text">
+        <h1>Voor wie?</h1>
+        <h2>Kinesitherapeuten van Geraardsbergen, Ninove, Brakel, Herzele, Lierde, Oosterzele,
+          Sint-Lievens-Houtem en Zottegem</h2>
+      </div>
+    </div>
+    <div class="kalender">
+      <div class="title">
+        <h2>Kalender</h2>
+        <h4>Welke bijscholingen en activiteiten staan er op het programma?</h4>
+      </div>
+      <div class="kalender-items">
+        {{#each kalender}}
+        <a href="/kalender/{{self.name}}">
+          <div class="event">
+            {{#if self.img}} <img src="{{item.img}}"> {{/if}}
+            <h3>
+              {{self.title}} - {{self.date}}
+            </h3>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+    <div class="berichten">
+      <h2>Berichten</h2>
+      <div class="list">
+        {{#each berichten}}
+        <a href="/berichten/{{self.name}}">
+          <div class="bericht">
+            <img src="{{self.img}}">
+            <div class="text">
+              <h4>
+                {{self.title}}
+              </h4>
+              <p>
+                {{self.description}}
+              </p>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="sponsors">
+      <h3>Onze sponsors</h3>
+      <a href="https://gymna.com"><img src="/img/sponsors/gymna.png" alt="Gymna logo"></a>
+      <a href="https://www.trenker.be"><img src="/img/sponsors/trenker.jpg" alt="Trenker laboratories logo"></a>
+    </div>
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>
+        Groendal 67, 9500 Geraardsbergen <br>
+        email: ZOKKinekring@gmail.com <br>
+        tel: 054/33.43.41 <br>
+        <a href="/disclaimer">Disclaimer & privacy</a>
+      </p>
+    </div>
+  </footer>
+</body>
+
+</html>
