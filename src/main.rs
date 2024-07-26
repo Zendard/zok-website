@@ -19,6 +19,11 @@ async fn leden() -> Template {
     Template::render("leden", context! {})
 }
 
+#[get("/contact")]
+async fn contact() -> Option<NamedFile> {
+    NamedFile::open("templates/contact.html").await.ok()
+}
+
 #[catch(404)]
 async fn not_found() -> Option<NamedFile> {
     NamedFile::open("templates/404.html").await.ok()
@@ -27,7 +32,7 @@ async fn not_found() -> Option<NamedFile> {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![index, wie_zijn_wij, leden,])
+        .mount("/", routes![index, wie_zijn_wij, leden, contact])
         .register("/", catchers![not_found])
         .mount("/", FileServer::from("public"))
         .attach(Template::fairing())
