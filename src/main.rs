@@ -14,6 +14,11 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
     NamedFile::open("templates/wie_zijn_wij.html").await.ok()
 }
 
+#[get("/leden")]
+async fn leden() -> Template {
+    Template::render("leden", context! {})
+}
+
 #[catch(404)]
 async fn not_found() -> Option<NamedFile> {
     NamedFile::open("templates/404.html").await.ok()
@@ -22,7 +27,7 @@ async fn not_found() -> Option<NamedFile> {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![index, wie_zijn_wij])
+        .mount("/", routes![index, wie_zijn_wij, leden,])
         .register("/", catchers![not_found])
         .mount("/", FileServer::from("public"))
         .attach(Template::fairing())
