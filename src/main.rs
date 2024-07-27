@@ -6,7 +6,8 @@ extern crate rocket;
 
 #[get("/")]
 async fn index() -> Template {
-    Template::render("index", context! {})
+    let events = zok_website::get_events().await;
+    Template::render("index", context! {events})
 }
 
 #[get("/wie-zijn-wij")]

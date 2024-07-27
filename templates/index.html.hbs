@@ -56,12 +56,12 @@
         <h4>Welke bijscholingen en activiteiten staan er op het programma?</h4>
       </div>
       <div class="kalender-items">
-        {{#each kalender}}
-        <a href="/kalender/{{self.name}}">
+        {{#each events}}
+        <a href="/kalender/{{this.id}}">
           <div class="event">
-            {{#if self.img}} <img src="{{item.img}}"> {{/if}}
+            <img src="{{this.img}}">
             <h3>
-              {{self.title}} - {{self.date}}
+              {{this.title}} - {{this.date}}
             </h3>
           </div>
         </a>

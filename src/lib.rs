@@ -1,4 +1,5 @@
-use rocket::serde::Serialize;
+use rocket::serde::{Deserialize, Serialize};
+use surrealdb::sql::{Datetime, Duration, Number};
 
 #[derive(Debug, Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -7,6 +8,30 @@ pub struct Lid {
     address: Option<String>,
     email: Option<String>,
     phone: Option<String>,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(crate = "rocket::serde")]
+pub struct Event {
+    id: String,
+    title: String,
+    description: String,
+    img: String,
+    location: Location,
+    date: String,
+    start: String,
+    end: Option<String>,
+    pqk: Option<u16>,
+    cost: Option<Number>,
+    cost_member: Option<Number>,
+    duration: Option<Duration>,
+}
+
+#[derive(Deserialize, Serialize)]
+#[serde(crate = "rocket::serde")]
+pub struct Location {
+    name: String,
+    address: Option<String>,
 }
 
 pub async fn fetch_leden() -> Option<Vec<Lid>> {
@@ -41,4 +66,33 @@ pub async fn fetch_leden() -> Option<Vec<Lid>> {
         .collect::<Vec<Lid>>();
 
     Some(leden)
+}
+
+pub async fn connect_to_db() -> surrealdb::Surreal<surrealdb::engine::remote::ws::Client> {
+    let db = surrealdb::Surreal::new::<surrealdb::engine::remote::ws::Ws>("localhost:5000")
+        .await
+        .unwrap();
+
+    db.signin(surrealdb::opt::auth::Root {
+        username: "root",
+        password: env!("DB_PASSWORD"),
+    })
+    .await
+    .unwrap();
+
+    db.use_ns("zok").use_db("main").await.unwrap();
+
+    db
+}
+
+pub async fn get_events() -> Vec<Event> {
+    let db = connect_to_db().await;
+
+    db.query(
+        "SELECT meta::id(id) AS id, title, description, img, location.name, location.address, time::format(start, '%d/%m/%y') AS date, time::format(start, '%k:%M') AS start, duration, pqk, cost, cost_member FROM event",
+    )
+    .await
+    .unwrap()
+    .take(0)
+    .unwrap()
 }
