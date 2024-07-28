@@ -28,6 +28,11 @@ async fn contact() -> Option<NamedFile> {
     NamedFile::open("templates/contact.html").await.ok()
 }
 
+#[get("/lid-worden")]
+async fn lid_worden() -> Option<NamedFile> {
+    NamedFile::open("templates/lid_worden.html").await.ok()
+}
+
 #[catch(404)]
 async fn not_found() -> Option<NamedFile> {
     NamedFile::open("templates/404.html").await.ok()
@@ -36,7 +41,10 @@ async fn not_found() -> Option<NamedFile> {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![index, wie_zijn_wij, leden, contact])
+        .mount(
+            "/",
+            routes![index, wie_zijn_wij, leden, contact, lid_worden],
+        )
         .register("/", catchers![not_found])
         .mount("/", FileServer::from("public"))
         .attach(Template::fairing())

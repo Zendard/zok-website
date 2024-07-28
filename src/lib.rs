@@ -1,5 +1,5 @@
 use rocket::serde::{Deserialize, Serialize};
-use surrealdb::sql::{Datetime, Duration, Number};
+use surrealdb::sql::{Duration, Number};
 
 #[derive(Debug, Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -16,7 +16,6 @@ pub struct Event {
     id: String,
     title: String,
     description: String,
-    img: String,
     location: Location,
     date: String,
     start: String,
@@ -89,7 +88,17 @@ pub async fn get_events() -> Vec<Event> {
     let db = connect_to_db().await;
 
     db.query(
-        "SELECT meta::id(id) AS id, title, description, img, location.name, location.address, time::format(start, '%d/%m/%y') AS date, time::format(start, '%k:%M') AS start, duration, pqk, cost, cost_member FROM event",
+        "SELECT meta::id(id) AS id,
+        title,
+        description,
+        location.name,
+        location.address,
+        time::format(start, '%d/%m/%y') AS date,
+        time::format(start, '%k:%M') AS start,
+        duration,
+        pqk,
+        cost,
+        cost_member FROM event",
     )
     .await
     .unwrap()
