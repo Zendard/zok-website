@@ -15,6 +15,12 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
     NamedFile::open("templates/wie_zijn_wij.html").await.ok()
 }
 
+#[get("/kalender/<event_id>")]
+async fn event_page(event_id: &str) -> Template {
+    let event = zok_website::get_event_info(event_id).await;
+    Template::render("event", context! {event})
+}
+
 #[get("/leden")]
 async fn leden() -> Template {
     let leden = zok_website::fetch_leden().await;
@@ -43,7 +49,7 @@ fn rocket() -> _ {
     rocket::build()
         .mount(
             "/",
-            routes![index, wie_zijn_wij, leden, contact, lid_worden],
+            routes![index, wie_zijn_wij, leden, contact, lid_worden, event_page],
         )
         .register("/", catchers![not_found])
         .mount("/", FileServer::from("public"))

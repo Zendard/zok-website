@@ -105,3 +105,28 @@ pub async fn get_events() -> Vec<Event> {
     .take(0)
     .unwrap()
 }
+
+pub async fn get_event_info(event_id: &str) -> Option<Event> {
+    let db = connect_to_db().await;
+
+    db.query(
+        "SELECT 
+        meta::id(id) AS id,
+        title,
+        description,
+        location.name,
+        location.address,
+        time::format(start, '%d/%m/%y') AS date,
+        time::format(start, '%k:%M') AS start,
+        duration,
+        pqk,
+        cost,
+        cost_member
+        FROM ONLY type::thing('event', $event_id)",
+    )
+    .bind(("event_id", event_id))
+    .await
+    .unwrap()
+    .take(0)
+    .ok()?
+}
