@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin panel</title>
+  <script src="https://kit.fontawesome.com/dc3124471a.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/admin.css">
+</head>
+
+<body>
+  <header>
+    <div id="logo">
+      <div style="width: 3em;">
+        <a href="/" id="logo-link">
+          <div>Zok</div>
+        </a>
+      </div>
+    </div>
+    <nav>
+      <a href="/" class="nav-button">Home</a>
+      <a href="/wie-zijn-wij" class="nav-button">Wie zijn wij</a>
+      <a href="/leden" class="nav-button">Leden</a>
+      <a href="/contact" class="nav-button">Contact</a>
+    </nav>
+    <button id="nav-button">☰</button>
+    <script src="./scripts/header.js"></script>
+  </header>
+  <main>
+    <h1>Admin panel</h1>
+    <h2>Kalender</h2>
+    <a href="/admin/add-kalender">Nieuw item</a>
+    <ul>
+      <% locals.kalenderItems.forEach(item=> {%>
+        <div class="kalender-item" id="<%= item.name%>">
+          <div class="text">
+            <img src="../<%= item.img %>">
+            <h3>
+              <%= item.title%>
+            </h3>
+          </div>
+          <div class="admin-buttons">
+            <a href="/admin/inschrijvings/<%= item.name%>" class="edit">
+              <i class="fa-solid fa-list"></i></a>
+            <a href="/admin/edit/kalender/<%= item.name%>" class="edit"><i class="fa-solid fa-pen"></i></a>
+            <a class="delete" href="/admin/delete/<%= item.name %>">X</a>
+          </div>
+        </div>
+        <%}); %>
+    </ul>
+
+    <h2>Berichten</h2>
+    <a href="/admin/add-berichten">Nieuw bericht</a>
+    <ul>
+      <% locals.berichtenItems.forEach(item=> {%>
+        <div class="kalender-item" id="<%= item.name%>">
+          <div class="text">
+            <img src="../<%= item.img %>">
+            <h3>
+              <%= item.title%>
+            </h3>
+          </div>
+          <a class="delete" href="/admin/delete/berichten/<%= item.name %>">X</a>
+        </div>
+        <%}); %>
+    </ul>
+    <h2>Update leden lijst</h2>
+    <a href="/admin/refresh-list">Update</a>
+  </main>
+</body>
+
+</html>

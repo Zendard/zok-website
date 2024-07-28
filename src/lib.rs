@@ -1,4 +1,10 @@
-use rocket::serde::{Deserialize, Serialize};
+use rocket::request::{self, FromRequest, Request};
+use rocket::FromForm;
+use rocket::{
+    http::Status,
+    request::Outcome,
+    serde::{Deserialize, Serialize},
+};
 use surrealdb::sql::{Duration, Number};
 
 #[derive(Debug, Serialize)]
@@ -24,6 +30,35 @@ pub struct Event {
     cost: Option<Number>,
     cost_member: Option<Number>,
     duration: Option<Duration>,
+}
+
+#[derive(FromForm)]
+pub struct AdminLogin {
+    pub password: String,
+}
+
+pub struct Admin;
+#[derive(Debug)]
+pub struct AuthorizationError;
+
+#[rocket::async_trait]
+impl<'r> FromRequest<'r> for Admin {
+    type Error = AuthorizationError;
+    async fn from_request(req: &'r Request<'_>) -> request::Outcome<Self, Self::Error> {
+        let password = env!("ADMIN_PASSWORD");
+
+        let cookie = req.cookies().get_private("password_hash");
+
+        if cookie.is_none() {
+            return Outcome::Error((Status::Unauthorized, AuthorizationError));
+        }
+
+        if cookie.unwrap().value() == password {
+            Outcome::Success(Admin)
+        } else {
+            return Outcome::Error((Status::Unauthorized, AuthorizationError));
+        }
+    }
 }
 
 #[derive(Deserialize, Serialize)]
@@ -129,4 +164,14 @@ pub async fn get_event_info(event_id: &str) -> Option<Event> {
     .unwrap()
     .take(0)
     .ok()?
+}
+
+pub async fn check_password(password_input: String) -> Option<String> {
+    let correct_password = env!("ADMIN_PASSWORD");
+
+    if password_input == correct_password {
+        Some(password_input)
+    } else {
+        None
+    }
 }
