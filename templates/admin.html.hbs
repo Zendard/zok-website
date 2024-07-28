@@ -30,43 +30,39 @@
   <main>
     <h1>Admin panel</h1>
     <h2>Kalender</h2>
-    <a href="/admin/add-kalender">Nieuw item</a>
+    <a href="/admin/add-event">Nieuw item</a>
     <ul>
-      <% locals.kalenderItems.forEach(item=> {%>
-        <div class="kalender-item" id="<%= item.name%>">
-          <div class="text">
-            <img src="../<%= item.img %>">
-            <h3>
-              <%= item.title%>
-            </h3>
-          </div>
-          <div class="admin-buttons">
-            <a href="/admin/inschrijvings/<%= item.name%>" class="edit">
-              <i class="fa-solid fa-list"></i></a>
-            <a href="/admin/edit/kalender/<%= item.name%>" class="edit"><i class="fa-solid fa-pen"></i></a>
-            <a class="delete" href="/admin/delete/<%= item.name %>">X</a>
-          </div>
+      {{#each events}}
+      <div class="kalender-item" id="{{this.id}}">
+        <div class="text">
+          <img src="/img/uploads/{{this.id}}">
+          <h3>
+            {{this.title}}
+          </h3>
         </div>
-        <%}); %>
+        <div class="admin-buttons">
+          <a href="/admin/edit-event/{{this.id}}" class="edit"><i class="fa-solid fa-pen"></i></a>
+          <a class="delete" href="/admin/delete/events/{{this.id}}">X</a>
+        </div>
+      </div>
+      {{/each}}
     </ul>
 
     <h2>Berichten</h2>
     <a href="/admin/add-berichten">Nieuw bericht</a>
     <ul>
-      <% locals.berichtenItems.forEach(item=> {%>
-        <div class="kalender-item" id="<%= item.name%>">
-          <div class="text">
-            <img src="../<%= item.img %>">
-            <h3>
-              <%= item.title%>
-            </h3>
-          </div>
-          <a class="delete" href="/admin/delete/berichten/<%= item.name %>">X</a>
+      {{#each berichten}}
+      <div class="kalender-item" id="{{this.id}}">
+        <div class="text">
+          <img src="/img/public/{{this.id}}">
+          <h3>
+            {{this.title}}
+          </h3>
         </div>
-        <%}); %>
+        <a class="delete" href="/admin/delete/berichten/{{this.id}}">X</a>
+      </div>
+      {{/each}}
     </ul>
-    <h2>Update leden lijst</h2>
-    <a href="/admin/refresh-list">Update</a>
   </main>
 </body>
 
