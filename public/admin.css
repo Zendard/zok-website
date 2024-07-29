@@ -1,85 +1,89 @@
 @import url(./styles.css);
 
 .kalender-item {
-	background-color: var(--primary);
-	border-radius: var(--br);
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	padding: 1rem;
-	margin-bottom: 1rem;
+  background-color: var(--primary);
+  border-radius: var(--br);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .text {
-	display: flex;
-	gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.text>img {
-	width: 4rem;
+.text > img {
+  width: 4rem;
 }
 
 .delete {
-	background-color: red;
-	color: var(--text);
-	line-height: 200%;
+  background-color: red;
+  color: var(--text);
+  line-height: 200%;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-form>input {
-	background-color: var(--primary);
-	border-radius: var(--br);
-	color: var(--text);
-	border: none;
-	padding: 5px 1em;
-	margin-bottom: 1rem;
-	font-size: 1rem;
+form > input {
+  background-color: var(--primary);
+  border-radius: var(--br);
+  color: var(--text);
+  border: none;
+  padding: 5px 1em;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
-form>input:focus-visible {
-	border: 1px solid var(--accent);
-	outline: none;
+form > input:focus-visible {
+  border: 1px solid var(--accent);
+  outline: none;
 }
 
-form>#editor {
-	height: auto;
-	min-height: 10rem;
-	border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
-	margin-bottom: 1rem;
-	padding-bottom: 1rem;
-	overflow-y: visible
+form > #editor {
+  background-color: white;
+  color: black;
+  height: auto;
+  min-height: 10rem;
+  /*   border-radius: 0.5rem 0.5rem 1.5rem 1.5rem; */
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  overflow-y: visible;
 }
 
-form>.ql-toolbar {
-	border-radius: var(--br) var(--br) 0.5rem 0.5rem;
-	padding-left: 2rem !important;
+form > .ql-toolbar {
+  background-color: white;
+  /* 	border-radius: var(--br) var(--br) 0.5rem 0.5rem; */
+  /* 	padding-left: 2rem !important; */
 }
+/**/
+/* form>.ql-action { */
+/* 	background: none; */
+/* } */
+/**/
+/* form>.ql-snow .ql-picker, */
+/* form>.ql-snow .ql-stroke { */
+/* 	color: var(--text) !important; */
+/* 	stroke: var(--text) !important; */
+/* } */
 
-form>.ql-action {
-	background: none;
-}
-
-form>.ql-snow .ql-picker,
-form>.ql-snow .ql-stroke {
-	color: var(--text) !important;
-	stroke: var(--text) !important;
-}
-
-form>button {
-	background-color: var(--accent);
-	border: none;
-	border-radius: var(--br);
-	color: var(--background);
-	font-size: 1rem;
-	padding: 1rem;
-	cursor: pointer;
+form > button {
+  background-color: var(--accent);
+  border: none;
+  border-radius: var(--br);
+  color: var(--background);
+  font-size: 1rem;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .admin-buttons {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
+

@@ -76,6 +76,11 @@ async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redir
     }
 }
 
+#[get("/admin/add-event")]
+async fn add_event_page(_admin: zok_website::Admin) -> Template {
+    Template::render("add_event", context! {})
+}
+
 #[catch(401)]
 async fn admin_login_catcher() -> Option<NamedFile> {
     NamedFile::open("templates/admin_login.html").await.ok()
@@ -108,6 +113,7 @@ fn rocket() -> _ {
                 admin_login,
                 check_login,
                 delete_item,
+                add_event_page,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])

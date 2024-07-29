@@ -6,8 +6,8 @@ console.log(dialog)
 
 dialog.querySelector("h1").innerText = "Deleted " + deleted_param
 
-// if (deleted_param) {
-dialog.showModal()
-// }
+if (deleted_param) {
+  dialog.showModal()
+}
 
 close_button.addEventListener("click", () => { dialog.close() })
