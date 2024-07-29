@@ -16,7 +16,7 @@ pub struct Lid {
     phone: Option<String>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 #[serde(crate = "rocket::serde")]
 pub struct Event {
     id: String,
@@ -61,7 +61,7 @@ impl<'r> FromRequest<'r> for Admin {
     }
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Debug)]
 #[serde(crate = "rocket::serde")]
 pub struct Location {
     name: String,
@@ -174,4 +174,19 @@ pub async fn check_password(password_input: String) -> Option<String> {
     } else {
         None
     }
+}
+
+pub async fn delete_id(table: &str, id: &str) -> Option<String> {
+    let db = connect_to_db().await;
+
+    let mut result = db
+        .query("(DELETE ONLY type::thing($table,$id) RETURN BEFORE).title")
+        .bind(("table", table))
+        .bind(("id", id))
+        .await
+        .ok()?;
+
+    dbg!(&result);
+
+    result.take(0).ok()?
 }

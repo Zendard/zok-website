@@ -64,6 +64,16 @@ async fn check_login(form: Form<zok_website::AdminLogin>, jar: &CookieJar<'_>) -
     }
 }
 
+#[get("/admin/delete/<table>/<id>")]
+async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redirect {
+    let result = zok_website::delete_id(table, id).await;
+
+    match result {
+        Some(title) => Redirect::to(format!("/admin?deleted={title}")),
+        None => Redirect::to("/admin?deleted=none"),
+    }
+}
+
 #[catch(401)]
 async fn admin_login_catcher() -> Option<NamedFile> {
     NamedFile::open("templates/admin_login.html").await.ok()
@@ -94,7 +104,8 @@ fn rocket() -> _ {
                 event_page,
                 admin,
                 admin_login,
-                check_login
+                check_login,
+                delete_item,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])
