@@ -10,9 +10,11 @@ use rocket_dyn_templates::{context, Template};
 extern crate rocket;
 
 #[get("/")]
-async fn index() -> Template {
+async fn index(jar: &CookieJar<'_>) -> Template {
     let events = zok_website::get_events().await;
-    Template::render("index", context! {events})
+    let is_admin = jar.get_private("password_hash").is_some();
+
+    Template::render("index", context! {events, is_admin})
 }
 
 #[get("/wie-zijn-wij")]

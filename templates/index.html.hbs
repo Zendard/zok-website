@@ -22,6 +22,9 @@
       <a href="/wie-zijn-wij" class="nav-button">Wie zijn wij</a>
       <a href="/leden" class="nav-button">Leden</a>
       <a href="/contact" class="nav-button">Contact</a>
+      {{#if is_admin}}
+      <a href="/admin" class="nav-button">Admin Panel</a>
+      {{/if}}
     </nav>
     <button id="nav-button">☰</button>
     <script src="./scripts/header.js"></script>
