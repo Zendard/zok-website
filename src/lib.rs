@@ -33,6 +33,20 @@ pub struct Event {
 }
 
 #[derive(FromForm)]
+pub struct EventForm {
+    title: String,
+    description: String,
+    location_name: String,
+    location_address: String,
+    date: String,
+    start: String,
+    duration: String,
+    cost: String,
+    cost_member: String,
+    pqk: u8,
+}
+
+#[derive(FromForm)]
 pub struct AdminLogin {
     pub password: String,
 }
@@ -190,3 +204,5 @@ pub async fn delete_id(table: &str, id: &str) -> Option<String> {
 
     result.take(0).ok()?
 }
+
+pub async fn add_event(event: EventForm) {}

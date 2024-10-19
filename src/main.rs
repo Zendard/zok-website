@@ -5,6 +5,7 @@ use rocket::{
     response::Redirect,
 };
 use rocket_dyn_templates::{context, Template};
+use zok_website::Event;
 
 #[macro_use]
 extern crate rocket;
@@ -79,6 +80,13 @@ async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redir
 #[get("/admin/add-event")]
 async fn add_event_page(_admin: zok_website::Admin) -> Template {
     Template::render("add_event", context! {})
+}
+
+#[post("/admin/add-event", data = "<form>")]
+async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm>) -> Redirect {
+    let form: zok_website::EventForm = form.into_inner();
+    zok_website::add_event(form);
+    Redirect::to("/admin?message=Added%20{title}")
 }
 
 #[catch(401)]
