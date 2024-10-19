@@ -5,7 +5,6 @@ use rocket::{
     response::Redirect,
 };
 use rocket_dyn_templates::{context, Template};
-use zok_website::Event;
 
 #[macro_use]
 extern crate rocket;
@@ -25,7 +24,7 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
 
 #[get("/kalender/<event_id>")]
 async fn event_page(event_id: &str) -> Template {
-    let event = zok_website::get_event_info(event_id).await;
+    let event = zok_website::get_event_info(event_id.to_string()).await;
     Template::render("event", context! {event})
 }
 
@@ -69,7 +68,7 @@ async fn check_login(form: Form<zok_website::AdminLogin>, jar: &CookieJar<'_>) -
 
 #[get("/admin/delete/<table>/<id>")]
 async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redirect {
-    let result = zok_website::delete_id(table, id).await;
+    let result = zok_website::delete_id(table.to_string(), id.to_string()).await;
 
     match result {
         Some(title) => Redirect::to(format!("/admin?deleted={title}")),
@@ -85,7 +84,7 @@ async fn add_event_page(_admin: zok_website::Admin) -> Template {
 #[post("/admin/add-event", data = "<form>")]
 async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm>) -> Redirect {
     let form: zok_website::EventForm = form.into_inner();
-    zok_website::add_event(form);
+    zok_website::add_event(form).await;
     Redirect::to("/admin?message=Added%20{title}")
 }
 
@@ -122,6 +121,7 @@ fn rocket() -> _ {
                 check_login,
                 delete_item,
                 add_event_page,
+                add_event,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])

@@ -5,7 +5,6 @@ use rocket::{
     request::Outcome,
     serde::{Deserialize, Serialize},
 };
-use surrealdb::sql::{Duration, Number};
 
 #[derive(Debug, Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -25,14 +24,14 @@ pub struct Event {
     location: Location,
     date: String,
     start: String,
-    end: Option<String>,
-    pqk: Option<u16>,
-    cost: Option<Number>,
-    cost_member: Option<Number>,
-    duration: Option<Duration>,
+    duration: Option<String>,
+    pqk: Option<u32>,
+    cost: Option<f32>,
+    cost_member: Option<f32>,
 }
 
-#[derive(FromForm)]
+#[derive(FromForm, Serialize)]
+#[serde(crate = "rocket::serde")]
 pub struct EventForm {
     title: String,
     description: String,
@@ -41,9 +40,9 @@ pub struct EventForm {
     date: String,
     start: String,
     duration: String,
-    cost: String,
-    cost_member: String,
-    pqk: u8,
+    cost: f32,
+    cost_member: f32,
+    pqk: u32,
 }
 
 #[derive(FromForm)]
@@ -142,8 +141,8 @@ pub async fn get_events() -> Vec<Event> {
         description,
         location.name,
         location.address,
-        time::format(start, '%d/%m/%y') AS date,
-        time::format(start, '%k:%M') AS start,
+        date,
+        start,
         duration,
         pqk,
         cost,
@@ -151,22 +150,21 @@ pub async fn get_events() -> Vec<Event> {
     )
     .await
     .unwrap()
-    .take(0)
-    .unwrap()
+    .take(0).unwrap()
 }
 
-pub async fn get_event_info(event_id: &str) -> Option<Event> {
+pub async fn get_event_info(event_id: String) -> Option<Event> {
     let db = connect_to_db().await;
 
     db.query(
-        "SELECT 
-        meta::id(id) AS id,
+        "
+        SELECT meta::id(id) AS id,
         title,
         description,
         location.name,
         location.address,
-        time::format(start, '%d/%m/%y') AS date,
-        time::format(start, '%k:%M') AS start,
+        date,
+        start,
         duration,
         pqk,
         cost,
@@ -190,7 +188,7 @@ pub async fn check_password(password_input: String) -> Option<String> {
     }
 }
 
-pub async fn delete_id(table: &str, id: &str) -> Option<String> {
+pub async fn delete_id(table: String, id: String) -> Option<String> {
     let db = connect_to_db().await;
 
     let mut result = db
@@ -205,4 +203,33 @@ pub async fn delete_id(table: &str, id: &str) -> Option<String> {
     result.take(0).ok()?
 }
 
-pub async fn add_event(event: EventForm) {}
+pub async fn add_event(event: EventForm) {
+    let db = connect_to_db().await;
+    db.query("
+        $location = SELECT VALUE id FROM location WHERE 
+            name=$event.location_name AND
+            address=$event.location_address;
+
+        $location = IF type::is::none($location[0]) {
+            CREATE location SET
+                name=$event.location_name, address=$event.location_address;
+    
+            $location = SELECT VALUE id FROM location WHERE
+                name=$event.location_name AND
+                address=$event.location_address;
+    
+            $location[0]
+        } ELSE {$location[0]};
+
+        CREATE event SET
+            title=$event.title,
+            description=$event.description,
+            date=$event.date,
+            start=$event.start,
+            duration=$event.duration,
+            location=$location,
+            cost=$event.cost,
+            cost_member=$event.cost_member,
+            pqk=$event.pqk
+        ").bind(("event", event)).await.unwrap();
+}
