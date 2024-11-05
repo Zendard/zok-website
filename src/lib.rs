@@ -1,9 +1,9 @@
-use rocket::request::{self, FromRequest, Request};
-use rocket::FromForm;
 use rocket::{
     http::Status,
-    request::Outcome,
+    request::{self, FromRequest, Request,Outcome},
     serde::{Deserialize, Serialize},
+    FromForm,
+    fs::TempFile
 };
 
 #[derive(Debug, Serialize)]
@@ -21,6 +21,7 @@ pub struct Event {
     id: String,
     title: String,
     description: String,
+    img_path: String,
     location: Location,
     date: String,
     start: String,
@@ -30,11 +31,12 @@ pub struct Event {
     cost_member: Option<f32>,
 }
 
-#[derive(FromForm, Serialize)]
-#[serde(crate = "rocket::serde")]
-pub struct EventForm {
+
+#[derive(FromForm)]
+pub struct EventForm<'a> {
     title: String,
     description: String,
+    img: TempFile<'a>,
     location_name: String,
     location_address: String,
     date: String,
@@ -43,6 +45,14 @@ pub struct EventForm {
     cost: f32,
     cost_member: f32,
     pqk: u32,
+}
+
+impl <'a> EventForm<'a>{
+    async fn to_event(self)->Event{
+        Event{
+            id: surrealdb::Uuid::new_v7(),
+        }
+    }
 }
 
 #[derive(FromForm)]
@@ -203,7 +213,10 @@ pub async fn delete_id(table: String, id: String) -> Option<String> {
     result.take(0).ok()?
 }
 
-pub async fn add_event(event: EventForm) {
+pub async fn add_event<'a>(mut event: EventForm<'a>) {
+
+    let event = event.to_event();
+    
     let db = connect_to_db().await;
     db.query("
         $location = SELECT VALUE id FROM location WHERE 
