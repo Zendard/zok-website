@@ -35,7 +35,7 @@
       {{#each events}}
       <div class="kalender-item" id="{{this.id}}">
         <div class="text">
-          <img src="/img/uploads/{{this.id}}">
+          <img src="/{{this.img_path}}">
           <h3>
             {{this.title}}
           </h3>
@@ -54,7 +54,7 @@
       {{#each berichten}}
       <div class="kalender-item" id="{{this.id}}">
         <div class="text">
-          <img src="/img/public/{{this.id}}">
+          <img src="/{{this.img_path}}">
           <h3>
             {{this.title}}
           </h3>

@@ -23,9 +23,9 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
 }
 
 #[get("/kalender/<event_id>")]
-async fn event_page(event_id: &str) -> Template {
-    let event = zok_website::get_event_info(event_id.to_string()).await;
-    Template::render("event", context! {event})
+async fn event_page(event_id: &str) -> Option<Template> {
+    let event = zok_website::get_event_info(event_id.to_string()).await?;
+    Some(Template::render("event", context! {event}))
 }
 
 #[get("/leden")]
@@ -132,5 +132,6 @@ fn rocket() -> _ {
         )
         .register("/", catchers![not_found, admin_login_catcher])
         .mount("/", FileServer::from("public"))
+        .mount("/uploads/img", FileServer::from(env!("UPLOADS_PATH")).rank(0))
         .attach(Template::fairing())
 }

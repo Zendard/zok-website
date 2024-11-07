@@ -191,6 +191,7 @@ pub async fn get_event_info(event_id: String) -> Option<Event> {
         SELECT meta::id(id) AS id,
         title,
         description,
+        img_path,
         location.name,
         location.address,
         date,
@@ -254,6 +255,7 @@ pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>>{
         } ELSE {$location[0]};
 
         CREATE event SET
+            id=$event.id,
             title=$event.title,
             description=$event.description,
             img_path=$event.img_path,

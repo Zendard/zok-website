@@ -62,7 +62,7 @@
         {{#each events}}
         <a href="/kalender/{{this.id}}">
           <div class="event">
-            <img src="{{this.img}}">
+            <img src="/{{this.img_path}}">
             <h3>
               {{this.title}} - {{this.date}}
             </h3>
@@ -77,7 +77,7 @@
         {{#each berichten}}
         <a href="/berichten/{{self.name}}">
           <div class="bericht">
-            <img src="{{self.img}}">
+            <img src="{{self.img_path}}">
             <div class="text">
               <h4>
                 {{self.title}}
