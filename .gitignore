@@ -5,6 +5,7 @@
 **/*.rs.bk
 
 /database
+/uploads
 /tls
 .env
 

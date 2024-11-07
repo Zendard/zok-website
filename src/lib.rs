@@ -1,9 +1,9 @@
 use rocket::{
+    fs::TempFile,
     http::Status,
-    request::{self, FromRequest, Request,Outcome},
+    request::{self, FromRequest, Outcome, Request},
     serde::{Deserialize, Serialize},
     FromForm,
-    fs::TempFile
 };
 use std::{error::Error, path::PathBuf};
 
@@ -32,7 +32,6 @@ pub struct Event {
     cost_member: Option<f32>,
 }
 
-
 #[derive(FromForm)]
 pub struct EventForm<'a> {
     title: String,
@@ -48,21 +47,21 @@ pub struct EventForm<'a> {
     pqk: Option<u32>,
 }
 
-impl <'a> EventForm<'a>{
+impl<'a> EventForm<'a> {
     #[allow(clippy::wrong_self_convention)]
-    async fn to_event(mut self)->Result<Event, Box<dyn Error>>{
+    async fn to_event(mut self) -> Result<Event, Box<dyn Error>> {
         let id = surrealdb::Uuid::new_v4().to_string();
-        let filename=format!("{}_{}",&id,self.img.name().ok_or("No filename")?);
-        let img_path=std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
+        let filename = format!("{}_{}", &id, self.img.name().ok_or("No filename")?);
+        let img_path = std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
         self.img.persist_to(img_path).await?;
-        Ok(Event{
+        Ok(Event {
             id,
             title: self.title,
             description: self.description,
             img_path: self.img.path().ok_or("Invalid img path")?.to_path_buf(),
-            location: Location{
+            location: Location {
                 name: self.location_name,
-                address: self.location_address
+                address: self.location_address,
             },
             date: self.date,
             start: self.start,
@@ -180,7 +179,8 @@ pub async fn get_events() -> Vec<Event> {
     )
     .await
     .unwrap()
-    .take(0).unwrap()
+    .take(0)
+    .unwrap()
 }
 
 pub async fn get_event_info(event_id: String) -> Option<Event> {
@@ -223,22 +223,27 @@ pub async fn delete_id(table: String, id: String) -> Option<String> {
     let db = connect_to_db().await;
 
     let mut result = db
-        .query("(DELETE ONLY type::thing($table,$id) RETURN BEFORE).title")
+        .query("
+        (DELETE type::thing($table, $id) RETURN BEFORE).patch([{'op': 'replace', 'path':'id','value': type::string($id)}])[0];
+    ")
         .bind(("table", table))
         .bind(("id", id))
-        .await
-        .ok()?;
+        .await.unwrap();
 
-    dbg!(&result);
+    let removed_item: Option<Event> = result.take(0).unwrap();
+    let removed_item = removed_item.unwrap();
 
-    result.take(0).ok()?
+    std::fs::remove_file(removed_item.img_path).unwrap();
+
+    Some(removed_item.title)
 }
 
-pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>>{
+pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>> {
     let event = event.to_event().await?;
-    
+
     let db = connect_to_db().await;
-    db.query("
+    db.query(
+        "
         $location = SELECT VALUE id FROM location WHERE 
             name=$event.location.name AND
             address=$event.location.address;
@@ -266,7 +271,11 @@ pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>>{
             cost=$event.cost,
             cost_member=$event.cost_member,
             pqk=$event.pqk
-        ").bind(("event", event)).await.unwrap();
+        ",
+    )
+    .bind(("event", event))
+    .await
+    .unwrap();
 
     Ok(())
 }

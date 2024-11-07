@@ -69,6 +69,7 @@ async fn check_login(form: Form<zok_website::AdminLogin>, jar: &CookieJar<'_>) -
 #[get("/admin/delete/<table>/<id>")]
 async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redirect {
     let result = zok_website::delete_id(table.to_string(), id.to_string()).await;
+    dbg!(&result);
 
     match result {
         Some(title) => Redirect::to(format!("/admin?deleted={title}")),
@@ -85,8 +86,8 @@ async fn add_event_page(_admin: zok_website::Admin) -> Template {
 async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm<'_>>) -> Redirect {
     let form: zok_website::EventForm = form.into_inner();
     let result = zok_website::add_event(form).await;
-    if result.is_ok(){
-    Redirect::to("/admin?message=Added%20event")
+    if result.is_ok() {
+        Redirect::to("/admin?message=Added%20event")
     } else {
         eprintln!("{:#?}", result);
         let error = result.unwrap_err().to_string().replace(" ", "%20");
@@ -132,6 +133,9 @@ fn rocket() -> _ {
         )
         .register("/", catchers![not_found, admin_login_catcher])
         .mount("/", FileServer::from("public"))
-        .mount("/uploads/img", FileServer::from(env!("UPLOADS_PATH")).rank(0))
+        .mount(
+            "/uploads/img",
+            FileServer::from(env!("UPLOADS_PATH")).rank(0),
+        )
         .attach(Template::fairing())
 }
