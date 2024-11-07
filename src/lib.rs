@@ -5,6 +5,7 @@ use rocket::{
     FromForm,
     fs::TempFile
 };
+use std::{error::Error, path::PathBuf};
 
 #[derive(Debug, Serialize)]
 #[serde(crate = "rocket::serde")]
@@ -21,7 +22,7 @@ pub struct Event {
     id: String,
     title: String,
     description: String,
-    img_path: String,
+    img_path: PathBuf,
     location: Location,
     date: String,
     start: String,
@@ -38,20 +39,38 @@ pub struct EventForm<'a> {
     description: String,
     img: TempFile<'a>,
     location_name: String,
-    location_address: String,
+    location_address: Option<String>,
     date: String,
     start: String,
-    duration: String,
-    cost: f32,
-    cost_member: f32,
-    pqk: u32,
+    duration: Option<String>,
+    cost: Option<f32>,
+    cost_member: Option<f32>,
+    pqk: Option<u32>,
 }
 
 impl <'a> EventForm<'a>{
-    async fn to_event(self)->Event{
-        Event{
-            id: surrealdb::Uuid::new_v7(),
-        }
+    #[allow(clippy::wrong_self_convention)]
+    async fn to_event(mut self)->Result<Event, Box<dyn Error>>{
+        let id = surrealdb::Uuid::new_v4().to_string();
+        let filename=format!("{}_{}",&id,self.img.name().ok_or("No filename")?);
+        let img_path=std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
+        self.img.persist_to(img_path).await?;
+        Ok(Event{
+            id,
+            title: self.title,
+            description: self.description,
+            img_path: self.img.path().ok_or("Invalid img path")?.to_path_buf(),
+            location: Location{
+                name: self.location_name,
+                address: self.location_address
+            },
+            date: self.date,
+            start: self.start,
+            duration: self.duration,
+            pqk: self.pqk,
+            cost: self.cost,
+            cost_member: self.cost_member,
+        })
     }
 }
 
@@ -146,9 +165,10 @@ pub async fn get_events() -> Vec<Event> {
     let db = connect_to_db().await;
 
     db.query(
-        "SELECT meta::id(id) AS id,
+        "SELECT record::id(id) AS id,
         title,
         description,
+        img_path,
         location.name,
         location.address,
         date,
@@ -213,23 +233,22 @@ pub async fn delete_id(table: String, id: String) -> Option<String> {
     result.take(0).ok()?
 }
 
-pub async fn add_event<'a>(mut event: EventForm<'a>) {
-
-    let event = event.to_event();
+pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>>{
+    let event = event.to_event().await?;
     
     let db = connect_to_db().await;
     db.query("
         $location = SELECT VALUE id FROM location WHERE 
-            name=$event.location_name AND
-            address=$event.location_address;
+            name=$event.location.name AND
+            address=$event.location.address;
 
         $location = IF type::is::none($location[0]) {
             CREATE location SET
-                name=$event.location_name, address=$event.location_address;
+                name=$event.location.name, address=$event.location.address;
     
             $location = SELECT VALUE id FROM location WHERE
-                name=$event.location_name AND
-                address=$event.location_address;
+                name=$event.location.name AND
+                address=$event.location.address;
     
             $location[0]
         } ELSE {$location[0]};
@@ -237,6 +256,7 @@ pub async fn add_event<'a>(mut event: EventForm<'a>) {
         CREATE event SET
             title=$event.title,
             description=$event.description,
+            img_path=$event.img_path,
             date=$event.date,
             start=$event.start,
             duration=$event.duration,
@@ -245,4 +265,6 @@ pub async fn add_event<'a>(mut event: EventForm<'a>) {
             cost_member=$event.cost_member,
             pqk=$event.pqk
         ").bind(("event", event)).await.unwrap();
+
+    Ok(())
 }

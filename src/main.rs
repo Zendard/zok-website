@@ -82,10 +82,16 @@ async fn add_event_page(_admin: zok_website::Admin) -> Template {
 }
 
 #[post("/admin/add-event", data = "<form>")]
-async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm>) -> Redirect {
+async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm<'_>>) -> Redirect {
     let form: zok_website::EventForm = form.into_inner();
-    zok_website::add_event(form).await;
-    Redirect::to("/admin?message=Added%20{title}")
+    let result = zok_website::add_event(form).await;
+    if result.is_ok(){
+    Redirect::to("/admin?message=Added%20event")
+    } else {
+        eprintln!("{:#?}", result);
+        let error = result.unwrap_err().to_string().replace(" ", "%20");
+        Redirect::to(format!("/admin?message=Error:%20{error}"))
+    }
 }
 
 #[catch(401)]
