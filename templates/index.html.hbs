@@ -75,15 +75,15 @@
       <h2>Berichten</h2>
       <div class="list">
         {{#each berichten}}
-        <a href="/berichten/{{self.name}}">
+        <a href="/berichten/{{this.id}}">
           <div class="bericht">
-            <img src="{{self.img_path}}">
+            <img src="{{this.img_path}}">
             <div class="text">
               <h4>
-                {{self.title}}
+                {{this.title}}
               </h4>
               <p>
-                {{self.description}}
+              {{{this.description}}}
               </p>
             </div>
           </div>

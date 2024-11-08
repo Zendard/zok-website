@@ -270,7 +270,7 @@ pub async fn get_bericht_info(bericht_id: String) -> Option<Bericht> {
         SELECT record::id(id) AS id,
         title,
         description,
-        img_path,
+        img_path
         FROM ONLY type::thing('bericht', $bericht_id)",
     )
     .bind(("bericht_id", bericht_id))
