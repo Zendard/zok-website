@@ -59,8 +59,10 @@
             {{this.title}}
           </h3>
         </div>
+        <div class="admin-buttons">
           <a href="/admin/edit-bericht/{{this.id}}" class="edit"><i class="fa-solid fa-pen"></i></a>
-        <a class="delete" href="/admin/delete/bericht/{{this.id}}">X</a>
+          <a class="delete" href="/admin/delete/bericht/{{this.id}}">X</a>
+        </div>
       </div>
       {{/each}}
     </ul>
