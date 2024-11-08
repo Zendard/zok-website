@@ -1,7 +1,7 @@
 # TODO
 
 ## Main
-- [ ] Add berichten
+- [x] Add berichten
 - [ ] Edit events
 - [ ] Delete berichten
 
