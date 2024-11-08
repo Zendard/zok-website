@@ -219,23 +219,23 @@ pub async fn check_password(password_input: String) -> Option<String> {
     }
 }
 
-pub async fn delete_id(table: String, id: String) -> Option<String> {
+pub async fn delete_id(table: String, id: String) -> Result<(),Box<dyn Error>> {
     let db = connect_to_db().await;
 
     let mut result = db
         .query("
-        (DELETE type::thing($table, $id) RETURN BEFORE).patch([{'op': 'replace', 'path':'id','value': type::string($id)}])[0];
+            ((DELETE type::thing($table, $id) RETURN BEFORE)[0]).img_path;
     ")
         .bind(("table", table))
         .bind(("id", id))
-        .await.unwrap();
+        .await?;
 
-    let removed_item: Option<Event> = result.take(0).unwrap();
-    let removed_item = removed_item.unwrap();
+    dbg!(&result);
+    let img_path: String = result.take::<Option<String>>(0)?.ok_or("No img path found")?;
 
-    std::fs::remove_file(removed_item.img_path).unwrap();
+    std::fs::remove_file(img_path)?;
 
-    Some(removed_item.title)
+    Ok(())
 }
 
 pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>> {
