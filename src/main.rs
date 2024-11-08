@@ -81,7 +81,7 @@ async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redir
 
     match result {
         Ok(()) => Redirect::to("/admin?message=Event%20succesfully%20deleted"),
-        Err(error) => Redirect::to(format!("/admin?message=Error:%20{error}")),
+        Err(error) => Redirect::to(format!("/admin?message=Error:%20{}", error.to_string().replace(" ", "%20"))),
     }
 }
 
