@@ -3,7 +3,7 @@
 ## Main
 - [x] Add berichten
 - [ ] Edit events
-- [ ] Delete berichten
+- [x] Delete berichten
 
 ## Optional
 - [ ] Locations dropdown
