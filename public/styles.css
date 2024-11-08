@@ -41,6 +41,10 @@ main {
   overflow: visible;
 }
 
+p {
+  min-height: 1em;
+}
+
 p > a {
   background: none;
   color: var(--accent);

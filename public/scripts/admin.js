@@ -1,12 +1,10 @@
 let dialog = document.getElementById("message")
 let close_button = dialog.querySelector("button")
-let deleted_param = new URLSearchParams(window.location.search).get("deleted")
+let message = new URLSearchParams(window.location.search).get("message")
 
-console.log(dialog)
+dialog.querySelector("h1").innerText = message
 
-dialog.querySelector("h1").innerText = "Deleted " + deleted_param
-
-if (deleted_param) {
+if (message) {
   dialog.showModal()
 }
 
