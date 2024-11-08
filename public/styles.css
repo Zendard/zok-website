@@ -389,6 +389,16 @@ p {
 /* ----leden tabel---- */
 /* spacing */
 
+#swipe-indicator {
+  display: none;
+}
+
+@media (max-width: 1060px) {
+  #swipe-indicator {
+    display: block;
+  }
+}
+
 .table-container {
   overflow-x: scroll;
 }
@@ -408,12 +418,12 @@ th {
   letter-spacing: 2px;
 }
 
-td {
-  overflow: hidden;
+tr td:last-child {
+  text-wrap: nowrap;
 }
 
-tbody td {
-  /*text-align: center;*/
+td {
+  overflow: hidden;
 }
 
 tfoot th {
