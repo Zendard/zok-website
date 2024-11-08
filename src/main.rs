@@ -12,9 +12,10 @@ extern crate rocket;
 #[get("/")]
 async fn index(jar: &CookieJar<'_>) -> Template {
     let events = zok_website::get_events().await;
+    let berichten = zok_website::get_berichten().await;
     let is_admin = jar.get_private("password_hash").is_some();
 
-    Template::render("index", context! {events, is_admin})
+    Template::render("index", context! {events, berichten, is_admin})
 }
 
 #[get("/wie-zijn-wij")]
@@ -26,6 +27,12 @@ async fn wie_zijn_wij() -> Option<NamedFile> {
 async fn event_page(event_id: &str) -> Option<Template> {
     let event = zok_website::get_event_info(event_id.to_string()).await?;
     Some(Template::render("event", context! {event}))
+}
+
+#[get("/berichten/<bericht_id>")]
+async fn bericht_page(bericht_id: &str) -> Option<Template> {
+    let bericht = zok_website::get_bericht_info(bericht_id.to_string()).await?;
+    Some(Template::render("bericht", context! {bericht}))
 }
 
 #[get("/leden")]
@@ -49,8 +56,9 @@ async fn lid_worden() -> Option<NamedFile> {
 #[get("/admin")]
 async fn admin(_admin: zok_website::Admin) -> Template {
     let events = zok_website::get_events().await;
+    let berichten = zok_website::get_berichten().await;
 
-    Template::render("admin", context! {events})
+    Template::render("admin", context! {events, berichten})
 }
 
 #[post("/admin-login", data = "<form>")]
@@ -82,12 +90,30 @@ async fn add_event_page(_admin: zok_website::Admin) -> Template {
     Template::render("add_event", context! {})
 }
 
+#[get("/admin/add-bericht")]
+async fn add_bericht_page(_admin: zok_website::Admin) -> Template {
+    Template::render("add_bericht", context! {})
+}
+
 #[post("/admin/add-event", data = "<form>")]
 async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm<'_>>) -> Redirect {
     let form: zok_website::EventForm = form.into_inner();
     let result = zok_website::add_event(form).await;
     if result.is_ok() {
         Redirect::to("/admin?message=Added%20event")
+    } else {
+        eprintln!("{:#?}", result);
+        let error = result.unwrap_err().to_string().replace(" ", "%20");
+        Redirect::to(format!("/admin?message=Error:%20{error}"))
+    }
+}
+
+#[post("/admin/add-bericht", data = "<form>")]
+async fn add_bericht(_admin: zok_website::Admin, form: Form<zok_website::BerichtForm<'_>>) -> Redirect {
+    let form: zok_website::BerichtForm= form.into_inner();
+    let result = zok_website::add_bericht(form).await;
+    if result.is_ok() {
+        Redirect::to("/admin?message=Added%20bericht")
     } else {
         eprintln!("{:#?}", result);
         let error = result.unwrap_err().to_string().replace(" ", "%20");
@@ -123,12 +149,15 @@ fn rocket() -> _ {
                 contact,
                 lid_worden,
                 event_page,
+                bericht_page,
                 admin,
                 admin_login,
                 check_login,
                 delete_item,
                 add_event_page,
+                add_bericht_page,
                 add_event,
+                add_bericht
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])

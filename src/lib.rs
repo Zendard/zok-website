@@ -51,9 +51,12 @@ impl<'a> EventForm<'a> {
     #[allow(clippy::wrong_self_convention)]
     async fn to_event(mut self) -> Result<Event, Box<dyn Error>> {
         let id = surrealdb::Uuid::new_v4().to_string();
+
         let filename = format!("{}_{}", &id, self.img.name().ok_or("No filename")?);
         let img_path = std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
+
         self.img.persist_to(img_path).await?;
+
         Ok(Event {
             id,
             title: self.title,
@@ -69,6 +72,41 @@ impl<'a> EventForm<'a> {
             pqk: self.pqk,
             cost: self.cost,
             cost_member: self.cost_member,
+        })
+    }
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+#[serde(crate = "rocket::serde")]
+pub struct Bericht {
+    id: String,
+    title: String,
+    description: String,
+    img_path: PathBuf,
+}
+
+#[derive(FromForm)]
+pub struct BerichtForm<'a> {
+    title: String,
+    description: String,
+    img: TempFile<'a>,
+}
+
+impl<'a> BerichtForm<'a> {
+    #[allow(clippy::wrong_self_convention)]
+    async fn to_bericht(mut self) -> Result<Bericht, Box<dyn Error>> {
+        let id = surrealdb::Uuid::new_v4().to_string();
+
+        let filename = format!("{}_{}", &id, self.img.name().ok_or("No filename")?);
+        let img_path = std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
+
+        self.img.persist_to(img_path).await?;
+
+        Ok(Bericht {
+            id,
+            title: self.title,
+            description: self.description,
+            img_path: self.img.path().ok_or("Invalid img path")?.to_path_buf(),
         })
     }
 }
@@ -183,12 +221,27 @@ pub async fn get_events() -> Vec<Event> {
     .unwrap()
 }
 
+pub async fn get_berichten() -> Vec<Bericht> {
+    let db = connect_to_db().await;
+
+    db.query(
+        "SELECT record::id(id) AS id,
+        title,
+        description,
+        img_path FROM bericht",
+    )
+    .await
+    .unwrap()
+    .take(0)
+    .unwrap()
+}
+
 pub async fn get_event_info(event_id: String) -> Option<Event> {
     let db = connect_to_db().await;
 
     db.query(
         "
-        SELECT meta::id(id) AS id,
+        SELECT record::id(id) AS id,
         title,
         description,
         img_path,
@@ -209,6 +262,24 @@ pub async fn get_event_info(event_id: String) -> Option<Event> {
     .ok()?
 }
 
+pub async fn get_bericht_info(bericht_id: String) -> Option<Bericht> {
+    let db = connect_to_db().await;
+
+    db.query(
+        "
+        SELECT record::id(id) AS id,
+        title,
+        description,
+        img_path,
+        FROM ONLY type::thing('bericht', $bericht_id)",
+    )
+    .bind(("bericht_id", bericht_id))
+    .await
+    .unwrap()
+    .take(0)
+    .ok()?
+}
+
 pub async fn check_password(password_input: String) -> Option<String> {
     let correct_password = env!("ADMIN_PASSWORD");
 
@@ -219,19 +290,23 @@ pub async fn check_password(password_input: String) -> Option<String> {
     }
 }
 
-pub async fn delete_id(table: String, id: String) -> Result<(),Box<dyn Error>> {
+pub async fn delete_id(table: String, id: String) -> Result<(), Box<dyn Error>> {
     let db = connect_to_db().await;
 
     let mut result = db
-        .query("
+        .query(
+            "
             ((DELETE type::thing($table, $id) RETURN BEFORE)[0]).img_path;
-    ")
+    ",
+        )
         .bind(("table", table))
         .bind(("id", id))
         .await?;
 
     dbg!(&result);
-    let img_path: String = result.take::<Option<String>>(0)?.ok_or("No img path found")?;
+    let img_path: String = result
+        .take::<Option<String>>(0)?
+        .ok_or("No img path found")?;
 
     std::fs::remove_file(img_path)?;
 
@@ -274,8 +349,26 @@ pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>> {
         ",
     )
     .bind(("event", event))
-    .await
-    .unwrap();
+    .await?;
+
+    Ok(())
+}
+
+pub async fn add_bericht(bericht: BerichtForm<'_>) -> Result<(), Box<dyn Error>> {
+    let db = connect_to_db().await;
+    let bericht = bericht.to_bericht().await?;
+
+    db.query(
+        "
+        CREATE bericht SET
+        id=$bericht.id,
+        title=$bericht.title,
+        description=$bericht.description,
+        img_path=$bericht.img_path;
+        ",
+    )
+    .bind(("bericht", bericht))
+    .await?;
 
     Ok(())
 }
