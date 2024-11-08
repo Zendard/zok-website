@@ -81,7 +81,10 @@ async fn delete_item(table: &str, id: &str, _admin: zok_website::Admin) -> Redir
 
     match result {
         Ok(()) => Redirect::to("/admin?message=Event%20succesfully%20deleted"),
-        Err(error) => Redirect::to(format!("/admin?message=Error:%20{}", error.to_string().replace(" ", "%20"))),
+        Err(error) => Redirect::to(format!(
+            "/admin?message=Error:%20{}",
+            error.to_string().replace(" ", "%20")
+        )),
     }
 }
 
@@ -96,7 +99,7 @@ async fn add_bericht_page(_admin: zok_website::Admin) -> Template {
 }
 
 #[get("/admin/edit-bericht/<id>")]
-async fn edit_bericht_page(_admin: zok_website::Admin, id:String) -> Option<Template> {
+async fn edit_bericht_page(_admin: zok_website::Admin, id: String) -> Option<Template> {
     let bericht = zok_website::get_bericht_info(id).await?;
     Some(Template::render("edit_bericht", context! {bericht}))
 }
@@ -115,11 +118,31 @@ async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm
 }
 
 #[post("/admin/add-bericht", data = "<form>")]
-async fn add_bericht(_admin: zok_website::Admin, form: Form<zok_website::BerichtForm<'_>>) -> Redirect {
-    let form: zok_website::BerichtForm= form.into_inner();
+async fn add_bericht(
+    _admin: zok_website::Admin,
+    form: Form<zok_website::BerichtForm<'_>>,
+) -> Redirect {
+    let form: zok_website::BerichtForm = form.into_inner();
     let result = zok_website::add_bericht(form).await;
     if result.is_ok() {
         Redirect::to("/admin?message=Added%20bericht")
+    } else {
+        eprintln!("{:#?}", result);
+        let error = result.unwrap_err().to_string().replace(" ", "%20");
+        Redirect::to(format!("/admin?message=Error:%20{error}"))
+    }
+}
+
+#[post("/admin/edit-bericht/<id>", data = "<form>")]
+async fn edit_bericht(
+    _admin: zok_website::Admin,
+    form: Form<zok_website::EditBerichtForm>,
+    id: &str,
+) -> Redirect {
+    let form: zok_website::EditBerichtForm = form.into_inner();
+    let result = zok_website::edit_bericht(form, id).await;
+    if result.is_ok() {
+        Redirect::to("/admin?message=Edited%20bericht")
     } else {
         eprintln!("{:#?}", result);
         let error = result.unwrap_err().to_string().replace(" ", "%20");
@@ -165,6 +188,7 @@ fn rocket() -> _ {
                 add_event,
                 add_bericht,
                 edit_bericht_page,
+                edit_bericht,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])

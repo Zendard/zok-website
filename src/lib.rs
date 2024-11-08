@@ -372,3 +372,32 @@ pub async fn add_bericht(bericht: BerichtForm<'_>) -> Result<(), Box<dyn Error>>
 
     Ok(())
 }
+
+#[derive(FromForm)]
+pub struct EditBerichtForm {
+    title: String,
+    description: String,
+}
+
+pub async fn edit_bericht(bericht: EditBerichtForm, id: &str) -> Result<(), Box<dyn Error>> {
+    let db = connect_to_db().await;
+
+    let bericht = Bericht {
+        id: id.to_string(),
+        title: bericht.title,
+        description: bericht.description,
+        img_path: PathBuf::new(),
+    };
+
+    db.query(
+        "
+        UPDATE ONLY type::thing('bericht', $bericht.id) SET
+        title=$bericht.title,
+        description=$bericht.description
+    ",
+    )
+    .bind(("bericht", bericht))
+    .await?;
+
+    Ok(())
+}
