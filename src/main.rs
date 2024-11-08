@@ -95,6 +95,12 @@ async fn add_bericht_page(_admin: zok_website::Admin) -> Template {
     Template::render("add_bericht", context! {})
 }
 
+#[get("/admin/edit-bericht/<id>")]
+async fn edit_bericht_page(_admin: zok_website::Admin, id:String) -> Option<Template> {
+    let bericht = zok_website::get_bericht_info(id).await?;
+    Some(Template::render("edit_bericht", context! {bericht}))
+}
+
 #[post("/admin/add-event", data = "<form>")]
 async fn add_event(_admin: zok_website::Admin, form: Form<zok_website::EventForm<'_>>) -> Redirect {
     let form: zok_website::EventForm = form.into_inner();
@@ -157,7 +163,8 @@ fn rocket() -> _ {
                 add_event_page,
                 add_bericht_page,
                 add_event,
-                add_bericht
+                add_bericht,
+                edit_bericht_page,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])
