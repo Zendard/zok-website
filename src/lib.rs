@@ -24,7 +24,7 @@ pub struct Event {
     description: String,
     img_path: PathBuf,
     location: Location,
-    date: String,
+    pub date: String,
     start: String,
     duration: Option<String>,
     pqk: Option<u32>,
@@ -339,7 +339,7 @@ pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>> {
             title=$event.title,
             description=$event.description,
             img_path=$event.img_path,
-            date=$event.date,
+            date=(time::format(type::datetime($event.date),'%d/%m/%Y')),
             start=$event.start,
             duration=$event.duration,
             location=$location,
@@ -397,6 +397,75 @@ pub async fn edit_bericht(bericht: EditBerichtForm, id: &str) -> Result<(), Box<
     ",
     )
     .bind(("bericht", bericht))
+    .await?;
+
+    Ok(())
+}
+
+#[derive(FromForm)]
+pub struct EditEventForm {
+    title: String,
+    description: String,
+    location_name: String,
+    location_address: Option<String>,
+    date: String,
+    start: String,
+    duration: Option<String>,
+    cost: Option<f32>,
+    cost_member: Option<f32>,
+    pqk: Option<u32>,
+}
+
+pub async fn edit_event(event: EditEventForm, id: &str) -> Result<(), Box<dyn Error>> {
+    let db = connect_to_db().await;
+
+    let event = Event {
+        id: id.to_string(),
+        title: event.title,
+        description: event.description,
+        img_path: PathBuf::new(),
+        date: event.date,
+        start: event.start,
+        duration: event.duration,
+        location: Location {
+            name: event.location_name,
+            address: event.location_address,
+        },
+        cost: event.cost,
+        cost_member: event.cost_member,
+        pqk: event.pqk,
+    };
+
+    db.query(
+        "
+        $location = SELECT VALUE id FROM location WHERE 
+            name=$event.location.name AND
+            address=$event.location.address;
+
+        $location = IF type::is::none($location[0]) {
+            CREATE location SET
+                name=$event.location.name, address=$event.location.address;
+    
+            $location = SELECT VALUE id FROM location WHERE
+                name=$event.location.name AND
+                address=$event.location.address;
+    
+            $location[0]
+        } ELSE {$location[0]};
+
+        UPDATE ONLY type::thing('event', $event.id) SET
+        title= $event.title,
+        description= $event.description,
+        date=(time::format(type::datetime($event.date),'%d/%m/%Y')),
+        start= $event.start,
+        duration= $event.duration,
+        location= $location,
+        cost= $event.cost,
+        cost_member= $event.cost_member,
+        pqk= $event.pqk
+    ",
+    )
+    .bind(("event", event))
     .await?;
 
     Ok(())

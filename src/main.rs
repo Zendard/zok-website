@@ -93,6 +93,15 @@ async fn add_event_page(_admin: zok_website::Admin) -> Template {
     Template::render("add_event", context! {})
 }
 
+#[get("/admin/edit-event/<id>")]
+async fn edit_event_page(_admin: zok_website::Admin, id: String) -> Option<Template> {
+    let event = zok_website::get_event_info(id).await?;
+    let mut date = event.date.split("/").collect::<Vec<&str>>();
+    date.reverse();
+    let date = date.join("-");
+    Some(Template::render("edit_event", context! {event, date}))
+}
+
 #[get("/admin/add-bericht")]
 async fn add_bericht_page(_admin: zok_website::Admin) -> Template {
     Template::render("add_bericht", context! {})
@@ -126,6 +135,23 @@ async fn add_bericht(
     let result = zok_website::add_bericht(form).await;
     if result.is_ok() {
         Redirect::to("/admin?message=Added%20bericht")
+    } else {
+        eprintln!("{:#?}", result);
+        let error = result.unwrap_err().to_string().replace(" ", "%20");
+        Redirect::to(format!("/admin?message=Error:%20{error}"))
+    }
+}
+
+#[post("/admin/edit-event/<id>", data = "<form>")]
+async fn edit_event(
+    _admin: zok_website::Admin,
+    form: Form<zok_website::EditEventForm>,
+    id: &str,
+) -> Redirect {
+    let form: zok_website::EditEventForm = form.into_inner();
+    let result = zok_website::edit_event(form, id).await;
+    if result.is_ok() {
+        Redirect::to("/admin?message=Edited%20event")
     } else {
         eprintln!("{:#?}", result);
         let error = result.unwrap_err().to_string().replace(" ", "%20");
@@ -188,7 +214,9 @@ fn rocket() -> _ {
                 add_event,
                 add_bericht,
                 edit_bericht_page,
+                edit_event_page,
                 edit_bericht,
+                edit_event,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])
