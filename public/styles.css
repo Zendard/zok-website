@@ -394,31 +394,13 @@ p {
 }
 
 table {
-  table-layout: fixed;
-  min-width: 1500px;
   width: 100%;
   border-collapse: collapse;
 }
 
-thead th:nth-child(1) {
-  width: min(60vw, 30rem);
-}
-
-thead th:nth-child(2) {
-  width: 30%;
-}
-
-thead th:nth-child(3) {
-  width: 30%;
-}
-
-thead th:nth-child(4) {
-  width: 15%;
-}
-
 th,
 td {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 th {
@@ -428,11 +410,10 @@ th {
 
 td {
   overflow: hidden;
-  letter-spacing: 1px;
 }
 
 tbody td {
-  text-align: center;
+  /*text-align: center;*/
 }
 
 tfoot th {
