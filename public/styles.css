@@ -36,6 +36,10 @@ a {
   transition: padding 0.5s;
 }
 
+a:hover{
+  filter: brightness(120%);
+}
+
 main {
   margin: 1rem 5vw;
   overflow: visible;

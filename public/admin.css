@@ -22,7 +22,7 @@
 .delete {
   background-color: red;
   color: var(--text);
-  line-height: 200%;
+  margin-left: 1rem;
 }
 
 form {
