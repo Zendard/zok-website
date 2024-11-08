@@ -3,6 +3,7 @@
 ## Main
 - [x] Add berichten
 - [ ] Edit events
+- [ ] Edit berichten 
 - [x] Delete berichten
 
 ## Optional
