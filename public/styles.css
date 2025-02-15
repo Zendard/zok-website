@@ -289,6 +289,7 @@ i {
   gap: 1rem;
   align-items: start;
   --br: 10rem;
+  max-width: 50%;
 }
 
 .chip {
@@ -298,7 +299,7 @@ i {
   margin: 0px;
   text-wrap: nowrap;
   font-size: clamp(1px, 4.5vw, 1.5rem);
-  max-width: 15rem;
+  max-width: clamp(1px, 15rem, calc(100% - 1rem));
   overflow-x: hidden;
   text-overflow: ellipsis;
 }
@@ -323,10 +324,6 @@ i {
 /* ----berichten---- */
 
 .berichten {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  justify-content: space-evenly;
-  gap: 3rem;
   margin-bottom: 12rem;
   width: 100%;
 }
@@ -336,6 +333,7 @@ i {
   color: var(--text);
   padding: 0px;
   border-radius: 0px;
+  max-width: clamp(1px, 81rem, calc(100vw - 2rem));
 }
 
 .berichten > h2 {
@@ -354,7 +352,6 @@ i {
   background-color: var(--primary);
   padding: 2rem;
   border-radius: var(--br);
-  max-width: 81rem;
   height: 18rem;
   display: flex;
   align-items: start;
@@ -364,15 +361,17 @@ i {
 }
 
 .bericht > img {
+  aspect-ratio: 1/1;
   border-radius: var(--br);
-  min-width: 30%;
-  max-width: 30%;
+  max-height: 100%;
 }
 
 .bericht > .text > h4 {
   margin-top: 0px;
   margin-bottom: 1rem;
   font-size: 2rem;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .bericht > .text {
@@ -381,6 +380,7 @@ i {
   text-overflow: ellipsis;
   overflow: hidden;
   max-height: 15rem;
+  width: 100%;
 }
 
 .bericht > .text > p::after {
@@ -408,6 +408,17 @@ i {
 
 p {
   margin-top: 0px;
+}
+
+@media (max-width: 475px) {
+  .bericht {
+    flex-direction: column;
+  }
+
+  .bericht > img {
+    max-height: 50%;
+    width: auto;
+  }
 }
 
 /* ----lid-worden---- */
