@@ -298,11 +298,14 @@ i {
   margin: 0px;
   text-wrap: nowrap;
   font-size: clamp(1px, 4.5vw, 1.5rem);
+  max-width: 15rem;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .event > .event-header > img {
   aspect-ratio: 1/1;
-  max-width: 50%;
+  max-width: 180px;
   border-radius: var(--br);
 }
 
