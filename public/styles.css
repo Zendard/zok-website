@@ -372,6 +372,7 @@ i {
   font-size: 2rem;
   overflow-x: hidden;
   text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
 .bericht > .text {
