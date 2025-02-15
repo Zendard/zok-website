@@ -151,6 +151,11 @@ dialog.error {
   }
 }
 
+i {
+  position: relative;
+  top: -2px;
+}
+
 /* ----hero---- */
 
 .hero {
