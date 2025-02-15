@@ -80,7 +80,7 @@ impl<'a> EventForm<'a> {
 pub struct Bericht {
     id: String,
     title: String,
-    description: String,
+    pub description: String,
     img_path: PathBuf,
 }
 

@@ -12,7 +12,12 @@ extern crate rocket;
 #[get("/")]
 async fn index(jar: &CookieJar<'_>) -> Template {
     let events = zok_website::get_events().await;
-    let berichten = zok_website::get_berichten().await;
+    let mut berichten = zok_website::get_berichten().await;
+
+    berichten.iter_mut().for_each(|bericht| {
+        bericht.description = bericht.description.replace("<", "&lt").replace(">", "&gt")
+    });
+
     let is_admin = jar.get_private("password_hash").is_some();
 
     Template::render("index", context! {events, berichten, is_admin})
