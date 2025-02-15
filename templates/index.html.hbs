@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zok</title>
+  <script src="https://kit.fontawesome.com/dc3124471a.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/styles.css">
 </head>
 
@@ -62,9 +63,22 @@
         {{#each events}}
         <a href="/kalender/{{this.id}}">
           <div class="event">
-            <img src="/{{this.img_path}}">
+            <div class="event-header">
+              <img src="/{{this.img_path}}">
+              <div class="chips">
+                <h3 class="chip">
+                  <i class="fa-solid fa-calendar-days" aria-hidden="true"></i> {{this.date}}
+                </h3>
+                <h3 class="chip">
+                  <i class="fa-solid fa-clock"></i> {{this.start}}
+                </h3>
+                <h3 class="chip">
+                  <i class="fa-solid fa-location-dot"></i> {{this.location.name}}
+                </h3>
+              </div>
+            </div>
             <h3>
-              {{this.title}} - {{this.date}}
+              {{this.title}}
             </h3>
           </div>
         </a>
@@ -83,7 +97,7 @@
                 {{this.title}}
               </h4>
               <p>
-              {{{this.description}}}
+                {{{this.description}}}
               </p>
             </div>
           </div>

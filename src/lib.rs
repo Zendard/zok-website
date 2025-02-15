@@ -52,8 +52,7 @@ impl<'a> EventForm<'a> {
     async fn to_event(mut self) -> Result<Event, Box<dyn Error>> {
         let id = surrealdb::Uuid::new_v4().to_string();
 
-        let filename = format!("{}_{}", &id, self.img.name().ok_or("No filename")?);
-        let img_path = std::path::PathBuf::from(env!("UPLOADS_PATH")).join(filename);
+        let img_path = std::path::PathBuf::from(env!("UPLOADS_PATH")).join(id.clone());
 
         self.img.persist_to(img_path).await?;
 

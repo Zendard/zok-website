@@ -49,16 +49,16 @@ p {
   min-height: 1em;
 }
 
-p>a,
-li>a {
+p > a,
+li > a {
   background: none;
   color: var(--accent);
   padding: initial;
   text-decoration: underline 2px;
 }
 
-p>a:hover,
-p>a:hover {
+p > a:hover,
+p > a:hover {
   filter: brightness(200%);
 }
 
@@ -87,7 +87,7 @@ form {
   flex-direction: column;
 }
 
-form>input {
+form > input {
   background-color: var(--primary);
   border-radius: var(--br);
   color: var(--text);
@@ -97,12 +97,12 @@ form>input {
   font-size: 1rem;
 }
 
-form>input:focus-visible {
+form > input:focus-visible {
   border: 1px solid var(--accent);
   outline: none;
 }
 
-form>#body {
+form > #body {
   background-color: var(--primary);
   border: none;
   height: auto;
@@ -113,7 +113,7 @@ form>#body {
   overflow-y: visible;
 }
 
-form>button {
+form > button {
   background-color: var(--accent);
   border: none;
   border-radius: var(--br);
@@ -160,13 +160,13 @@ dialog.error {
   margin-bottom: 10rem;
 }
 
-.hero>.text {
+.hero > .text {
   margin-top: auto;
   margin-bottom: auto;
   max-width: 35rem;
 }
 
-.hero>.carousel {
+.hero > .carousel {
   width: clamp(10px, 100%, 450px);
 }
 
@@ -195,30 +195,30 @@ dialog.error {
   opacity: 1;
 }
 
-.hero>.text>h1 {
+.hero > .text > h1 {
   font-size: 3.5rem;
   margin-bottom: 1rem;
 }
 
-.hero>.text>h2 {
+.hero > .text > h2 {
   font-size: 1.5rem;
   margin-top: 0px;
   margin-bottom: 4rem;
   font-weight: 500;
 }
 
-.hero>.text>a {
+.hero > .text > a {
   border: solid var(--accent) 0.2rem;
 }
 
-.hero>.text>a:hover {
+.hero > .text > a:hover {
   padding: 1rem 4rem;
   background-color: var(--background);
   color: var(--accent);
 }
 
 @media (max-width: 1180px) {
-  .hero>img {
+  .hero > img {
     display: none;
   }
 }
@@ -233,12 +233,12 @@ dialog.error {
   gap: 4rem;
 }
 
-.kalender>.title>h2 {
+.kalender > .title > h2 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-.kalender>.title>h4 {
+.kalender > .title > h4 {
   margin-top: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
@@ -253,7 +253,7 @@ dialog.error {
   width: 100%;
 }
 
-.kalender-items>a {
+.kalender-items > a {
   background: none;
   color: var(--text);
   padding: 0px;
@@ -269,13 +269,35 @@ dialog.error {
   transition: all 0.5s;
 }
 
-.event>img {
+.event > .event-header {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+  --br: 10rem;
+}
+
+.chip {
+  background-color: color-mix(in hsl, 75% var(--primary), white);
+  border-radius: var(--br);
+  padding: 0.3rem 1rem;
+  margin: 0px;
+}
+
+.event > .event-header > img {
   aspect-ratio: 1/1;
   max-width: 50%;
   border-radius: var(--br);
 }
 
-.event>h3 {
+.event > h3 {
   word-wrap: break-word;
   height: 100%;
   text-align: left;
@@ -297,19 +319,19 @@ dialog.error {
   width: 100%;
 }
 
-.berichten>.list>a {
+.berichten > .list > a {
   background: none;
   color: var(--text);
   padding: 0px;
   border-radius: 0px;
 }
 
-.berichten>h2 {
+.berichten > h2 {
   font-size: 3rem;
   margin-bottom: 5rem;
 }
 
-.berichten>.list {
+.berichten > .list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -329,19 +351,19 @@ dialog.error {
   transition: all 0.5s;
 }
 
-.bericht>img {
+.bericht > img {
   border-radius: var(--br);
   min-width: 30%;
   max-width: 30%;
 }
 
-.bericht>.text>h4 {
+.bericht > .text > h4 {
   margin-top: 0px;
   margin-bottom: 1rem;
   font-size: 2rem;
 }
 
-.bericht>.text {
+.bericht > .text {
   position: relative;
   margin-top: 1rem;
   text-overflow: ellipsis;
@@ -349,7 +371,7 @@ dialog.error {
   max-height: 15rem;
 }
 
-.bericht>.text>p::after {
+.bericht > .text > p::after {
   content: "";
   text-align: right;
   position: absolute;
