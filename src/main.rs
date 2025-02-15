@@ -15,7 +15,7 @@ async fn index(jar: &CookieJar<'_>) -> Template {
     let mut berichten = zok_website::get_berichten().await;
 
     berichten.iter_mut().for_each(|bericht| {
-        bericht.description = bericht.description.replace("<", "&lt").replace(">", "&gt")
+        bericht.description = zok_website::remove_tags(bericht.description.clone())
     });
 
     let is_admin = jar.get_private("password_hash").is_some();

@@ -469,3 +469,28 @@ pub async fn edit_event(event: EditEventForm, id: &str) -> Result<(), Box<dyn Er
 
     Ok(())
 }
+
+pub fn remove_tags(mut string: String) -> String {
+    loop {
+        let open_tag_index = string.find("<");
+        // Return if we don't find a tag opening
+        if let None = open_tag_index {
+            return string;
+        }
+
+        let close_tag_index = string.find(">");
+        // Return if we don't find a tag closing
+        if let None = open_tag_index {
+            return string;
+        }
+
+        // Return if < comes after >
+        if open_tag_index > close_tag_index {
+            return string;
+        }
+
+        let range = open_tag_index.unwrap()..(close_tag_index.unwrap() + 1);
+
+        string.replace_range(range, " ");
+    }
+}
