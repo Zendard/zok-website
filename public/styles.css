@@ -296,6 +296,8 @@ i {
   border-radius: var(--br);
   padding: 0.3rem 1rem;
   margin: 0px;
+  text-wrap: nowrap;
+  font-size: clamp(1px, 4.5vw, 1.5rem);
 }
 
 .event > .event-header > img {
