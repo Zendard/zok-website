@@ -212,7 +212,7 @@ pub async fn get_events() -> Vec<Event> {
         duration,
         pqk,
         cost,
-        cost_member FROM event",
+        cost_member FROM event SORT BY date DESC",
     )
     .await
     .unwrap()
