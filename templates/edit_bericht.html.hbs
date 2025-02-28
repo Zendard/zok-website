@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <link rel="stylesheet" href="/admin.css">
+  <title>Nieuw bericht</title>
+</head>
+
+<body>
+  <header>
+    <div id="logo">
+      <div style="width: 3em;">
+        <a href="/" id="logo-link">
+          <div>Zok</div>
+        </a>
+      </div>
+    </div>
+    <nav>
+      <a href="/" class="nav-button">Home</a>
+      <a href="/wie-zijn-wij" class="nav-button">Wie zijn wij</a>
+      <a href="/leden" class="nav-button">Leden</a>
+      <a href="/contact" class="nav-button">Contact</a>
+    </nav>
+    <button id="nav-button">☰</button>
+    <script src="/scripts/header.js"></script>
+  </header>
+  <main>
+    <h1>Bericht bewerken</h1>
+    <form action="/admin/edit-bericht/{{bericht.id}}" method="post" enctype="multipart/form-data">
+      <label for="title">Titel*</label>
+      <input type="text" name="title" value="{{bericht.title}}" required>
+      <label for="img">Afbeelding*</label>
+      <input type="file" accept="image/*" name="img" disabled>
+      <label for="description">Beschrijving*</label>
+      <input type="hidden" id="description" value="{{bericht.description}}">
+      <div id="editor"></div>
+      <button>bericht bewerken</button>
+    </form>
+  </main>
+  <script src="/scripts/quill.js"></script>
+</body>
+
+</html>

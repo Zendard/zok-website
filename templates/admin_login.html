@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Login</title>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <div style="width: 3em">
+          <a href="/" id="logo-link">
+            <div>Zok</div>
+          </a>
+        </div>
+      </div>
+      <nav>
+        <a href="/" class="nav-button">Home</a>
+        <a href="/wie-zijn-wij" class="nav-button">Wie zijn wij</a>
+        <a href="/leden" class="nav-button">Leden</a>
+        <a href="/contact" class="nav-button">Contact</a>
+      </nav>
+      <button id="nav-button">☰</button>
+      <script src="./scripts/header.js"></script>
+    </header>
+    <main>
+      <form action="/admin-login" method="POST">
+        <h1>Login</h1>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required />
+        <label
+          for="password"
+          style="color: red; display: none"
+          id="wrong-password"
+          >Wrong Password!</label
+        >
+        <button type="submit">Login</button>
+      </form>
+
+      <script src="/scripts/admin_login.js"></script>
+    </main>
+  </body>
+</html>

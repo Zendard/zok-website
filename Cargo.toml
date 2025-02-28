@@ -1,0 +1,14 @@
+[package]
+name = "zok-website"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+minreq = {version="2.12.0", features=["https"]}
+rocket = {version="0.5.1", features=["json", "secrets"]}
+rocket_dyn_templates = {version="0.2.0", features=["handlebars"]}
+surrealdb = "2.0.4"
+
+[profile.dev]
+debug = 0
+strip = "debuginfo"
