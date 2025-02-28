@@ -56,6 +56,8 @@ impl<'a> EventForm<'a> {
 
         self.img.persist_to(img_path).await?;
 
+        dbg!(&self.date);
+
         Ok(Event {
             id,
             title: self.title,
@@ -207,12 +209,13 @@ pub async fn get_events() -> Vec<Event> {
         img_path,
         location.name,
         location.address,
-        date,
+        date as datetime,
+        time::format(date,'%d/%m/%Y') as date,
         start,
         duration,
         pqk,
         cost,
-        cost_member FROM event SORT BY date DESC",
+        cost_member FROM event ORDER BY datetime ASC",
     )
     .await
     .unwrap()
@@ -246,7 +249,7 @@ pub async fn get_event_info(event_id: String) -> Option<Event> {
         img_path,
         location.name,
         location.address,
-        date,
+        time::format(date, '%d/%m/%Y') as date,
         start,
         duration,
         pqk,
@@ -338,7 +341,7 @@ pub async fn add_event(event: EventForm<'_>) -> Result<(), Box<dyn Error>> {
             title=$event.title,
             description=$event.description,
             img_path=$event.img_path,
-            date=(time::format(type::datetime($event.date),'%d/%m/%Y')),
+            date=type::datetime($event.date),
             start=$event.start,
             duration=$event.duration,
             location=$location,
@@ -455,7 +458,7 @@ pub async fn edit_event(event: EditEventForm, id: &str) -> Result<(), Box<dyn Er
         UPDATE ONLY type::thing('event', $event.id) SET
         title= $event.title,
         description= $event.description,
-        date=(time::format(type::datetime($event.date),'%d/%m/%Y')),
+        date=type::datetime($event.date),
         start= $event.start,
         duration= $event.duration,
         location= $location,
