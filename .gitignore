@@ -6,6 +6,7 @@
 
 /database
 /uploads
+/tmp
 /tls
 .env
 
