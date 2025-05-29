@@ -3,6 +3,7 @@ use rocket::{
     fs::{FileServer, NamedFile},
     http::CookieJar,
     response::Redirect,
+    serde::json::Json,
 };
 use rocket_dyn_templates::{context, Template};
 
@@ -10,17 +11,20 @@ use rocket_dyn_templates::{context, Template};
 extern crate rocket;
 
 #[get("/")]
-async fn index(jar: &CookieJar<'_>) -> Template {
+async fn index() -> Option<NamedFile> {
+    NamedFile::open("templates/index.html").await.ok()
+}
+
+#[get("/api/events")]
+async fn get_events() -> Json<Vec<zok_website::Event>> {
     let events = zok_website::get_events().await;
-    let mut berichten = zok_website::get_berichten().await;
+    return Json(events);
+}
 
-    berichten.iter_mut().for_each(|bericht| {
-        bericht.description = zok_website::remove_tags(bericht.description.clone())
-    });
-
-    let is_admin = jar.get_private("password_hash").is_some();
-
-    Template::render("index", context! {events, berichten, is_admin})
+#[get("/api/berichten")]
+async fn get_berichten() -> Json<Vec<zok_website::Bericht>> {
+    let berichten = zok_website::get_berichten().await;
+    return Json(berichten);
 }
 
 #[get("/wie-zijn-wij")]
@@ -204,6 +208,8 @@ fn rocket() -> _ {
             "/",
             routes![
                 index,
+                get_events,
+                get_berichten,
                 wie_zijn_wij,
                 leden,
                 contact,
