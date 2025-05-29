@@ -1,14 +1,12 @@
-async function get_data() {
+async function get_events() {
   const response = await fetch("/api/events")
   const events = await response.json()
-  console.log(events)
 
   add_events(events)
 }
 
 function add_events(events_json) {
   const events = events_json.map(make_event)
-  console.log(events)
 
   const event_list = document.querySelector(".kalender-items")
   event_list.innerText = ""
@@ -87,4 +85,62 @@ function make_event(event) {
   return anchor
 }
 
-get_data().await
+async function get_berichten() {
+  const response = await fetch("/api/berichten")
+  const berichten = await response.json()
+
+  add_berichten(berichten)
+}
+
+function add_berichten(berichten_json) {
+  const berichten = berichten_json.map(make_bericht)
+
+  const berichten_list = document.querySelector(".berichten>.list")
+  berichten_list.innerText = ""
+  berichten.forEach(bericht => {
+    berichten_list.appendChild(bericht)
+  });
+}
+
+function make_bericht(bericht) {
+  // Parent anchor
+  const anchor = document.createElement("a")
+  anchor.href = `/berichten/${bericht.id}`
+
+  // Parent div
+  const div = document.createElement("div")
+  div.classList.add("bericht")
+
+  // Image
+  const img = document.createElement("img")
+  img.src = bericht.img_path
+
+  // Text div
+  const text = document.createElement("div")
+  text.classList.add("text")
+
+  //Title
+  const title = document.createElement("h4")
+  title.innerText = bericht.title
+
+  // Content
+  const content = document.createElement("p")
+  content.innerText = remove_html_tags(bericht.description)
+
+  div.appendChild(img)
+  text.appendChild(title)
+  text.appendChild(content)
+  div.appendChild(text)
+  anchor.appendChild(div)
+
+  return anchor
+}
+
+function remove_html_tags(text) {
+  const regex = /<\w*>|<\/\w*>/g
+  const output = text.replaceAll(regex, "");
+  return output
+}
+
+get_events().await
+get_berichten().await
