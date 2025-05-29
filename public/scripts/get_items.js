@@ -62,12 +62,22 @@ function make_event(event) {
   time_symbol.classList.add("fa-solid")
   time_symbol.classList.add("fa-clock")
 
+  // Location chip
+  const location = document.createElement("h3")
+  location.classList.add("chip")
+  location.innerText = " " + event.location.name
 
+  // Location chip symbol
+  const location_symbol = document.createElement("i")
+  location_symbol.classList.add("fa-solid")
+  location_symbol.classList.add("fa-location-dot")
 
   date.prepend(date_symbol)
   chips.appendChild(date)
   time.prepend(time_symbol)
   chips.appendChild(time)
+  location.prepend(location_symbol)
+  chips.appendChild(location)
   header.appendChild(img)
   header.appendChild(chips)
   div.appendChild(header)
