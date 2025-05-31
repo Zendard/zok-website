@@ -18,11 +18,8 @@ function add_events(events_json) {
 function make_event(event) {
   // Parent anchor
   const anchor = document.createElement("a")
+  anchor.classList.add("event")
   anchor.href = `/kalender/${event.id}`
-
-  // Parent div
-  const div = document.createElement("div")
-  div.classList.add("event")
 
   // Header
   const header = document.createElement("div")
@@ -78,9 +75,8 @@ function make_event(event) {
   chips.appendChild(location)
   header.appendChild(img)
   header.appendChild(chips)
-  div.appendChild(header)
-  div.appendChild(title)
-  anchor.appendChild(div)
+  anchor.appendChild(header)
+  anchor.appendChild(title)
 
   return anchor
 }
@@ -105,11 +101,8 @@ function add_berichten(berichten_json) {
 function make_bericht(bericht) {
   // Parent anchor
   const anchor = document.createElement("a")
+  anchor.classList.add("bericht")
   anchor.href = `/berichten/${bericht.id}`
-
-  // Parent div
-  const div = document.createElement("div")
-  div.classList.add("bericht")
 
   // Image
   const img = document.createElement("img")
@@ -127,11 +120,10 @@ function make_bericht(bericht) {
   const content = document.createElement("p")
   content.innerText = remove_html_tags(bericht.description)
 
-  div.appendChild(img)
+  anchor.appendChild(img)
   text.appendChild(title)
   text.appendChild(content)
-  div.appendChild(text)
-  anchor.appendChild(div)
+  anchor.appendChild(text)
 
   return anchor
 }

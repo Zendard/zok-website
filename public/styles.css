@@ -260,17 +260,11 @@ i {
   width: 100%;
 }
 
-.kalender-items > a {
-  background: none;
-  color: var(--text);
-  padding: 0px;
-  border-radius: 0px;
-}
-
 .event {
   display: flex;
   flex-direction: column;
   background-color: var(--primary);
+  color: var(--text);
   border-radius: var(--br);
   padding: 2rem;
   transition: all 0.5s;
@@ -328,14 +322,6 @@ i {
   width: 100%;
 }
 
-.berichten > .list > a {
-  background: none;
-  color: var(--text);
-  padding: 0px;
-  border-radius: 0px;
-  max-width: clamp(1px, 81rem, calc(100vw - 2rem));
-}
-
 .berichten > h2 {
   font-size: 3rem;
   margin-bottom: 5rem;
@@ -349,7 +335,9 @@ i {
 }
 
 .bericht {
+  max-width: clamp(1px, 81rem, calc(100vw - 2rem));
   background-color: var(--primary);
+  color: var(--text);
   padding: 2rem;
   border-radius: var(--br);
   height: 18rem;
