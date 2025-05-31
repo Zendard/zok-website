@@ -27,6 +27,11 @@ async fn get_berichten() -> Json<Vec<zok_website::Bericht>> {
     return Json(berichten);
 }
 
+#[get("/api/is-admin")]
+async fn is_admin(_admin: zok_website::Admin) -> String {
+    "True".to_string()
+}
+
 #[get("/wie-zijn-wij")]
 async fn wie_zijn_wij() -> Option<NamedFile> {
     NamedFile::open("templates/wie_zijn_wij.html").await.ok()
@@ -228,6 +233,7 @@ fn rocket() -> _ {
                 edit_event_page,
                 edit_bericht,
                 edit_event,
+                is_admin,
             ],
         )
         .register("/", catchers![not_found, admin_login_catcher])
