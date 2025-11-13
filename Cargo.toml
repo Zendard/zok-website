@@ -4,10 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-minreq = {version="2.12.0", features=["https"]}
+minreq = {version="2.14.1", features=["https"]}
 rocket = {version="0.5.1", features=["json", "secrets"]}
 rocket_dyn_templates = {version="0.2.0", features=["handlebars"]}
-surrealdb = "2.0.4"
+surrealdb = "2.3.1"
 
 [profile.dev]
 debug = 0
