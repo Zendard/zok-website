@@ -183,9 +183,12 @@ pub async fn fetch_leden() -> Option<Vec<Lid>> {
 }
 
 pub async fn connect_to_db() -> surrealdb::Surreal<surrealdb::engine::remote::ws::Client> {
-    let db = surrealdb::Surreal::new::<surrealdb::engine::remote::ws::Ws>("localhost:5000")
-        .await
-        .unwrap();
+    let db = surrealdb::Surreal::new::<surrealdb::engine::remote::ws::Ws>(format!(
+        "localhost:{}",
+        env!("DB_PORT")
+    ))
+    .await
+    .unwrap();
 
     db.signin(surrealdb::opt::auth::Root {
         username: "root",
