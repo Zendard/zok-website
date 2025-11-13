@@ -52,7 +52,6 @@ async fn bericht_page(bericht_id: &str) -> Option<Template> {
 #[get("/leden")]
 async fn leden() -> Template {
     let leden = zok_website::fetch_leden().await;
-    dbg!(&leden);
 
     Template::render("leden", context! {leden})
 }
