@@ -67,7 +67,7 @@ async fn lid_worden() -> Option<NamedFile> {
 }
 
 #[get("/disclaimer")]
-async fn lid_worden() -> Option<NamedFile> {
+async fn disclaimer() -> Option<NamedFile> {
     NamedFile::open("templates/disclaimer.html").await.ok()
 }
 
@@ -223,6 +223,7 @@ fn rocket() -> _ {
                 leden,
                 contact,
                 lid_worden,
+                disclaimer,
                 event_page,
                 bericht_page,
                 admin,
