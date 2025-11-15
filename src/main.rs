@@ -66,6 +66,11 @@ async fn lid_worden() -> Option<NamedFile> {
     NamedFile::open("templates/lid_worden.html").await.ok()
 }
 
+#[get("/disclaimer")]
+async fn lid_worden() -> Option<NamedFile> {
+    NamedFile::open("templates/disclaimer.html").await.ok()
+}
+
 #[get("/admin")]
 async fn admin(_admin: zok_website::Admin) -> Template {
     let events = zok_website::get_events().await;
